@@ -63,10 +63,10 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
           </div>
         </div>
         <div className="fixed bottom-0 left-0 right-0 flex items-center self-start justify-between w-full gap-4 rounded-lg bg-white dark:bg-slate-950 md:bg-transparent lg:flex-col lg:justify-start lg:sticky lg:top-24 lg:px-4">
-          <div className="hidden w-full p-4 space-y-6 border rounded-lg lg:block border-slate-400 dark:border-slate-600">
+          <div className="hidden w-full p-4 space-y-6 border rounded-lg lg:block border-slate-600 dark:border-slate-400">
             {event ? <EventInfo event={event} /> : <Skeleton className="w-full h-4 rounded-lg" />}
           </div>
-          <div className="flex flex-col w-full gap-4 px-6 py-4 border-t rounded-lg sm:border border-slate-400 dark:border-slate-600">
+          <div className="flex flex-col w-full gap-4 px-6 py-4 border-t rounded-lg sm:border border-slate-600 dark:border-slate-400">
             <div className="flex items-center justify-between w-full">
               <span className="font-semibold text-xs sm:text-sm dark:text-slate-200">
                 {t("EventDetail.price-title")}
