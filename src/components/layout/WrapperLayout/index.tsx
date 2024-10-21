@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar from "@/components/common/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "./ThemeProvider";
 import Footer from "@/components/common/Footer";
 import { useParams, usePathname } from "next/navigation";

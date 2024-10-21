@@ -6,7 +6,7 @@ import { eventsService } from "@/services/events";
 import EventCardV2 from "./components/EventCardV2";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { TechEvent } from "./types";
-import { eventsData } from "./constants";
+import { mockEvents } from "./constants";
 
 const EventListPage = () => {
   const t = useTranslations("EventsPage");
@@ -56,7 +56,7 @@ const EventListPage = () => {
               <EventCardV2 data={event} />
             </Link>
           ))}
-          {eventsData.map((event) => (
+          {mockEvents.map((event) => (
             <Link key={event.id} href={`/events/${event.id}`}>
               <EventCardV2 data={event} />
             </Link>

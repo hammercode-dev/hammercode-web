@@ -7,7 +7,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "@/components/ui/Breadcrumb";
-import { LINKS } from "@/components/common/Navbar/constant";
+import { LINKS } from "@/components/layout/Navbar/constant";
 
 const EventBreadcrumbs = () => {
   const t = useTranslations("Layout");

@@ -1,7 +1,6 @@
 import { useTransition } from "react";
 import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
-
 import { usePathname, useRouter } from "@/lib/navigation";
 import { Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/Button";

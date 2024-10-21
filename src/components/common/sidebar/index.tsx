@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/Sheet";
-import NavItem from "../Navbar/NavItem";
+import NavLink from "../../../lib/navigation/NavLink";
 import { ThemeToggle } from "../ThemeToggle";
 import LocaleToggle from "../LocaleToggle";
-import { LINKS } from "../Navbar/constant";
+import { LINKS } from "../../layout/Navbar/constant";
 
 const Sidebar: FC = () => {
   const t = useTranslations("Layout");
@@ -29,7 +29,7 @@ const Sidebar: FC = () => {
           <SheetDescription>
             <nav className="flex flex-col items-center gap-4 mt-2">
               {LINKS.map(({ href, id }) => (
-                <NavItem key={id} href={href} title={t(`navbar.link-${id}`)} onClick={() => setIsOpen(false)} />
+                <NavLink key={id} href={href} title={t(`navbar.link-${id}`)} onClick={() => setIsOpen(false)} />
               ))}
               <div className="flex gap-2 items-center">
                 <ThemeToggle />

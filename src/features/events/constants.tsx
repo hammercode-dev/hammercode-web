@@ -1,7 +1,7 @@
 import { CalendarRange, Clock, MapPin } from "lucide-react";
 import { EventInfoType, TechEvent } from "./types";
 
-export const eventsData: TechEvent[] = [
+export const mockEvents: TechEvent[] = [
   {
     id: 1,
     title: "Advanced Frontend Workshop",

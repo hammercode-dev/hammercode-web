@@ -1,8 +1,8 @@
 import React from "react";
 import { dataFooter } from "./constants";
-import { Link } from "@/lib/navigation";
 import { Button } from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
+import { Link } from "@/lib/navigation";
 
 const Footer = () => {
   const date = new Date();

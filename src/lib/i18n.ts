@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
-import { locales } from "./config";
+import { locales } from "./locales";
 
 export type Locale = (typeof locales)[number];
 

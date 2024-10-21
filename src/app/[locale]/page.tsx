@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HomePage } from "@/features/home";
-import { locales } from "@/lib/config";
+import { locales } from "@/lib/locales";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 

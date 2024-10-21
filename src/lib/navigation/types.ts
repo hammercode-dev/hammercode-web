@@ -1,4 +1,4 @@
-import { pathnames } from "@/lib/config";
+import { pathnames } from "@/lib/navigation/config";
 
 export type PathnamesKeys = keyof typeof pathnames;
 export type PathnameValues = {

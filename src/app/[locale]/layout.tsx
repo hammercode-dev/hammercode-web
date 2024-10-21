@@ -4,7 +4,7 @@ import { getMessages, getTranslations, unstable_setRequestLocale } from "next-in
 import { Sora } from "next/font/google";
 import "./globals.css";
 import WrapperLayout from "@/components/layout/WrapperLayout";
-import { locales } from "@/lib/config";
+import { locales } from "@/lib/locales";
 import { notFound } from "next/navigation";
 const sora = Sora({ subsets: ["latin"] });
 

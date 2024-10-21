@@ -1,7 +1,7 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import { redirect } from "@/lib/navigation";
 import { notFound } from "next/navigation";
-import { locales } from "@/lib/config";
+import { locales } from "@/lib/locales";
 
 type Props = {
   params: {
