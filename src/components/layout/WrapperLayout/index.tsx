@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "./ThemeProvider";
-import Footer from "@/components/common/Footer";
+import Footer from "@/components/layout/Footer";
 import { useParams, usePathname } from "next/navigation";
 
 const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
