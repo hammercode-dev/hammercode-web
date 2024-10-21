@@ -1,7 +1,7 @@
-import { NavbarListProps } from "./NavbarList";
+import { NavbarListProps } from "./NavItem";
 import { ValidPathnames } from "./type";
 
-export const LINK: NavbarListProps<ValidPathnames>[] = [
+export const LINKS: NavbarListProps<ValidPathnames>[] = [
   {
     id: "1",
     href: "/about",
@@ -10,8 +10,4 @@ export const LINK: NavbarListProps<ValidPathnames>[] = [
     id: "2",
     href: "/events",
   },
-  // {
-  //   id: "3",
-  //   href: "/contact",
-  // },
 ];

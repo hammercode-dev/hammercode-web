@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Send } from "lucide-react";
 import { Link } from "@/lib/navigation";
 import { useTranslations } from "next-intl";

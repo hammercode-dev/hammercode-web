@@ -2,7 +2,7 @@ import { Link } from "@/lib/navigation";
 import Image from "next/image";
 import { socialMedia } from "../constants";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { HandCoins } from "lucide-react";
 
 const HeroSection = () => {

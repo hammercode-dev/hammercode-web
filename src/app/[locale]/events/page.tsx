@@ -1,6 +1,7 @@
-import EventsPage from "@/features/events";
+import { EventListPage } from "@/features/events";
 
-const Events = () => {
-  return <EventsPage />;
+const EventList = () => {
+  return <EventListPage />;
 };
-export default Events;
+
+export default EventList;

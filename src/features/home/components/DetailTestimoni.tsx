@@ -2,7 +2,7 @@ import { FC } from "react";
 import { TestimonialType } from "../types";
 import Image from "next/image";
 
-import { DialogContent } from "@/components/ui/dialog";
+import { DialogContent } from "@/components/ui/Dialog";
 
 const DetailTestimoni: FC<{ data: TestimonialType }> = ({ data }) => {
   return (

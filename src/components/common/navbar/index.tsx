@@ -1,12 +1,11 @@
 import { Link } from "@/lib/navigation";
-
-import NavbarList from "./NavbarList";
-import { ModeToggle } from "../mode-toggle";
+import NavItem from "./NavItem";
+import { ThemeToggle } from "../ThemeToggle";
 import { useTranslations } from "next-intl";
-import LocaleToggle from "../locale-toggle";
-import { LINK } from "./constant";
-import Sidebar from "../sidebar";
-import AnnouncementLayout from "@/components/layout/announcement";
+import LocaleToggle from "../LocaleToggle";
+import { LINKS } from "./constant";
+import Sidebar from "../Sidebar";
+import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
 
 const Navbar = () => {
   const t = useTranslations("Layout");
@@ -21,11 +20,11 @@ const Navbar = () => {
             </Link>
 
             <nav className="lg:flex items-center gap-7 hidden">
-              {LINK.map(({ href, id }) => (
-                <NavbarList key={id} href={href} title={t(`navbar.link-${id}`)} />
+              {LINKS.map(({ href, id }) => (
+                <NavItem key={id} href={href} title={t(`navbar.link-${id}`)} />
               ))}
               <div className="flex gap-2 items-center">
-                <ModeToggle />
+                <ThemeToggle />
                 <LocaleToggle />
               </div>
             </nav>
