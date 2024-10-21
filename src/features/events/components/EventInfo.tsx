@@ -3,11 +3,11 @@ import { FC } from "react";
 import { useTranslations } from "next-intl";
 import { useFormatDate } from "@/lib/utils";
 import { CalendarRange, Clock, MapPin } from "lucide-react";
-import { EventType } from "../types";
+import { TechEvent } from "../types";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
-import { AvatarFallback } from "@/components/ui/avatar";
+import { AvatarFallback } from "@/components/ui/Avatar";
 
-const EventInfo: FC<{ event: EventType; className?: string }> = ({ event, className }) => {
+const EventInfo: FC<{ event: TechEvent; className?: string }> = ({ event, className }) => {
   const t = useTranslations("EventsPage");
   const { author, date_event, location, duration } = event;
 

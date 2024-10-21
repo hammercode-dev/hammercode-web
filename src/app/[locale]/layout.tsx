@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { Sora } from "next/font/google";
 import "./globals.css";
-import Wrapper from "@/components/layout/wrapper";
+import WrapperLayout from "@/components/layout/WrapperLayout";
 import { locales } from "@/lib/config";
 import { notFound } from "next/navigation";
 const sora = Sora({ subsets: ["latin"] });
@@ -42,7 +42,7 @@ export default async function LocaleRootLayout({ children, params: { locale } }:
       </head>
       <body className={`${sora.className} pt-8`}>
         <NextIntlClientProvider messages={messages}>
-          <Wrapper>{children}</Wrapper>
+          <WrapperLayout>{children}</WrapperLayout>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 import { CalendarRange, Clock, MapPin } from "lucide-react";
-import { EventInfoType, EventType } from "./types";
+import { EventInfoType, TechEvent } from "./types";
 
-export const eventsData: EventType[] = [
+export const eventsData: TechEvent[] = [
   {
     id: 1,
     title: "Advanced Frontend Workshop",

@@ -4,11 +4,11 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import NavbarList from "../navbar/NavbarList";
-import { ModeToggle } from "../mode-toggle";
-import LocaleToggle from "../locale-toggle";
-import { LINK } from "../navbar/constant";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/Sheet";
+import NavItem from "../Navbar/NavItem";
+import { ThemeToggle } from "../ThemeToggle";
+import LocaleToggle from "../LocaleToggle";
+import { LINKS } from "../Navbar/constant";
 
 const Sidebar: FC = () => {
   const t = useTranslations("Layout");
@@ -28,11 +28,11 @@ const Sidebar: FC = () => {
           </SheetTitle>
           <SheetDescription>
             <nav className="flex flex-col items-center gap-4 mt-2">
-              {LINK.map(({ href, id }) => (
-                <NavbarList key={id} href={href} title={t(`navbar.link-${id}`)} onClick={() => setIsOpen(false)} />
+              {LINKS.map(({ href, id }) => (
+                <NavItem key={id} href={href} title={t(`navbar.link-${id}`)} onClick={() => setIsOpen(false)} />
               ))}
               <div className="flex gap-2 items-center">
-                <ModeToggle />
+                <ThemeToggle />
                 <LocaleToggle />
               </div>
             </nav>
