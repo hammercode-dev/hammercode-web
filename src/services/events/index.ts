@@ -6,6 +6,6 @@ export const eventsService = {
   },
 
   getEventById(id: string) {
-    return fetcher.get("/public/events", { params: { id } });
+    return fetcher.get(`/public/events/${id}`);
   },
 };

@@ -22,7 +22,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
   useEffect(() => {
     const handleGetEvent = async () => {
       const res = await eventsService.getEventById(eventId);
-      setEvent(res.data[0]);
+      setEvent(res.data);
     };
 
     handleGetEvent();
