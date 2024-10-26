@@ -16,25 +16,27 @@ const EventInfo: FC<{ event: TechEvent; className?: string }> = ({ event, classN
       <div className="space-y-4">
         <div className="flex items-center h-4 gap-2">
           <CalendarRange className="size-4 text-slate-700 dark:text-slate-300" />
-          <p className="text-sm capitalize text-slate-700 dark:text-slate-300">{useFormatDate(date_event)}</p>
+          <p className="font-semibold text-sm capitalize text-slate-700 dark:text-slate-300">
+            {useFormatDate(date_event)}
+          </p>
         </div>
         <div className="flex items-center h-4 gap-2">
           <Clock className="size-4 text-slate-700 dark:text-slate-300" />
-          <p className="text-sm capitalize text-slate-700 dark:text-slate-300">{duration}</p>
+          <p className="font-semibold text-sm capitalize text-slate-700 dark:text-slate-300">{duration}</p>
         </div>
         <div className="flex items-center h-4 gap-2">
           <MapPin className="size-4 text-slate-700 dark:text-slate-300" />
-          <p className="text-sm capitalize text-slate-700 dark:text-slate-300">{location}</p>
+          <p className="font-semibold text-sm capitalize text-slate-700 dark:text-slate-300">{location}</p>
         </div>
       </div>
-      <div className="flex items-center gap-4 p-6 rounded-lg border border-slate-400 dark:border-slate-600">
+      <div className="flex items-center gap-4 p-6 rounded-lg border border-slate-600 dark:border-slate-400">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt={author} className="size-10 rounded-full" />
           <AvatarFallback className="p-2">CN</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1.5">
-          <h2 className="text-sm text-slate-700 dark:text-slate-200">{t("EventDetail.organized-by")}</h2>
-          <span className="text-xs font-bold uppercase text-slate-700 dark:text-slate-200">{author}</span>
+          <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-200">{t("EventDetail.organized-by")}</h2>
+          <span className="text-xs font-black uppercase text-slate-700 dark:text-slate-200">{author}</span>
         </div>
       </div>
     </div>

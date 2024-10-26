@@ -4,8 +4,9 @@ import { ThemeToggle } from "../../common/ThemeToggle";
 import { useTranslations } from "next-intl";
 import LocaleToggle from "../../common/LocaleToggle";
 import { LINKS } from "./constant";
-import Sidebar from "../../common/Sidebar";
+
 import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
+import Sidebar from "../Sidebar";
 
 const Navbar = () => {
   const t = useTranslations("Layout");

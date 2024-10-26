@@ -5,9 +5,10 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/Sheet";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
+import LocaleToggle from "@/components/common/LocaleToggle";
+
 import NavLink from "../../../lib/navigation/NavLink";
-import { ThemeToggle } from "../ThemeToggle";
-import LocaleToggle from "../LocaleToggle";
 import { LINKS } from "../../layout/Navbar/constant";
 
 const Sidebar: FC = () => {
