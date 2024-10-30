@@ -8,4 +8,8 @@ export const eventsService = {
   getEventById(id: string) {
     return fetcher.get(`/public/events/${id}`);
   },
+
+  // bookEvent(data: any){
+  //   return
+  // }
 };
