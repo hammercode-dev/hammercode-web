@@ -1,19 +1,18 @@
 import { FC } from "react";
-import Image from "next/image";
 import { Clock, Pin } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/Card";
-import { useFormatDate } from "@/lib/utils";
-import { TechEvent } from "../types";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/Tooltip";
+import { useFormatDate } from "@/lib/utils";
+import EventImage from "./EventImage";
+import { TechEvent } from "../types";
 
 const EventCardV2: FC<{ data: TechEvent }> = ({ data }) => {
-  const { title, date_event, status, duration, location } = data;
+  const { title, image_event, date_event, status, duration, location } = data;
   return (
     <Card className="flex flex-col size-full border rounded-lg shadow-md">
-      <Image
-        // TODO: replace src url from image_event
-        src="/assets/images/events/pdd2024.webp"
+      <EventImage
+        src={image_event}
         alt={title}
         width={540}
         height={240}

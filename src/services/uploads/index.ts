@@ -6,6 +6,8 @@ export const uploadsService = {
     data.append("image", image);
     data.append("type", type);
     data.append("category", category);
-    return fetcher.post("/public/images", data);
+    return fetcher.post("/public/images", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
   },
 };

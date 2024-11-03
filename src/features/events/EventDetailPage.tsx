@@ -1,6 +1,5 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { eventsService } from "@/services/events";
 import { useFormatPrice } from "@/lib/utils";
@@ -8,6 +7,7 @@ import EventInfo from "./components/EventInfo";
 import Skeleton from "@/components/ui/Skeleton";
 import TitleContainer from "@/components/ui/TitleContainer";
 import EventBreadcrumbs from "./components/EventBreadcrumb";
+import EventImage from "./components/EventImage";
 import EventFormRegistration from "./components/EventFormRegistration";
 import { EventType } from "@/domains/Events";
 
@@ -34,8 +34,8 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
         <div className="space-y-4 lg:col-span-2">
           <div className="w-full rounded-lg">
             {event ? (
-              <Image
-                src="/assets/images/events/pdd2024.webp"
+              <EventImage
+                src={event?.image_event as string}
                 alt="Banner"
                 width={1000}
                 height={500}
@@ -62,7 +62,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
             </div>
           </div>
         </div>
-        <div className="fixed bottom-0 left-0 right-0 flex items-center self-start justify-between w-full gap-4 rounded-lg bg-white dark:bg-slate-950 md:bg-transparent lg:flex-col lg:justify-start lg:sticky lg:top-24 lg:px-4">
+        <div className="fixed bottom-0 left-0 right-0 flex items-center self-start justify-between w-full gap-4 rounded-lg bg-white dark:bg-slate-950 lg:bg-transparent lg:flex-col lg:justify-start lg:sticky lg:top-24 lg:px-4">
           <div className="hidden w-full p-4 space-y-6 border rounded-lg lg:block">
             {event ? <EventInfo event={event} /> : <Skeleton className="w-full h-4 rounded-lg" />}
           </div>

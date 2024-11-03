@@ -31,11 +31,26 @@ export const EventSchema = z
 export type EventType = z.infer<typeof EventSchema>;
 
 export const registrationSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  phone_number: z.string().min(10, "Phone number is required"),
-  image_proof_payment: z.string().min(1, "Proof of payment is required"),
-  net_amount: z.number().min(1, "Net amount must be at least 1"),
+  name: z.string({ required_error: "Name is required" }).min(1, "Name must be at least 1 character long"),
+  email: z.string({ required_error: "Email is required" }).email("Invalid email address"),
+  phone_number: z
+    .string({ required_error: "Phone number is required" })
+    .min(10, "Phone number must be at least 10 digits"),
+  image_proof_payment: z
+    .any()
+    .refine((file) => file instanceof File && file.size > 0, {
+      message: "Proof of payment is required",
+    })
+    .refine(
+      (file) => {
+        const validTypes = ["image/jpeg", "image/jpg", "image/png"];
+        return file instanceof File && validTypes.includes(file.type);
+      },
+      {
+        message: "Only JPG, JPEG, and PNG files are accepted",
+      }
+    ),
+  net_amount: z.number({ required_error: "Net amount is required" }).min(1, "Net amount must be at least 1"),
 });
 
 export type RegistrationForm = z.infer<typeof registrationSchema>;

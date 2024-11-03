@@ -1,29 +1,24 @@
-import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/Form";
 import { Card } from "@/components/ui/Card";
-import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
+import { Input } from "@/components/ui/Input";
+import { SubmitButton } from "@/components/ui/SubmitButton";
+import { EventType } from "@/domains/Events";
 import { useFormatPrice } from "@/lib/utils";
+import EventImage from "./EventImage";
+import useSubmitEventRegistration from "../hooks/useSubmitEventRegistration";
 
 const EventFormRegistration = ({ data }: { data: EventType }) => {
   const t = useTranslations("EventsPage");
-  const form = useForm<RegistrationForm>({
-    resolver: zodResolver(registrationSchema),
-  });
-
-  const onSubmit = (formData: RegistrationForm) => {
-    console.log("Form Data Submitted: ", formData);
-  };
+  const { form, isDialogOpen, isLoading, setIsDialogOpen, onSubmit } = useSubmitEventRegistration({ data });
 
   return (
-    <Dialog>
-      <DialogTrigger className="w-full p-2 rounded-lg text-xs text-white bg-hmc-base-darkblue font-bold dark:bg-slate-200">
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogTrigger
+        className="w-full p-2 rounded-lg text-xs text-background bg-hmc-base-darkblue font-bold dark:bg-slate-200"
+        onClick={() => setIsDialogOpen(true)}
+      >
         {t("EventDetail.register-button")}
       </DialogTrigger>
       <DialogContent className="max-w-[900px] dark:border-hmc-base-darkblue dark:border">
@@ -41,9 +36,9 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>{t("EventRegistration.name.label")}</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="Enter your name" />
+                        <Input {...field} placeholder={t("EventRegistration.name.placeholder")} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -54,9 +49,9 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{t("EventRegistration.email.label")}</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="Enter your email" />
+                        <Input {...field} placeholder={t("EventRegistration.email.placeholder")} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -67,9 +62,9 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
+                      <FormLabel>{t("EventRegistration.phone-number.label")}</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="Enter your phone number" />
+                        <Input {...field} placeholder={t("EventRegistration.phone-number.placeholder")} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -82,13 +77,14 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Proof of Payment</FormLabel>
+                          <FormLabel>{t("EventRegistration.image-proof-payment.label")}</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               type="file"
                               onChange={(e) => field.onChange(e.target.files?.[0])}
-                              placeholder="Upload proof of payment"
+                              value={undefined}
+                              placeholder={t("EventRegistration.image-proof-payment.placeholder")}
                             />
                           </FormControl>
                           <FormMessage />
@@ -102,9 +98,14 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Net Amount</FormLabel>
+                          <FormLabel>{t("EventRegistration.net-amount.label")}</FormLabel>
                           <FormControl>
-                            <Input type="number" {...field} placeholder="Enter the net amount" />
+                            <Input
+                              type="number"
+                              {...field}
+                              placeholder={t("EventRegistration.net-amount.placeholder")}
+                              onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -117,7 +118,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
           </div>
           <div className="col-span-2">
             <Card className="border p-3 space-y-4">
-              <Image
+              <EventImage
                 src={data?.image_event as string}
                 alt="Banner"
                 width={1000}
@@ -134,9 +135,16 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                 <span className="font-semibold text-xs sm:text-sm dark:text-slate-200">Total</span>
                 <p className="text-sm font-bold dark:text-slate-200">{useFormatPrice(data?.price)}</p>
               </div>
-              <Button size="sm" className="w-full" type="submit" onClick={form.handleSubmit(onSubmit)}>
+              <SubmitButton
+                size="sm"
+                className="w-full"
+                type="submit"
+                loading={isLoading}
+                disabled={isLoading}
+                onClick={form.handleSubmit(onSubmit)}
+              >
                 Submit
-              </Button>
+              </SubmitButton>
             </Card>
           </div>
         </div>
