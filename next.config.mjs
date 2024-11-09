@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "lms-be-development.hammercode.org",
+      },
     ],
   },
   trailingSlash: true,

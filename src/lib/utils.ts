@@ -6,9 +6,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function useFormatDate(date: string) {
+export function useFormatDate(date?: string) {
   const format = useFormatter();
-  const dateTime = new Date(date);
+  const dateTime = new Date(date as string);
 
   return format.dateTime(dateTime, {
     year: "numeric",
@@ -17,10 +17,10 @@ export function useFormatDate(date: string) {
   });
 }
 
-export function useFormatPrice(price: number) {
+export function useFormatPrice(price?: number) {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
     minimumFractionDigits: 0,
-  }).format(price);
+  }).format(price as number);
 }

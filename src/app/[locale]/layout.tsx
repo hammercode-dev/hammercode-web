@@ -6,6 +6,7 @@ import "./globals.css";
 import WrapperLayout from "@/components/layout/WrapperLayout";
 import { locales } from "@/lib/locales";
 import { notFound } from "next/navigation";
+import { Toaster } from "@/components/ui/Toaster";
 const sora = Sora({ subsets: ["latin"] });
 
 type Props = {
@@ -43,6 +44,7 @@ export default async function LocaleRootLayout({ children, params: { locale } }:
       <body className={`${sora.className} pt-8`}>
         <NextIntlClientProvider messages={messages}>
           <WrapperLayout>{children}</WrapperLayout>
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>
