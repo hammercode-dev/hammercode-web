@@ -3,12 +3,12 @@
     "navbar": {
       "link-1": "About Us",
       "link-2": "Events",
-      "link-3": "Contact"
+      "link-3": "Donate"
     },
     "breadcrumb": {
       "link-1": "About Us",
       "link-2": "Events",
-      "link-3": "Contact"
+      "link-3": "Donate"
     }
   },
   "LocaleLayout": {
@@ -28,7 +28,7 @@
       ]
     },
     "social_media": {
-      "title": "Let's Join with Us!"
+      "title": "Let's Join Us!"
     },
     "contact": {
       "title": "Contact"
@@ -142,6 +142,9 @@
       "event-3": "Instagram Live",
       "event-4": "Weekly Lesson"
     }
+  },
+  "SupportUsPage": {
+    "brief": "Your donation to hammercode is an investment for creating new opportunities for young to have a daring impact on tech"
   },
   "Announcement": {
     "pdd-2024": "🚀 Hi there! Our annual tech conference Palu Developer Day is around the corner! Check it out!"

@@ -3,12 +3,12 @@
     "navbar": {
       "link-1": "Tentang Kami",
       "link-2": "Acara",
-      "link-3": "Kontak"
+      "link-3": "Donasi"
     },
     "breadcrumb": {
       "link-1": "Tentang Kami",
       "link-2": "Acara",
-      "link-3": "Kontak"
+      "link-3": "Donasi"
     }
   },
   "LocaleLayout": {
@@ -142,6 +142,9 @@
       "event-3": "Siaran Langsung Instagram",
       "event-4": "Pembelajaran Mingguan"
     }
+  },
+  "SupportUsPage": {
+    "brief": "Donasi anda ke hammercode adalah investasi untuk menciptakan kesempatan baru untuk para pemuda memberikan dampak positif di bidang teknologi"
   },
   "Announcement": {
     "pdd-2024": "🚀 Halo! Acara tahunan teknologi Palu Developer Day sudah dekat! Klik di sini!"

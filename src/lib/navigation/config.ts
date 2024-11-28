@@ -11,9 +11,9 @@ export const pathnames: Pathnames<Locales> = {
     en: "/events",
     id: "/events",
   },
-  "/contact": {
-    en: "/contact",
-    id: "/contact",
+  "/support-us": {
+    en: "/support-us",
+    id: "/support-us",
   },
 } satisfies Pathnames<Locales>;
 
