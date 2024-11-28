@@ -39,7 +39,7 @@ export const dataFooter: FooterType = {
     title: "Contact",
     data: [
       {
-        value: "081355893352",
+        value: "+6281355893352",
         navigate_url: "https://wa.me/6281355893352",
       },
       {
