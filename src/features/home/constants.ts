@@ -24,6 +24,14 @@ export const socialMedia: SocialMediaType[] = [
     color_two: "#fe0033",
     navigate_url: "https://www.youtube.com/@hammercode-dev",
   },
+  {
+    id: 4,
+    icon: "/assets/icons/ic_github.svg",
+    is_gradient: true,
+    color_one: "#000",
+    color_two: "#000",
+    navigate_url: "https://github.com/hammercode-dev",
+  },
 ];
 
 export const partnersData: PartnerType[] = [
