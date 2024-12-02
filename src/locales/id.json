@@ -144,7 +144,8 @@
     }
   },
   "SupportUsPage": {
-    "brief": "Donasi anda ke hammercode adalah investasi untuk menciptakan kesempatan baru untuk para pemuda memberikan dampak positif di bidang teknologi"
+    "brief": "Donasi anda ke hammercode adalah investasi untuk menciptakan kesempatan baru untuk para pemuda memberikan dampak positif di bidang teknologi",
+    "budget": "Lihat rencana anggaran"
   },
   "Announcement": {
     "pdd-2024": "🚀 Halo! Acara tahunan teknologi Palu Developer Day sudah dekat! Klik di sini!"

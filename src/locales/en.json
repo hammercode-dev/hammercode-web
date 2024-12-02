@@ -144,7 +144,8 @@
     }
   },
   "SupportUsPage": {
-    "brief": "Your donation to hammercode is an investment for creating new opportunities for young to have a daring impact on tech"
+    "brief": "Your donation to hammercode is an investment for creating new opportunities for young to have a daring impact on tech",
+    "budget": "See our budget plan"
   },
   "Announcement": {
     "pdd-2024": "🚀 Hi there! Our annual tech conference Palu Developer Day is around the corner! Check it out!"

@@ -62,12 +62,21 @@ export default function SupportUsPage() {
   const t = useTranslations("SupportUsPage");
 
   return (
-    <div className="pt-32 pb-16 container mx-auto px-5">
+    <div style={{ maxWidth: 928 }} className="pt-32 pb-16 container mx-auto px-5">
       <section>
         <h1 className="text-3xl font-bold mb-2 text-hmc-base-blue">Donate to Make bigger Impact!</h1>
-        <p className="mb-8 text-lg">{t("brief")}</p>
+        <p className="mb-8 text-lg">
+          {t("brief")}.{" "}
+          <a
+            className="text-blue-500 underline"
+            href="https://docs.google.com/spreadsheets/d/1ZgmZXxf6ep4BvNC0oQ9B_cBKO3sVFO2IxS-m7RoR_xU/edit?gid=0#gid=0"
+            target="_blank"
+          >
+            {t("budget")}
+          </a>
+        </p>
 
-        <div className="flex flex-col md:flex-row gap-4 justify-around">
+        <div className="mt-12 flex flex-col md:flex-row gap-4 justify-around">
           <Saweria />
           <BankTransfer />
         </div>
