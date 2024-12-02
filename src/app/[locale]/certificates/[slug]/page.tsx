@@ -1,23 +1,24 @@
 import { notFound } from "next/navigation";
+import { EventCertificate, CertificatePage } from "@/features/certificate";
 
-import Certificate from "@/features/certificate/Certificate";
-import { CertificateType } from "@/features/certificate/types";
+function getCertificateData(slug: string): Promise<EventCertificate> {
+  return fetch(`https://moonlight.hammercode.org/v1/certificates/${slug}`).then((res) => res.json());
+}
 
-type Props = {
+type CertificateDetailProps = {
   params: {
     slug: string;
   };
 };
 
-const CertificateDetail = async ({ params }: Props) => {
-  const data = await fetch(`https://moonlight.hammercode.org/v1/certificates/${params.slug}`);
-  const certificateDetail: CertificateType = await data.json();
+const CertificateDetail = async ({ params }: CertificateDetailProps) => {
+  const data = await getCertificateData(params.slug);
 
-  if (!certificateDetail.name) {
+  if (!data.name) {
     return notFound();
   }
 
-  return <Certificate certificate={certificateDetail} />;
+  return <CertificatePage certificate={data} />;
 };
 
 export default CertificateDetail;

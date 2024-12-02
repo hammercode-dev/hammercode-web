@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { partnersData } from "../constants";
 import { useTranslations } from "next-intl";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/Carousel";
 
 const PartnerSection = () => {
   const t = useTranslations("HomePage.section-partner");

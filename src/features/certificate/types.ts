@@ -1,4 +1,4 @@
-export type CertificateType = {
+export type EventCertificate = {
   _id: string;
   name: string;
   image_link: string;

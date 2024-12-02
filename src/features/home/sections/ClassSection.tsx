@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { courseData } from "../constants";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carousel";
+import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { useTranslations } from "next-intl";
 
 const ClassSection = () => {

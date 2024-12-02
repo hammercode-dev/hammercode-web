@@ -2,12 +2,12 @@ import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-import { Card, CardFooter, CardHeader } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Card, CardFooter, CardHeader } from "@/components/ui/Card";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carousel";
 
 import DetailTestimoni from "../components/DetailTestimoni";
 import { testimonialData } from "../constants";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 
 const TestimonialSection = () => {
   const t = useTranslations("HomePage.section-testimonial");

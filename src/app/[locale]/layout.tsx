@@ -3,9 +3,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { Sora } from "next/font/google";
 import "./globals.css";
-import Wrapper from "@/components/layout/wrapper";
-import { locales } from "@/lib/config";
+import WrapperLayout from "@/components/layout/WrapperLayout";
+import { locales } from "@/lib/locales";
 import { notFound } from "next/navigation";
+import { Toaster } from "@/components/ui/Toaster";
 const sora = Sora({ subsets: ["latin"] });
 
 type Props = {
@@ -42,7 +43,8 @@ export default async function LocaleRootLayout({ children, params: { locale } }:
       </head>
       <body className={`${sora.className} pt-8`}>
         <NextIntlClientProvider messages={messages}>
-          <Wrapper>{children}</Wrapper>
+          <WrapperLayout>{children}</WrapperLayout>
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/Card";
 import { PROGRAM } from "../constant";
 import { FC } from "react";
 import { useTranslations } from "next-intl";

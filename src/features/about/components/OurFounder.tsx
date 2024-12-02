@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Linkedin, Mail } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/Card";
+import Badge from "@/components/ui/Badge";
 import { FOUNDERS } from "../constant";
 
 const OurFounder: FC = () => {

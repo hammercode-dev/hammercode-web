@@ -3,12 +3,12 @@
     "navbar": {
       "link-1": "Tentang Kami",
       "link-2": "Acara",
-      "link-3": "Kontak"
+      "link-3": "Donasi"
     },
     "breadcrumb": {
       "link-1": "Tentang Kami",
       "link-2": "Acara",
-      "link-3": "Kontak"
+      "link-3": "Donasi"
     }
   },
   "LocaleLayout": {
@@ -90,6 +90,39 @@
       "desc-title": "Deskripsi",
       "price-title": "Harga mulai dari",
       "register-button": "Daftar Sekarang"
+    },
+    "EventRegistration": {
+      "name": {
+        "label": "Nama",
+        "placeholder": "Masukkan nama Anda"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Masukkan email Anda"
+      },
+      "phone-number": {
+        "label": "Nomor Telepon",
+        "placeholder": "Masukkan nomor telepon Anda"
+      },
+      "image-proof-payment": {
+        "label": "Bukti Pembayaran",
+        "placeholder": "Unggah bukti pembayaran"
+      },
+      "net-amount": {
+        "label": "Jumlah Bayar",
+        "placeholder": "Masukkan jumlah bayar"
+      },
+      "error": {
+        "net-amount-low": "Jumlah bayar kurang dari harga acara."
+      },
+      "success": {
+        "title": "Pendaftaran Berhasil",
+        "description": "Nomor Pesanan Tiket: "
+      },
+      "failure": {
+        "title": "Pendaftaran Gagal",
+        "description": "Terjadi kesalahan yang tidak terduga."
+      }
     }
   },
   "AboutPage": {
@@ -109,6 +142,10 @@
       "event-3": "Siaran Langsung Instagram",
       "event-4": "Pembelajaran Mingguan"
     }
+  },
+  "SupportUsPage": {
+    "brief": "Donasi anda ke hammercode adalah investasi untuk menciptakan kesempatan baru untuk para pemuda memberikan dampak positif di bidang teknologi",
+    "budget": "Lihat rencana anggaran"
   },
   "Announcement": {
     "pdd-2024": "🚀 Halo! Acara tahunan teknologi Palu Developer Day sudah dekat! Klik di sini!"

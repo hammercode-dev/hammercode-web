@@ -2,7 +2,7 @@ import { Link } from "@/lib/navigation";
 import Image from "next/image";
 import { socialMedia } from "../constants";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { HandCoins } from "lucide-react";
 
 const HeroSection = () => {
@@ -28,6 +28,7 @@ const HeroSection = () => {
                 <Button asChild key={data.id} size="icon">
                   <Link
                     href={data.navigate_url}
+                    target="_blank"
                     style={{
                       background: data.is_gradient
                         ? `linear-gradient(135deg, ${data.color_one} 0%, ${data.color_two} 100%)`

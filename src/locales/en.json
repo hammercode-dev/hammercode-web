@@ -3,12 +3,12 @@
     "navbar": {
       "link-1": "About Us",
       "link-2": "Events",
-      "link-3": "Contact"
+      "link-3": "Donate"
     },
     "breadcrumb": {
       "link-1": "About Us",
       "link-2": "Events",
-      "link-3": "Contact"
+      "link-3": "Donate"
     }
   },
   "LocaleLayout": {
@@ -28,7 +28,7 @@
       ]
     },
     "social_media": {
-      "title": "Let's Join with Us!"
+      "title": "Let's Join Us!"
     },
     "contact": {
       "title": "Contact"
@@ -90,6 +90,39 @@
       "desc-title": "Description",
       "price-title": "Price starts from",
       "register-button": "Regist Now"
+    },
+    "EventRegistration": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "phone-number": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "image-proof-payment": {
+        "label": "Proof of Payment",
+        "placeholder": "Upload proof of payment"
+      },
+      "net-amount": {
+        "label": "Net Amount",
+        "placeholder": "Enter the net amount"
+      },
+      "error": {
+        "net-amount-low": "Net amount is less than the event price."
+      },
+      "success": {
+        "title": "Registration Successful",
+        "description": "Ticket Order No: "
+      },
+      "failure": {
+        "title": "Registration Failed",
+        "description": "An unexpected error occurred."
+      }
     }
   },
   "AboutPage": {
@@ -109,6 +142,10 @@
       "event-3": "Instagram Live",
       "event-4": "Weekly Lesson"
     }
+  },
+  "SupportUsPage": {
+    "brief": "Your donation to hammercode is an investment for creating new opportunities for young to have a daring impact on tech",
+    "budget": "See our budget plan"
   },
   "Announcement": {
     "pdd-2024": "🚀 Hi there! Our annual tech conference Palu Developer Day is around the corner! Check it out!"

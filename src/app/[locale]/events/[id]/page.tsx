@@ -1,7 +1,7 @@
-import EventDetail from "@/features/events/components/EventDetail";
+import { EventDetailPage } from "@/features/events";
 
 const EventsDetail = ({ params }: { params: { id: string } }) => {
-  return <EventDetail params={params} />;
+  return <EventDetailPage eventId={params.id} />;
 };
 
 export default EventsDetail;

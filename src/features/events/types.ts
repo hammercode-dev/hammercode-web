@@ -1,7 +1,7 @@
 type EventTypes = "Workshop" | "TechTalk" | "dll";
 type EventStatus = "open" | "soon" | "closed";
 
-export type EventType = {
+export type TechEvent = {
   id: number;
   title: string;
   description: string;
