@@ -16,6 +16,14 @@ export const socialMedia: SocialMediaType[] = [
     color_two: "#FF5746",
     navigate_url: "https://instagram.com/hmrcode",
   },
+  {
+    id: 3,
+    icon: "/assets/icons/ic_youtube.svg",
+    is_gradient: true,
+    color_one: "#fe0033",
+    color_two: "#fe0033",
+    navigate_url: "https://www.youtube.com/@hammercode-dev",
+  },
 ];
 
 export const partnersData: PartnerType[] = [

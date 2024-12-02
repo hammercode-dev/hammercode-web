@@ -41,6 +41,7 @@ const Footer = () => {
                   <Link
                     key={data.navigate_url}
                     href={data.navigate_url}
+                    target="_blank"
                     className="md:text-sm text-xs text-slate-600 dark:text-slate-400 hover:opacity-80 hover:underline"
                   >
                     {data.name}

@@ -28,6 +28,7 @@ const HeroSection = () => {
                 <Button asChild key={data.id} size="icon">
                   <Link
                     href={data.navigate_url}
+                    target="_blank"
                     style={{
                       background: data.is_gradient
                         ? `linear-gradient(135deg, ${data.color_one} 0%, ${data.color_two} 100%)`

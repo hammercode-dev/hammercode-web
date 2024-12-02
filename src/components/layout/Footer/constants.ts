@@ -26,12 +26,16 @@ export const dataFooter: FooterType = {
         navigate_url: "https://instagram.com/hmrcode",
       },
       {
-        name: "Linkedin",
-        navigate_url: "https://www.linkedin.com/company/hammercode",
-      },
-      {
         name: "Github",
         navigate_url: "https://github.com/hammer-code",
+      },
+      {
+        name: "Youtube",
+        navigate_url: "https://www.youtube.com/@hammercode-dev",
+      },
+      {
+        name: "Linkedin",
+        navigate_url: "https://www.linkedin.com/company/hammercode",
       },
     ],
   },
