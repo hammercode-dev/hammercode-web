@@ -8,7 +8,7 @@ import { HandCoins } from "lucide-react";
 const HeroSection = () => {
   const t = useTranslations("HomePage.section-hero");
   return (
-    <div className="container mx-auto py-32 flex lg:flex-row flex-col items-center gap-6 justify-between">
+    <div className="container mx-auto pt-24 pb-32 flex lg:flex-row flex-col items-center gap-6 justify-between">
       <div className="basis-[50%]">
         <div className="space-y-4">
           <div className="space-y-1.5">
