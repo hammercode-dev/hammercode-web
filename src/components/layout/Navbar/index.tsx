@@ -11,7 +11,7 @@ import Sidebar from "../Sidebar";
 const Navbar = () => {
   const t = useTranslations("Layout");
   return (
-    <header className="fixed w-full z-50 top-0">
+    <header className="sticky w-full z-50 top-0">
       <AnnouncementLayout />
       <div className="border-b  bg-white dark:bg-slate-950">
         <div className="container mx-auto py-5">

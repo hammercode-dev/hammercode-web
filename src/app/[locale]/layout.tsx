@@ -41,7 +41,7 @@ export default async function LocaleRootLayout({ children, params: { locale } }:
       <head>
         <link rel="icon" href="/assets/icons/ic_hmc-dark.svg" sizes="any" />
       </head>
-      <body className={`${sora.className} pt-8`}>
+      <body className={`${sora.className}`}>
         <NextIntlClientProvider messages={messages}>
           <WrapperLayout>{children}</WrapperLayout>
           <Toaster />
