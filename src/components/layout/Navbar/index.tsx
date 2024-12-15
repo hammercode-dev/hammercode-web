@@ -7,6 +7,8 @@ import { LINKS } from "./constant";
 
 import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
 import Sidebar from "../Sidebar";
+import IconHmcTextLight from "@/components/icon/IconHmcTextLight";
+import IconHmcTextDark from "@/components/icon/IconHmcTextDark";
 
 const Navbar = () => {
   const t = useTranslations("Layout");
@@ -16,8 +18,10 @@ const Navbar = () => {
       <div className="border-b  bg-white dark:bg-slate-950">
         <div className="container mx-auto py-5">
           <div className="flex items-center justify-between gap-4">
-            <Link href="/">
+            <Link href="/" className="flex items-center gap-2">
               <div className="w-10 h-8 bg-[url('/assets/icons/ic_hmc-light.svg')] dark:bg-[url('/assets/icons/ic_hmc-dark.svg')] bg-cover bg-center"></div>
+              <IconHmcTextLight className="lg:w-40 w-32 light:inline dark:hidden transition-opacity duration-300" />
+              <IconHmcTextDark className="lg:w-40 w-32 hidden dark:inline transition-opacity duration-300" />
             </Link>
 
             <nav className="lg:flex items-center gap-7 hidden">
