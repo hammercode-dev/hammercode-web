@@ -10,7 +10,7 @@ function NavLink<Pathname extends keyof typeof pathnames>({ href, onClick, ...re
   const path = usePathname();
   return (
     <Link href={href} onClick={onClick}>
-      <span className={path.includes(href as string) ? "text-hmc-base-blue" : "text-hmc-base-darkblue"}>
+      <span className={path?.includes(href as string) ? "text-hmc-base-blue" : "text-hmc-base-darkblue"}>
         {rest.title}
       </span>
     </Link>

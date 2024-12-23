@@ -13,7 +13,7 @@ import IconHmcTextDark from "@/components/icon/IconHmcTextDark";
 const Navbar = () => {
   const t = useTranslations("Layout");
   return (
-    <header className="sticky w-full z-50 top-0">
+    <header aria-label="navbar" className="sticky w-full z-50 top-0">
       <AnnouncementLayout />
       <div className="border-b  bg-white dark:bg-slate-950">
         <div className="container mx-auto py-5">
