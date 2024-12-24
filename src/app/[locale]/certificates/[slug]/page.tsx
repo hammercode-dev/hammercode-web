@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { EventCertificate, CertificatePage } from "@/features/certificate";
 
 const getCertificateData = async (slug: string): Promise<EventCertificate> => {
@@ -15,10 +15,11 @@ type CertificateDetailProps = {
 
 const CertificateDetail = async ({ params }: CertificateDetailProps) => {
   const data = await getCertificateData(params.slug);
+  console.log(data);
 
-  if (!data.name) {
-    return notFound();
-  }
+  // if (!data.name) {
+  //   return notFound();
+  // }
 
   return <CertificatePage certificate={data} />;
 };
