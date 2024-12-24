@@ -25,10 +25,11 @@ const CertificatePage = ({ certificate }: Props) => {
           <div className="flex justify-center">
             <Image
               src={image_link}
-              className="my-4 rounded-lg shadow-md object-cover object-center"
+              className="my-4 rounded-lg shadow-md object-cover object-center w-auto h-auto"
               width="640"
               height="480"
               alt={`Sertikat ${event} - ${name}`}
+              priority
             />
           </div>
           <p className="md:text-base text-sm text-center text-slate-500 dark:text-slate-400 mb-8">
