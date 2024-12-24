@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 import { EventCertificate, CertificatePage } from "@/features/certificate";
 
-function getCertificateData(slug: string): Promise<EventCertificate> {
-  return fetch(`https://moonlight.hammercode.org/v1/certificates/${slug}`).then((res) => res.json());
-}
+const getCertificateData = async (slug: string): Promise<EventCertificate> => {
+  const res = await fetch(`https://moonlight.hammercode.org/v1/certificates/${slug}`);
+  const resData = await res.json();
+  return resData;
+};
 
 type CertificateDetailProps = {
   params: {
