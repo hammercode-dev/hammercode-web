@@ -3,6 +3,7 @@ import { TestimonialType } from "../types";
 import Image from "next/image";
 
 import { DialogContent } from "@/components/ui/Dialog";
+import Link from "next/link";
 
 const DetailTestimoni: FC<{ data: TestimonialType }> = ({ data }) => {
   return (
@@ -17,7 +18,12 @@ const DetailTestimoni: FC<{ data: TestimonialType }> = ({ data }) => {
         />
         <div className="flex flex-col gap-1">
           <h3>{data.name}</h3>
-          <p className="sm:text-sm text-xs text-slate-400 dark:text-slate-400">{data.role}</p>
+          <div className="sm:text-sm text-xs text-slate-400 dark:text-slate-400">
+            {data.role} at{" "}
+            <Link href={data.company_url} target="_blank" className="font-medium">
+              {data.company_name}
+            </Link>
+          </div>
         </div>
       </div>
       <p className="sm:text-sm text-xs text-slate-500 dark:text-slate-400 sm:leading-6 leading-5">{`"${data.quote}"`}</p>

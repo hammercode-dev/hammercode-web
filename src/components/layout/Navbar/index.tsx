@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import LocaleToggle from "../../common/LocaleToggle";
 import { LINKS } from "./constant";
 
-import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
+// import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
 import Sidebar from "../Sidebar";
 import IconHmcTextLight from "@/components/icon/IconHmcTextLight";
 import IconHmcTextDark from "@/components/icon/IconHmcTextDark";
@@ -13,8 +13,8 @@ import IconHmcTextDark from "@/components/icon/IconHmcTextDark";
 const Navbar = () => {
   const t = useTranslations("Layout");
   return (
-    <header aria-label="navbar" className="sticky w-full z-50 top-0">
-      <AnnouncementLayout />
+    <header className="fixed w-full z-50 top-0">
+      {/* <AnnouncementLayout /> */}
       <div className="border-b  bg-white dark:bg-slate-950">
         <div className="container mx-auto py-5">
           <div className="flex items-center justify-between gap-4">

@@ -8,6 +8,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carouse
 import DetailTestimoni from "../components/DetailTestimoni";
 import { testimonialData } from "../constants";
 import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
+import Link from "next/link";
 
 const TestimonialSection = () => {
   const t = useTranslations("HomePage.section-testimonial");
@@ -42,7 +43,12 @@ const TestimonialSection = () => {
                   />
                   <div className="flex flex-col gap-1">
                     <h3>{data.name}</h3>
-                    <p className="sm:text-sm text-xs text-slate-400 dark:text-slate-400">{data.role}</p>
+                    <div className="sm:text-sm text-xs text-slate-400 dark:text-slate-400">
+                      {data.role} at{" "}
+                      <Link href={data.company_url} target="_blank" className="font-semibold">
+                        {data.company_name}
+                      </Link>
+                    </div>
                   </div>
                 </CardFooter>
               </Card>
