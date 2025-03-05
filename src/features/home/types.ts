@@ -33,4 +33,6 @@ export type TestimonialType = {
   role: string;
   quote: string;
   avatar_url: string;
+  company_name: string;
+  company_url: string;
 };
