@@ -190,7 +190,7 @@ export const testimonialData: TestimonialType[] = [
     name: "Vicky Herdiansyah Adri",
     role: "Software Engineer",
     quote:
-      "Di sini, saya banyak belajar tentang dunia coding dan mendapatkan mentor pertama saya. Awalnya, mereka mengajarkan seputar web development, tetapi seiring berjalannya waktu, mereka juga memberikan pembelajaran seputar karir. Hal ini sangat memotivasi saya untuk mencari pekerjaan di dunia industri sebagai software engineer. Mentor-mentor di Hammercode juga membimbing saya sampai mendapatkan my first internship :) Senang bisa menjadi bagian dari HammerCode 🥳🙏",
+      "Di sini, saya banyak belajar tentang dunia coding dan mendapatkan mentor pertama saya. Awalnya, mereka mengajarkan seputar web development, tetapi seiring berjalannya waktu, mereka juga memberikan pembelajaran seputar karir. Hal ini sangat memotivasi saya untuk mencari pekerjaan di dunia industri sebagai software engineer. Mentor-mentor di Hammercode juga membimbing saya sampai mendapatkan my first internship :) Senang bisa menjadi bagian dari Hammercode 🥳🙏",
     avatar_url: "/assets/images/peoples/vicky.webp",
     company_name: "Pegadaian",
     company_url: "https://pegadaian.co.id",
@@ -254,5 +254,45 @@ export const testimonialData: TestimonialType[] = [
     avatar_url: "/assets/images/peoples/ades.webp",
     company_name: "Telkom Indonesia",
     company_url: "https://www.telkom.co.id",
+  },
+  {
+    id: 13,
+    name: "Adlim Dzaky",
+    role: "Fullstack Developer Intern",
+    quote:
+      "Gabung di Hammercode udah kayak update firmware. Banyak bug di awal, tapi makin lama makin smooth. Semuanya berkat ilmu dan motivasi dari kakak-kakak mentor HMC 🫡",
+    avatar_url: "/assets/images/peoples/adlim.webp",
+    company_name: "QBIT",
+    company_url: "https://qbit.co.id",
+  },
+  {
+    id: 14,
+    name: "Tjoet Muty Ahmad",
+    role: "Fullstack Web Developer Intern",
+    quote:
+      "Masyaa Allah keren dan seru. i've met so many amazing people here yang enjoy sharing their knowledge, intinya tak pelit deh. get a lot of supports juga dari kaka kaka dan teman teman di hammercode, pokoknya memberikan positive impact hehe. thank youuu buat hammercode dan orang orang baik nyaa!!",
+    avatar_url: "/assets/images/peoples/muty.webp",
+    company_name: "DPRD Sulteng",
+    company_url: "https://dprd.sultengprov.go.id",
+  },
+  {
+    id: 15,
+    name: "Muhammad Farhan Saleh",
+    role: "Ex Frontend Developer Intern",
+    quote:
+      "Komunitas yang keren, mewadahi sebagai tempat untuk sharing ilmu. Banyak ilmu ilmu sakti yang hanya kita temukan di komunitas ini.",
+    avatar_url: "/assets/images/peoples/farhan.webp",
+    company_name: "Infinite Learning",
+    company_url: "https://www.infinitelearning.id",
+  },
+  {
+    id: 16,
+    name: "Khairul Insan Karim",
+    role: "MSIB Backend Engineering Student",
+    quote:
+      "Pengalaman yang sangat berharga selama bergabung dengan HammerCode. Saya banyak belajar dari kakak-kakak senior yang sangat sangat suhu dan sudah menyelam di dunia kerja IT. Rill banyak pelajaran baru yang didapatkan yang tidak bakalan didapatkan di kampus.",
+    avatar_url: "/assets/images/peoples/irul.webp",
+    company_name: "Ruangguru",
+    company_url: "https://www.ruangguru.com/",
   },
 ];
