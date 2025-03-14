@@ -8,7 +8,8 @@ const messages = {
     navbar: {
       "link-1": "About Us",
       "link-2": "Events",
-      "link-3": "Donate",
+      "link-3": "Testimonial",
+      "link-4": "Donate",
     },
   },
   Announcement: {

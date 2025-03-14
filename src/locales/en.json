@@ -3,12 +3,14 @@
     "navbar": {
       "link-1": "About Us",
       "link-2": "Events",
-      "link-3": "Donate"
+      "link-3": "Testimonial",
+      "link-4": "Donate"
     },
     "breadcrumb": {
       "link-1": "About Us",
       "link-2": "Events",
-      "link-3": "Donate"
+      "link-3": "Testimonial",
+      "link-4": "Donate"
     }
   },
   "LocaleLayout": {
@@ -149,5 +151,9 @@
   },
   "Announcement": {
     "pdd-2024": "🚀 Hi there! Our annual tech conference Palu Developer Day is around the corner! Check it out!"
+  },
+  "TestimonialPage": {
+    "title": "Testimonial",
+    "description": "Some friends and alumni who feel the benefits from Hammercode"
   }
 }
