@@ -197,7 +197,7 @@ export const testimonialData: TestimonialType[] = [
   },
   {
     id: 7,
-    name: "Faldi",
+    name: "Faldiansyah",
     role: "Ex Software Engineer Intern",
     quote:
       "Banyak hal yang bisa kita ambil dalam komunitas ini, selain untuk belajar kita juga mendapatkan banyak jaringan. Bersama dengan teman-teman dan mentor yang saling memotivasi untuk kemajuan kedepan.",
