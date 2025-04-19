@@ -12,6 +12,10 @@ export const LINKS: NavLinkProps<ValidPathnames>[] = [
   },
   {
     id: "3",
+    href: "/testimonial",
+  },
+  {
+    id: "4",
     href: "/support-us",
   },
 ];
