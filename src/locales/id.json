@@ -76,7 +76,8 @@
     },
     "section-testimonial": {
       "title": "Manfaat 🌟",
-      "description": "Beberapa testimonial dari teman dan alumni yang merasakan manfaat dari Hammercode."
+      "description": "Beberapa testimonial dari teman dan alumni yang merasakan manfaat dari Hammercode.",
+      "showmore": "Lihat Semua"
     },
     "section-contact": {
       "title": "Punya pertanyaan atau ingin sekedar ngobrol? 😃",

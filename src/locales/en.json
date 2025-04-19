@@ -76,7 +76,8 @@
     },
     "section-testimonial": {
       "title": "Impact Story 🌟",
-      "description": "Some friends and alumni who feel the benefits from Hammercode."
+      "description": "Some friends and alumni who feel the benefits from Hammercode.",
+      "showmore": "Show More"
     },
     "section-contact": {
       "title": "Got any question or just want casual chit-chat? 😃",

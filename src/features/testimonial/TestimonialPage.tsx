@@ -39,14 +39,14 @@ const TestimonialPage = () => {
                 <CardContent>
                   <div className="flex flex-col items-center gap-1">
                     <h3 className="font-semibold">{data.name}</h3>
-                    <p className="text-center text-slate-400 dark:bg-slate-400 text-sm">
+                    <p className="text-center text-slate-400 dark:text-slate-400 text-sm">
                       {`${data.role} at `}
                       <Link className="font-semibold" href={data.company_url} target="_blank">
                         {data.company_name}
                       </Link>
                     </p>
                     <Image
-                      className="mt-4 self-start"
+                      className="mt-4 self-start text-white"
                       src="/assets/icons/ic_qoute.svg"
                       height={24}
                       width={24}
