@@ -1,11 +1,20 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
-export const fetcher: AxiosInstance = axios.create({
-  baseURL: "https://lms-be-development.hammercode.org/api/v1/",
+const config = {
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
+};
+
+export const fetcher: AxiosInstance = axios.create({
+  baseURL: "https://lms-be-development.hammercode.org/api/v1/",
+  ...config,
+});
+
+export const fetcherLocal: AxiosInstance = axios.create({
+  baseURL: "",
+  ...config,
 });
 
 fetcher.interceptors.request.use(

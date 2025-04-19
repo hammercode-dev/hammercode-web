@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { eventsService } from "@/services/events";
 import { useFormatPrice } from "@/lib/utils";
 import EventInfo from "./components/EventInfo";
-import Skeleton from "@/components/ui/Skeleton";
+import { Skeleton } from "@/components/ui/Skeleton";
 import TitleContainer from "@/components/ui/TitleContainer";
 import EventBreadcrumbs from "./components/EventBreadcrumb";
 import EventImage from "./components/EventImage";

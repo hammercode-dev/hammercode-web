@@ -3,12 +3,14 @@
     "navbar": {
       "link-1": "Tentang Kami",
       "link-2": "Acara",
-      "link-3": "Donasi"
+      "link-3": "Testimoni",
+      "link-4": "Donasi"
     },
     "breadcrumb": {
       "link-1": "Tentang Kami",
       "link-2": "Acara",
-      "link-3": "Donasi"
+      "link-3": "Testimoni",
+      "link-4": "Donasi"
     }
   },
   "LocaleLayout": {
@@ -74,7 +76,8 @@
     },
     "section-testimonial": {
       "title": "Manfaat 🌟",
-      "description": "Beberapa testimonial dari teman dan alumni yang merasakan manfaat dari Hammercode."
+      "description": "Beberapa testimonial dari teman dan alumni yang merasakan manfaat dari Hammercode.",
+      "showmore": "Lihat Semua"
     },
     "section-contact": {
       "title": "Punya pertanyaan atau ingin sekedar ngobrol? 😃",
@@ -149,5 +152,9 @@
   },
   "Announcement": {
     "pdd-2024": "🚀 Halo! Acara tahunan teknologi Palu Developer Day sudah dekat! Klik di sini!"
+  },
+  "TestimonialPage": {
+    "title": "Testimoni",
+    "description": "Berbagai testimonial yang dapat membantu kami memahami manfaat Hammercode"
   }
 }
