@@ -12,6 +12,7 @@ import DetailTestimoni from "../components/DetailTestimoni";
 import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 import { homeService } from "@/services/home";
 import { TestimonialType } from "../types";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 const TestimonialSection = () => {
   const t = useTranslations("HomePage.section-testimonial");
@@ -41,9 +42,7 @@ const TestimonialSection = () => {
         <p className="md:text-base text-sm text-slate-500 dark:text-slate-400">{t("description")}</p>
       </div>
 
-      {loading ? (
-        <></>
-      ) : (
+      {!loading ? (
         <>
           <Carousel className="w-full" isDots={true}>
             <CarouselContent className="space-x-4 sm:pr-4">
@@ -56,6 +55,7 @@ const TestimonialSection = () => {
                         <DialogTrigger asChild>
                           <p className="sm:text-sm text-xs text-slate-500 dark:text-slate-400 sm:leading-6 leading-5 line-clamp-3 cursor-pointer">{`"${data?.quote}"`}</p>
                         </DialogTrigger>
+
                         <DetailTestimoni data={data} />
                       </Dialog>
                     </CardHeader>
@@ -82,10 +82,18 @@ const TestimonialSection = () => {
               ))}
             </CarouselContent>
           </Carousel>
-          <div className="text-center text-hmc-base-blue italic hover:text-hmc-base-blue/80">
-            <Link href="testimonial">{t("showmore")}</Link>
-          </div>
         </>
+      ) : (
+        <div className="flex gap-4">
+          <Skeleton className="w-full h-72" />
+          <Skeleton className="w-full h-72" />
+        </div>
+      )}
+
+      {!loading && testimoni.length > 0 && (
+        <div className="text-center text-hmc-base-blue italic hover:text-hmc-base-blue/80">
+          <Link href="testimonial">{t("showmore")}</Link>
+        </div>
       )}
     </div>
   );
