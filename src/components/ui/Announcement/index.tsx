@@ -21,7 +21,7 @@ function Announcement({ message, url }: AnnouncementProps) {
       role="alert"
       className="bg-slate-950 flex justify-center items-center gap-2 text-white text-center px-4 py-2 text-sm md:text-normal"
     >
-      {messageEl}
+      <h2>{messageEl}</h2>
       <button onClick={() => setHidden(true)} className="bg-slate-500 rounded-full p-1  ">
         <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
