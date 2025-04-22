@@ -31,7 +31,7 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
       }}
       className="relative bg-card border rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-white/20"
     >
-      <div className="p-5 border-b bg-muted/30 backdrop-blur-sm">
+      <div className="p-5 border-b bg-muted/30 backdrop-blur-xs">
         <div className="flex items-center gap-3">
           {method.icon && (
             <motion.div
@@ -57,7 +57,7 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
             className="size-60 bg-white p-4 rounded-xl shadow-xl ring-1 ring-hmc-primary/10 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-hmc-primary/25"
           />
           <motion.div
-            className="absolute inset-0 bg-gradient-to-tr from-hmc-primary/5 to-hmc-primary/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"
+            className="absolute inset-0 bg-linear-to-tr from-hmc-primary/5 to-hmc-primary/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"
             whileHover={{ scale: 1.02 }}
           />
         </motion.div>

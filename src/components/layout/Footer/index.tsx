@@ -59,7 +59,7 @@ const Footer = () => {
                     key={index}
                     variant="link"
                     asChild
-                    className="!h-auto !p-0 md:text-sm justify-start text-xs font-normal text-slate-600 dark:text-slate-400 hover:opacity-80"
+                    className="h-auto! p-0! md:text-sm justify-start text-xs font-normal text-slate-600 dark:text-slate-400 hover:opacity-80"
                   >
                     {data.navigate_url ? <Link href={data.navigate_url}>{data.value}</Link> : <p>{data.value}</p>}
                   </Button>
