@@ -1,16 +1,14 @@
-import { DonateMethod } from "./type";
+import { IconBankBSI, IconBankMandiri } from "@/components/icon";
+import { DonationMethod } from "./type";
 
-export const DonateMethods: DonateMethod[] = [
+export const DonationMethods: DonationMethod[] = [
   {
     id: "bsi",
     name: "Bank Syariah Indonesia",
     accountName: "Pegiat Teknologi Palu Berkarya",
     accountNumber: "7203000768",
     qrCode: "/assets/images/support-us/qr_hmc_bsi.png",
-    icon: {
-      src: "/assets/images/support-us/bsi.png",
-      alt: "Bank Syariah Indonesia Logo",
-    },
+    icon: "BSI",
   },
   {
     id: "mandiri",
@@ -18,9 +16,11 @@ export const DonateMethods: DonateMethod[] = [
     accountName: "Hammercode",
     accountNumber: "9360000801259673598",
     qrCode: "/assets/images/support-us/qr_hmc_mandiri.png",
-    icon: {
-      src: "/assets/images/support-us/mandiri.png",
-      alt: "Bank Mandiri Logo",
-    },
+    icon: "Mandiri",
   },
 ];
+
+export const DonationIcons = {
+  BSI: IconBankBSI,
+  Mandiri: IconBankMandiri,
+} as const;

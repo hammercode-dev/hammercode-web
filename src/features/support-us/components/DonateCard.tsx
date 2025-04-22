@@ -1,14 +1,15 @@
 "use client";
-import { motion } from "motion/react";
-import { Copy, Check } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import React from "react";
 import Image from "next/image";
-import { DonateMethod } from "../type";
+import { Copy, Check } from "lucide-react";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/Button";
+import { DonationIcons } from "../constants";
+import { DonationMethod } from "../type";
 
 type Props = {
-  method: DonateMethod;
+  method: DonationMethod;
   copiedId: string | null;
   onCopy: (accountNumber: string, id: string) => void;
 };
@@ -35,11 +36,11 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
         <div className="flex items-center gap-3">
           {method.icon && (
             <motion.div
-              whileHover={{ rotate: 360, scale: 1.2 }}
+              whileHover={{ scale: 1.2 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="p-2 rounded-lg bg-hmc-primary/10"
+              className="p-1 rounded-lg bg-hmc-primary/10"
             >
-              <Image alt={method.icon.alt} src={method.icon.src} width={24} height={24} className="rounded-sm" />
+              {React.createElement(DonationIcons[method.icon], { className: "size-6" })}
             </motion.div>
           )}
           <h3 className="font-semibold text-lg">{method.name}</h3>

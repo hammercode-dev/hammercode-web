@@ -1,11 +1,10 @@
-export type DonateMethod = {
+import { DonationIcons } from "./constants";
+
+export type DonationMethod = {
   id: string;
   name: string;
   accountName: string;
   accountNumber: string;
   qrCode: string;
-  icon: {
-    src: string;
-    alt: string;
-  };
+  icon: keyof typeof DonationIcons;
 };

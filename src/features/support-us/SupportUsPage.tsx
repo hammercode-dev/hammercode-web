@@ -5,7 +5,7 @@ import { Link } from "@/lib/navigation";
 import { MessageSquare, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { DonateMethods } from "./constants";
+import { DonationMethods } from "./constants";
 import { DonateCard } from "./components/DonateCard";
 import { useState } from "react";
 
@@ -92,7 +92,7 @@ export default function SupportUsPage() {
           initial="hidden"
           animate="show"
         >
-          {DonateMethods.map((method) => (
+          {DonationMethods.map((method) => (
             <DonateCard key={method.id} method={method} copiedId={copiedId} onCopy={copyToClipboard} />
           ))}
         </motion.div>
