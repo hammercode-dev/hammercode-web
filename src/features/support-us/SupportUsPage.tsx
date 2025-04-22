@@ -75,7 +75,7 @@ export default function SupportUsPage() {
           </a>
         </motion.p>
         <motion.div
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 gap-8 py-4"
           variants={{
             hidden: { opacity: 0, y: 20 },
             show: {
@@ -99,8 +99,8 @@ export default function SupportUsPage() {
       </section>
 
       <section className="text-center py-12">
-        <h3 className="mb-6 text-2xl font-black">Let's Chat</h3>
-        <div className="flex py-8 flex-col md:flex-row gap-4 justify-center">
+        <h3 className="mb-4 text-2xl font-black">Let's Chat</h3>
+        <div className="flex py-2 flex-col md:flex-row gap-4 justify-center">
           <Button size="lg" asChild variant="tertiary" className="flex items-center gap-2">
             <Link href="https://wa.me/6281355893352" target="_blank">
               Whatsapp <MessageSquare className="lg:w-6 w-5" />
