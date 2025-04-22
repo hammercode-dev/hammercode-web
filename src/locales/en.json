@@ -148,7 +148,13 @@
   },
   "SupportUsPage": {
     "brief": "Your donation to hammercode is an investment for creating new opportunities for young to have a daring impact on tech",
-    "budget": "See our budget plan"
+    "budget": "See our budget plan",
+    "clipboard": {
+      "copy": "Copy Account Number",
+      "copied": "Successfully Copied!",
+      "title": "Success",
+      "description": "Account number copied to clipboard"
+    }
   },
   "Announcement": {
     "pdd-2024": "🚀 Hi there! Our annual tech conference Palu Developer Day is around the corner! Check it out!"
