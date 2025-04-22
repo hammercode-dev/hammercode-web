@@ -95,8 +95,8 @@ const IconBankBSI: React.FC<IconBankBSIProps> = ({ className = "", ...props }) =
       fill="white"
     />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M233.94 224.7C221.331 223.472 216.898 230.414 214.425 233.848C211.27 220.12 205.936 221.202 200.229 217.744C208.477 212.956 210.784 205.513 210.557 200C218.637 205.924 224.27 205.288 231.247 203.367C227.775 213.727 229.967 216.651 233.94 224.7Z"
       fill="#F8AD3C"
     />

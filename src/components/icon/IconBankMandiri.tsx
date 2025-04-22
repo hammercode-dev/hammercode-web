@@ -50,13 +50,13 @@ const IconBankMandiri: React.FC<IconBankMandiriProps> = ({ className = "", ...pr
         y2="119.476"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FDB913" />
-        <stop offset="0.224719" stop-color="#FFCB05" />
-        <stop offset="0.393258" stop-color="#FAA61A" />
-        <stop offset="0.52809" stop-color="#FFCB05" />
-        <stop offset="0.646067" stop-color="#FAA61A" />
-        <stop offset="0.764045" stop-color="#FFCB05" />
-        <stop offset="1" stop-color="#FFCB05" />
+        <stop stopColor="#FDB913" />
+        <stop offset="0.224719" stopColor="#FFCB05" />
+        <stop offset="0.393258" stopColor="#FAA61A" />
+        <stop offset="0.52809" stopColor="#FFCB05" />
+        <stop offset="0.646067" stopColor="#FAA61A" />
+        <stop offset="0.764045" stopColor="#FFCB05" />
+        <stop offset="1" stopColor="#FFCB05" />
       </linearGradient>
     </defs>
   </svg>
