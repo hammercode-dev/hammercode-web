@@ -55,10 +55,10 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
             width={160}
             height={160}
             loading="lazy"
-            className="size-60 bg-white p-4 rounded-xl shadow-xl ring-1 ring-hmc-primary/10 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-hmc-primary/25"
+            className="size-60 bg-white p-4 rounded-xl shadow-xl ring-1 ring-white/10 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-white/25"
           />
           <motion.div
-            className="absolute inset-0 bg-linear-to-tr from-hmc-primary/5 to-hmc-primary/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"
+            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"
             whileHover={{ scale: 1.02 }}
           />
         </motion.div>
