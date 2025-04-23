@@ -7,8 +7,7 @@ import { LINKS } from "./constant";
 
 // import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
 import Sidebar from "../Sidebar";
-import IconHmcTextLight from "@/components/icon/IconHmcTextLight";
-import IconHmcTextDark from "@/components/icon/IconHmcTextDark";
+import { IconHmcTextLight, IconHmcTextDark } from "@/components/icon";
 
 const Navbar = () => {
   const t = useTranslations("Layout");
