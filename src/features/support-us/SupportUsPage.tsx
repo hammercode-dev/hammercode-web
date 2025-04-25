@@ -1,13 +1,13 @@
 "use client";
+import { useState } from "react";
+import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
+import { MessageSquare, Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useToast } from "@/components/hooks/UseToast";
 import { Link } from "@/lib/navigation";
-import { MessageSquare, Send } from "lucide-react";
-import { motion } from "motion/react";
-import { useTranslations } from "next-intl";
-import { DonationMethods } from "./constants";
 import { DonateCard } from "./components/DonateCard";
-import { useState } from "react";
+import { DonationMethods } from "./constants";
 
 export default function SupportUsPage() {
   const t = useTranslations("SupportUsPage");
@@ -29,7 +29,7 @@ export default function SupportUsPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="max-w-[928px] pt-32 pb-16 container mx-auto px-5 space-y-10"
+      className="max-w-7xl pt-32 pb-16 container mx-auto px-5 space-y-10"
     >
       <section className="text-center">
         <motion.div
@@ -49,7 +49,7 @@ export default function SupportUsPage() {
               duration: 8,
               repeat: Infinity,
               ease: "linear",
-              delay: 1.5, // Start gradient after entry animation
+              delay: 1.5,
             }}
             className="text-4xl font-bold mb-2 text-hmc-base-blue"
           >
@@ -75,7 +75,7 @@ export default function SupportUsPage() {
           </a>
         </motion.p>
         <motion.div
-          className="grid md:grid-cols-2 gap-8 py-4"
+          className="grid lg:grid-cols-3 gap-8 py-4"
           variants={{
             hidden: { opacity: 0, y: 20 },
             show: {

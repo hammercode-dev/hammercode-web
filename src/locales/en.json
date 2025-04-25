@@ -150,10 +150,13 @@
     "brief": "Your donation to hammercode is an investment for creating new opportunities for young to have a daring impact on tech",
     "budget": "See our budget plan",
     "clipboard": {
-      "copy": "Copy Account Number",
-      "copied": "Successfully Copied!",
-      "title": "Success",
-      "description": "Account number copied to clipboard"
+      "copy": "Tap to Copy",
+      "copied": "Successfully Copied",
+      "title": "Thank You!",
+      "description": "We truly appreciate your support."
+    },
+    "donate": {
+      "downloadQr": "Tap to Download QR Code"
     }
   },
   "Announcement": {
