@@ -150,10 +150,13 @@
     "brief": "Donasi anda ke hammercode adalah investasi untuk menciptakan kesempatan baru untuk para pemuda memberikan dampak positif di bidang teknologi",
     "budget": "Lihat rencana anggaran",
     "clipboard": {
-      "copy": "Salin Nomor Rekening",
-      "copied": "Berhasil Disalin!",
-      "title": "Berhasil",
-      "description": "Nomor rekening disalin ke clipboard"
+      "copy": "Tekan untuk salin",
+      "copied": "Berhasil Disalin",
+      "title": "Terima Kasih!",
+      "description": "Kami sangat menghargai dukunganmu."
+    },
+    "donate": {
+      "downloadQr": "Tekan untuk mengunduh QR Code"
     }
   },
   "Announcement": {
