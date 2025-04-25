@@ -6,7 +6,8 @@ import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { DonationIcons } from "../constants";
-import { DonationMethod } from "../type";
+import { DonationMethod } from "../types";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/Tooltip";
 
 type Props = {
   method: DonationMethod;
@@ -16,6 +17,13 @@ type Props = {
 
 export function DonateCard({ method, copiedId, onCopy }: Props) {
   const t = useTranslations("SupportUsPage");
+
+  const handleDownloadQr = () => {
+    const link = document.createElement("a");
+    link.download = method.qrCode.split("/").pop() as string;
+    link.href = method.qrCode;
+    link.click();
+  };
 
   return (
     <motion.div
@@ -48,19 +56,30 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
       </div>
 
       <div className="p-8 space-y-8">
-        <motion.div className="flex justify-center relative group" whileHover={{ scale: 1.02 }}>
-          <Image
-            alt="QR Code"
-            src={method.qrCode}
-            width={160}
-            height={160}
-            loading="lazy"
-            className="size-60 bg-white p-4 rounded-xl shadow-xl ring-1 ring-white/10 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-white/25"
-          />
-          <motion.div
-            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"
-            whileHover={{ scale: 1.02 }}
-          />
+        <motion.div
+          className="flex justify-center relative group"
+          whileHover={{ scale: 1.02 }}
+          onClick={handleDownloadQr}
+        >
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Image
+                  alt="QR Code"
+                  src={method.qrCode}
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  className="size-60 bg-white p-4 rounded-xl shadow-xl ring-1 ring-white/10 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-white/25"
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                />
+              </TooltipTrigger>
+              <TooltipContent>{t("donate.downloadQr")}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </motion.div>
 
         <div className="space-y-4">
