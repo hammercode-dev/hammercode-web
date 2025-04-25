@@ -5,7 +5,6 @@ import { Copy, Check } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
-import { DonationIcons } from "../constants";
 import { DonationMethod } from "../types";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/Tooltip";
 
@@ -48,7 +47,7 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
               transition={{ type: "spring", stiffness: 300 }}
               className="p-1 rounded-lg bg-hmc-primary/10"
             >
-              {React.createElement(DonationIcons[method.icon], { className: "size-6" })}
+              <Image src={method.icon} alt={method.name} width={24} height={24} />
             </motion.div>
           )}
           <h3 className="font-semibold text-lg">{method.name}</h3>

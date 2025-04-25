@@ -1,6 +1,4 @@
-import { IconBankBSI, IconQRIS } from "@/components/icon";
 import { DonationMethod } from "./types";
-import IconSaweria from "@/components/icon/IconSaweria";
 
 export const DonationMethods: DonationMethod[] = [
   {
@@ -8,29 +6,23 @@ export const DonationMethods: DonationMethod[] = [
     name: "QRIS",
     accountName: "Hammercode",
     accountNumber: "9360000801259673598",
-    qrCode: "/assets/images/support-us/qr_hmc_qris.png",
-    icon: "QRIS",
+    qrCode: "/assets/images/support-us/qr_hmc-qris.svg",
+    icon: "/assets/icons/ic_qris.svg",
   },
   {
     id: "bsi",
     name: "Bank Syariah Indonesia",
     accountName: "Pegiat Teknologi Palu Berkarya",
     accountNumber: "7203000768",
-    qrCode: "/assets/images/support-us/qr_hmc_bsi.png",
-    icon: "BSI",
+    qrCode: "/assets/images/support-us/qr_hmc-bsi.svg",
+    icon: "/assets/icons/ic_bank-bsi.svg",
   },
   {
     id: "saweria",
     name: "Saweria",
     accountName: "Hammercode",
     accountNumber: "https://saweria.co/hammercode",
-    qrCode: "/assets/images/support-us/qr_hmc_saweria.png",
-    icon: "Saweria",
+    qrCode: "/assets/images/support-us/qr_hmc-saweria.svg",
+    icon: "/assets/icons/ic_saweria.svg",
   },
 ];
-
-export const DonationIcons = {
-  QRIS: IconQRIS,
-  BSI: IconBankBSI,
-  Saweria: IconSaweria,
-} as const;
