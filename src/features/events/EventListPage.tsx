@@ -1,22 +1,32 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { eventsService } from "@/services/events";
-import EventCardV2 from "./components/EventCardV2";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { useToast } from "@/components/hooks/UseToast";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { TechEvent } from "./types";
+import EventCardV2 from "./components/EventCardV2";
 
 const EventListPage = () => {
   const t = useTranslations("EventsPage");
+  const { toast } = useToast();
+
   const [events, setEvents] = useState<TechEvent[]>([]);
-  const handleGetEvents = async () => {
-    const res = await eventsService.getEvents();
-    setEvents(res.data);
-  };
 
   useEffect(() => {
-    handleGetEvents();
+    const getEvents = async () => {
+      try {
+        const res = await eventsService.getEvents();
+        setEvents(res.data);
+      } catch (err) {
+        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+      }
+    };
+
+    getEvents();
   }, []);
 
   return (
@@ -45,22 +55,29 @@ const EventListPage = () => {
         </div>
       </div>
       <div className="pt-16 md:pt-8">
-        <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
-          {events.map((event) => (
-            <Link
-              key={event.id}
-              href={`/events/${event.id}`}
-              className={`${event.id === 1 ? "lg:col-span-2" : "col-span-1"}`}
-            >
-              <EventCardV2 data={event} />
-            </Link>
-          ))}
-          {/* {mockEvents.map((event) => (
+        {events ? (
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
+            {events.map((event) => (
+              <Link
+                key={event.id}
+                href={`/events/${event.id}`}
+                className={`${event.id === 1 ? "lg:col-span-2" : "col-span-1"}`}
+              >
+                <EventCardV2 data={event} />
+              </Link>
+            ))}
+            {/* {mockEvents.map((event) => (
             <Link key={event.id} href={`/events/${event.id}`}>
               <EventCardV2 data={event} />
             </Link>
           ))} */}
-        </div>
+          </div>
+        ) : (
+          <div className="flex gap-4">
+            <Skeleton className="w-full h-96" />
+            <Skeleton className="w-full h-96" />
+          </div>
+        )}
       </div>
     </div>
   );

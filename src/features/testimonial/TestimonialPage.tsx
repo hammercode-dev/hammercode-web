@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import Image from "next/image";
 import Link from "next/link";
+import { useToast } from "@/components/hooks/UseToast";
 import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 import DetailTestimoni from "../home/components/DetailTestimoni";
 import { TestimonialType } from "../home/types";
@@ -13,23 +14,20 @@ import { Skeleton } from "@/components/ui/Skeleton";
 const TestimonialPage = () => {
   const t = useTranslations("TestimonialPage");
 
+  const { toast } = useToast();
   const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const getTestimonial = async () => {
-    setLoading(true);
-    try {
-      const res = await homeService.getAllTestimonial();
-      setTestimoni(res.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
-    getTestimonial();
+    const getTestimonials = async () => {
+      try {
+        const res = await homeService.getAllTestimonial();
+        setTestimoni(res.data);
+      } catch (err) {
+        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+      }
+    };
+
+    getTestimonials();
   }, []);
 
   return (
@@ -40,13 +38,7 @@ const TestimonialPage = () => {
           <p className="text-gray-500 text-xs sm:text-base">{t("description")}</p>
         </div>
         <div className="mt-6">
-          {loading ? (
-            <div className="flex gap-4">
-              <Skeleton className="w-full h-80" />
-              <Skeleton className="w-full h-80" />
-              <Skeleton className="w-full h-80" />
-            </div>
-          ) : (
+          {testimoni ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {testimoni?.map((data) => (
                 <Card key={data.id}>
@@ -92,6 +84,12 @@ const TestimonialPage = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          ) : (
+            <div className="flex gap-4">
+              <Skeleton className="w-full h-80" />
+              <Skeleton className="w-full h-80" />
+              <Skeleton className="w-full h-80" />
             </div>
           )}
         </div>
