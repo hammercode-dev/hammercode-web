@@ -39,7 +39,7 @@ const useSubmitEventRegistration = ({ data }: { data: EventType }) => {
         event_id: data?.id as number,
       };
 
-      const res = await eventsService.registEvent(registPayload);
+      const res = await eventsService.registerEvent(registPayload);
 
       toast({
         title: t("EventRegistration.success.title"),

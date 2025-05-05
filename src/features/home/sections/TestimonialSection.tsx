@@ -1,38 +1,35 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
-
 import Link from "next/link";
+import Image from "next/image";
+import { homeService } from "@/services/home";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { useToast } from "@/components/hooks/UseToast";
+import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 import { Card, CardFooter, CardHeader } from "@/components/ui/Card";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carousel";
-
-import DetailTestimoni from "../components/DetailTestimoni";
-import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
-import { homeService } from "@/services/home";
 import { TestimonialType } from "../types";
-import { Skeleton } from "@/components/ui/Skeleton";
+import DetailTestimoni from "../components/DetailTestimoni";
 
 const TestimonialSection = () => {
   const t = useTranslations("HomePage.section-testimonial");
-  const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
-  const getTestimonial = async () => {
-    setLoading(true);
-    try {
-      const res = await homeService.getAllTestimonial();
-      setTestimoni(res.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
 
   useEffect(() => {
-    getTestimonial();
+    const getTestimonials = async () => {
+      try {
+        const res = await homeService.getAllTestimonial();
+        setTestimoni(res.data);
+      } catch (err) {
+        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+      }
+    };
+
+    getTestimonials();
   }, []);
 
   return (
@@ -42,7 +39,7 @@ const TestimonialSection = () => {
         <p className="md:text-base text-sm text-slate-500 dark:text-slate-400">{t("description")}</p>
       </div>
 
-      {!loading ? (
+      {testimoni ? (
         <>
           <Carousel className="w-full" isDots={true}>
             <CarouselContent className="space-x-4 sm:pr-4">
@@ -90,7 +87,7 @@ const TestimonialSection = () => {
         </div>
       )}
 
-      {!loading && testimoni.length > 0 && (
+      {testimoni.length > 0 && (
         <div className="text-center text-hmc-base-blue italic hover:text-hmc-base-blue/80">
           <Link href="testimonial">{t("showmore")}</Link>
         </div>
