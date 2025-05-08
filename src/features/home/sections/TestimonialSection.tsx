@@ -25,7 +25,7 @@ const TestimonialSection = () => {
         const res = await homeService.getAllTestimonial();
         setTestimoni(res.data);
       } catch (err) {
-        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+        toast({ description: (err as Error).message || "Something went wrong.", variant: "destructive" });
       }
     };
 
