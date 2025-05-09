@@ -52,7 +52,7 @@ export default function SupportUsPage() {
           }}
           className="mb-8 text-lg"
         >
-          {t("brief")}.{" "}
+          {t("brief")}. <br />
           <a
             className="text-blue-500 underline"
             href="https://docs.google.com/spreadsheets/d/1ZgmZXxf6ep4BvNC0oQ9B_cBKO3sVFO2IxS-m7RoR_xU/edit?gid=0#gid=0"
