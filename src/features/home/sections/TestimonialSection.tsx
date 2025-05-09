@@ -20,15 +20,19 @@ const TestimonialSection = () => {
   const { toast } = useToast();
 
   const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [autoPlay, setAutoPlay] = useState(true);
 
   useEffect(() => {
     const getTestimonials = async () => {
+      setIsLoading(true);
       try {
         const res = await homeService.getAllTestimonial();
         setTestimoni(res.data);
       } catch (err) {
         toast({ description: (err as Error).message || "Something went wrong.", variant: "destructive" });
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -58,7 +62,7 @@ const TestimonialSection = () => {
         </motion.p>
       </div>
 
-      {testimoni ? (
+      {!isLoading ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -113,7 +117,7 @@ const TestimonialSection = () => {
         </div>
       )}
 
-      {testimoni.length > 0 && (
+      {testimoni.length > 2 && (
         <div className="text-center text-hmc-base-blue italic hover:text-hmc-base-blue/80">
           <Link href="testimonial">{t("showmore")}</Link>
         </div>

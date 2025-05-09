@@ -30,8 +30,7 @@ const HeroSection = () => {
                 opacity: 1,
                 x: 0,
                 transition: {
-                  staggerChildren: 0.4,
-                  delayChildren: 0.2,
+                  staggerChildren: 0.3,
                   duration: 0.7,
                   ease: "easeOut",
                 },
@@ -41,9 +40,9 @@ const HeroSection = () => {
             animate="show"
             className="flex items-center gap-2"
           >
-            <Button asChild size="lg" className="flex items-center gap-2 hover:scale-[1.05]">
+            <Button asChild size="lg" className="group flex items-center gap-2 hover:scale-[1.04]">
               <Link href="https://discord.com/invite/M9mNK6MBbu" target="_blank">
-                {t("join-button")} <HandCoins className="lg:w-6 w-5" />
+                {t("join-button")} <HandCoins className="lg:w-6 w-5 group-hover:animate-ping" />
               </Link>
             </Button>
             {socialMedia.map((data) => (
@@ -61,7 +60,7 @@ const HeroSection = () => {
                     },
                   },
                 }}
-                whileHover={{ scale: 1.07 }}
+                whileHover={{ scale: 1.05 }}
               >
                 <Button asChild size="icon">
                   <Link

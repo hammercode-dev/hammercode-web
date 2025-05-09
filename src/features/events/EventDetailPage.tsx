@@ -22,14 +22,18 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
   const { toast } = useToast();
 
   const [event, setEvent] = useState<EventType>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getEvent = async () => {
+      setIsLoading(true);
       try {
         const res = await eventsService.getEventById(eventId);
         setEvent(res.data);
       } catch (err) {
         toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -41,7 +45,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
       <div className="grid items-center grid-cols-1 gap-2 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           <div className="w-full rounded-lg">
-            {event ? (
+            {!isLoading ? (
               <EventImage
                 src={event?.image_event as string}
                 alt="Banner"
@@ -57,7 +61,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
           <EventBreadcrumbs />
           <div className="space-y-6">
             <h1 className="text-xl font-bold sm:text-3xl md:mt-8">{event?.title}</h1>
-            {event ? (
+            {!isLoading ? (
               <EventInfo event={event} className="lg:hidden" />
             ) : (
               <Skeleton className="w-full h-10 rounded-lg" />
@@ -72,7 +76,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
         </div>
         <div className="fixed bottom-0 left-0 right-0 flex items-center self-start justify-between w-full gap-4 rounded-lg bg-white dark:bg-slate-950 lg:bg-transparent lg:flex-col lg:justify-start lg:sticky lg:top-24 lg:px-4">
           <div className="hidden w-full p-4 space-y-6 border rounded-lg lg:block">
-            {event ? <EventInfo event={event} /> : <Skeleton className="w-full h-4 rounded-lg" />}
+            {!isLoading ? <EventInfo event={event} /> : <Skeleton className="w-full h-4 rounded-lg" />}
           </div>
           <div className="flex flex-col w-full gap-4 px-6 py-4 border-t rounded-lg sm:border">
             <div className="flex items-center justify-between w-full">
