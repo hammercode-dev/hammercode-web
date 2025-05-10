@@ -4,5 +4,6 @@ export type DonationMethod = {
   accountName: string;
   accountNumber: string;
   qrCode: string;
+  downloadQr: string;
   icon: string;
 };

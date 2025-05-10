@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 import { Copy, Check } from "lucide-react";
 import { motion } from "motion/react";
@@ -19,8 +18,8 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
 
   const handleDownloadQr = () => {
     const link = document.createElement("a");
-    link.download = method.qrCode.split("/").pop() as string;
-    link.href = method.qrCode;
+    link.download = method.downloadQr.split("/").pop() as string;
+    link.href = method.downloadQr;
     link.click();
   };
 
