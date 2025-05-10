@@ -36,6 +36,28 @@
       "title": "Contact"
     }
   },
+  "AuthPage": {
+    "LoginPage": {
+      "title": "Sign-In",
+      "enter-email": "Enter Email",
+      "enter-password": "Enter Password",
+      "description": "Let's started! Please sign in to unlock the best learning resources.",
+      "sub-description": "Don't have an account yet?",
+      "Login-button": "Sign-In",
+      "Register-button": "Register"
+    },
+    "RegisterPage": {
+      "title": "Sign-Up",
+      "enter-username": "Enter Username",
+      "enter-email": "Enter Email",
+      "enter-password": "Enter Password",
+      "conf-password": "Confirm Password",
+      "description": "Let's started! Please sign up to unlock the best learning resources.",
+      "sub-description": " Already have an account?",
+      "Login-button": "Login",
+      "Register-button": "Sign-Up"
+    }
+  },
   "HomePage": {
     "section-hero": {
       "title": "Boost Your Skills with High-Quality Classes!",
