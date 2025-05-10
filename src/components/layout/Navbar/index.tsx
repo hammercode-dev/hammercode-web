@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <header className="fixed w-full z-50 top-0">
       {/* <AnnouncementLayout /> */}
-      <div className="border-b  bg-white dark:bg-slate-950">
+      <div className="border-b bg-white dark:bg-slate-950">
         <div className="container mx-auto py-5">
           <div className="flex items-center justify-between gap-4">
             <Link href="/" className="flex items-center gap-2">
@@ -23,15 +23,15 @@ const Navbar = () => {
                 src="/assets/icons/ic_hmc-text-light.svg"
                 alt="HMC Light"
                 width={160}
-                height={320}
-                className="lg:w-40 w-32 light:inline dark:hidden transition-opacity duration-300"
+                height={18}
+                className="w-32 lg:w-40 light:inline dark:hidden transition-opacity duration-300"
               />
               <Image
                 src="/assets/icons/ic_hmc-text-dark.svg"
                 alt="HMC Dark"
                 width={160}
-                height={320}
-                className="lg:w-40 w-32 hidden dark:inline transition-opacity duration-300"
+                height={18}
+                className="w-32 lg:w-40 hidden dark:inline transition-opacity duration-300"
               />
             </Link>
 

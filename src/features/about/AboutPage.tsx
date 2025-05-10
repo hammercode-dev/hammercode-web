@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-
 import Badge from "@/components/ui/Badge";
 import ImagesList from "./components/ImagesList";
 import OurFounder from "./components/OurFounder";
@@ -12,7 +12,12 @@ const AboutPage = () => {
   return (
     <div className="container mx-auto px-5 py-28">
       <div className="grid grid-cols-1 md:grid-cols-7 gap-8">
-        <div className="md:col-span-5 space-y-4 text-justify">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="md:col-span-5 space-y-4 text-justify"
+        >
           <div>
             <h1 className="text-3xl font-bold mb-2 text-hmc-base-blue">{t("title")}</h1>
             <p className="text-sm text-gray-500">{t("description")}</p>
@@ -34,16 +39,30 @@ const AboutPage = () => {
           </div>
           <p>{t("text.3")}</p>
           <div className="flex gap-2">
-            <Badge className="dark:text-white rounded-md bg-hmc-base-darkblue dark:bg-hmc-base-blue">
+            <Badge className="dark:text-white rounded-md bg-hmc-base-darkblue dark:bg-hmc-base-blue cursor-default">
               #SiapBerkarirDibidangIT
             </Badge>
-            <Badge className="dark:text-white rounded-md bg-hmc-base-darkblue dark:bg-hmc-base-blue">#HammerCode</Badge>
+            <Badge className="dark:text-white rounded-md bg-hmc-base-darkblue dark:bg-hmc-base-blue cursor-default">
+              #HammerCode
+            </Badge>
           </div>
-        </div>
+        </motion.div>
 
         <div className="md:col-span-2 space-y-4">
-          <OurFounder />
-          <OurProgram />
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <OurFounder />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          >
+            <OurProgram />
+          </motion.div>
         </div>
       </div>
     </div>

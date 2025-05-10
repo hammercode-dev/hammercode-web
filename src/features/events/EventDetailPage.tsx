@@ -1,15 +1,17 @@
 "use client";
+
 import { FC, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { eventsService } from "@/services/events";
 import { useFormatPrice } from "@/lib/utils";
-import EventInfo from "./components/EventInfo";
-import { Skeleton } from "@/components/ui/Skeleton";
-import TitleContainer from "@/components/ui/TitleContainer";
-import EventBreadcrumbs from "./components/EventBreadcrumb";
-import EventImage from "./components/EventImage";
-import EventFormRegistration from "./components/EventFormRegistration";
 import { EventType } from "@/domains/Events";
+import { eventsService } from "@/services/events";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { useToast } from "@/components/hooks/UseToast";
+import TitleContainer from "@/components/ui/TitleContainer";
+import EventInfo from "./components/EventInfo";
+import EventImage from "./components/EventImage";
+import EventBreadcrumbs from "./components/EventBreadcrumb";
+import EventFormRegistration from "./components/EventFormRegistration";
 
 interface EventDetailPageProp {
   eventId: string;
@@ -17,15 +19,25 @@ interface EventDetailPageProp {
 
 const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
   const t = useTranslations("EventsPage");
+  const { toast } = useToast();
+
   const [event, setEvent] = useState<EventType>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const handleGetEvent = async () => {
-      const res = await eventsService.getEventById(eventId);
-      setEvent(res.data);
+    const getEvent = async () => {
+      setIsLoading(true);
+      try {
+        const res = await eventsService.getEventById(eventId);
+        setEvent(res.data);
+      } catch (err) {
+        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    handleGetEvent();
+    getEvent();
   }, [eventId]);
 
   return (
@@ -33,7 +45,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
       <div className="grid items-center grid-cols-1 gap-2 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           <div className="w-full rounded-lg">
-            {event ? (
+            {!isLoading ? (
               <EventImage
                 src={event?.image_event as string}
                 alt="Banner"
@@ -49,7 +61,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
           <EventBreadcrumbs />
           <div className="space-y-6">
             <h1 className="text-xl font-bold sm:text-3xl md:mt-8">{event?.title}</h1>
-            {event ? (
+            {!isLoading ? (
               <EventInfo event={event} className="lg:hidden" />
             ) : (
               <Skeleton className="w-full h-10 rounded-lg" />
@@ -64,7 +76,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
         </div>
         <div className="fixed bottom-0 left-0 right-0 flex items-center self-start justify-between w-full gap-4 rounded-lg bg-white dark:bg-slate-950 lg:bg-transparent lg:flex-col lg:justify-start lg:sticky lg:top-24 lg:px-4">
           <div className="hidden w-full p-4 space-y-6 border rounded-lg lg:block">
-            {event ? <EventInfo event={event} /> : <Skeleton className="w-full h-4 rounded-lg" />}
+            {!isLoading ? <EventInfo event={event} /> : <Skeleton className="w-full h-4 rounded-lg" />}
           </div>
           <div className="flex flex-col w-full gap-4 px-6 py-4 border-t rounded-lg sm:border">
             <div className="flex items-center justify-between w-full">
