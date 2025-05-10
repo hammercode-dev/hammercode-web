@@ -1,16 +1,17 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { LockKeyhole } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/Form";
+import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/Input";
 import { InputPassword } from "@/components/ui/InputPassword";
+import { LockKeyhole } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import Image from "next/image";
+import Link from "next/link";
 
-function LoginPage() {
+const LoginPage = () => {
   const form = useForm();
-
+  const t = useTranslations("AuthPage.LoginPage");
   return (
     <div className="w-screen h-screen p-4 relative overflow-hidden">
       <div className="size-70 rounded-full bg-radial from-hmc-base-lightblue to-transparent to-70% absolute -top-20 -left-20 blur-3xl"></div>
@@ -19,10 +20,8 @@ function LoginPage() {
         <div className="flex flex-col items-center justify-center lg:w-4/12">
           <div className="flex flex-col gap-10 mx-auto lg:w-96">
             <div className="flex flex-col gap-2">
-              <h1 className="font-bold text-4xl">Sign In</h1>
-              <p className="text-sm text-[#828282] mt-2">
-                Let&apos;s started! Please Sign In to access the best learning resources.
-              </p>
+              <h1 className="font-bold text-4xl">{t("title")}</h1>
+              <p className="text-sm text-[#828282] mt-2">{t("description")}</p>
             </div>
             <div className="flex flex-col gap-4">
               <Form {...form}>
@@ -31,7 +30,12 @@ function LoginPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input type="email" placeholder="Enter Email" className="focus-visible:ring-black" {...field} />
+                        <Input
+                          type="email"
+                          placeholder={t("enter-email")}
+                          className="focus-visible:ring-black dark:ring-hmc-base-blue"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -44,10 +48,10 @@ function LoginPage() {
                       <FormControl>
                         <InputPassword
                           type="password"
-                          placeholder="Enter Password"
+                          placeholder={t("enter-password")}
                           colorIcon="text-[#828282]"
-                          className="outline-none"
-                          suffix={<LockKeyhole className="text-[#828282]" />}
+                          className="dark:ring-hmc-base-blue"
+                          suffix={<LockKeyhole className="text-[#828282] " />}
                           {...field}
                         />
                       </FormControl>
@@ -57,14 +61,14 @@ function LoginPage() {
                 />
               </Form>
             </div>
-            <div className="flex flex-col gap-4 ">
+            <div className="flex flex-col gap-4 group">
               <Button className="text-white rounded-2xl bg-linear-to-l from-hmc-base-blue to-hmc-base-lightblue">
-                Sign In
+                {t("Login-button")}
               </Button>
               <p className="text-xs text-center">
-                Don&apos;t have an account yet?{" "}
-                <Link href="/sign-up" className="text-hmc-base">
-                  Sign Up
+                {t("sub-description")}{" "}
+                <Link href="/sign-up" className="text-hmc-base group-hover:underline">
+                  {t("Register-button")}
                 </Link>
               </p>
             </div>
@@ -81,6 +85,6 @@ function LoginPage() {
       </div>
     </div>
   );
-}
+};
 
 export default LoginPage;
