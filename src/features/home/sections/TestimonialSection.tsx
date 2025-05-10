@@ -1,56 +1,83 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
-
 import Link from "next/link";
+import Image from "next/image";
+import * as motion from "motion/react-client";
+import { Quote } from "lucide-react";
+import { homeService } from "@/services/home";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { useToast } from "@/components/hooks/UseToast";
+import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 import { Card, CardFooter, CardHeader } from "@/components/ui/Card";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carousel";
-
-import DetailTestimoni from "../components/DetailTestimoni";
-import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
-import { homeService } from "@/services/home";
 import { TestimonialType } from "../types";
-import { Skeleton } from "@/components/ui/Skeleton";
+import DetailTestimoni from "../components/DetailTestimoni";
 
 const TestimonialSection = () => {
   const t = useTranslations("HomePage.section-testimonial");
-  const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
-  const getTestimonial = async () => {
-    setLoading(true);
-    try {
-      const res = await homeService.getAllTestimonial();
-      setTestimoni(res.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(true);
 
   useEffect(() => {
-    getTestimonial();
+    const getTestimonials = async () => {
+      setIsLoading(true);
+      try {
+        const res = await homeService.getAllTestimonial();
+        setTestimoni(res.data);
+      } catch (err) {
+        toast({ description: (err as Error).message || "Something went wrong.", variant: "destructive" });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getTestimonials();
   }, []);
 
   return (
     <div className="container mx-auto py-10 space-y-8">
       <div className="flex flex-col space-y-2">
-        <h2 className="text-tertiary md:text-3xl text-2xl font-bold">{t("title")}</h2>
-        <p className="md:text-base text-sm text-slate-500 dark:text-slate-400">{t("description")}</p>
+        <motion.h2
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="text-tertiary md:text-3xl text-2xl font-bold"
+        >
+          {t("title")}
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="md:text-base text-sm text-slate-500 dark:text-slate-400"
+        >
+          {t("description")}
+        </motion.p>
       </div>
 
-      {!loading ? (
-        <>
-          <Carousel className="w-full" isDots={true}>
+      {!isLoading ? (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          onHoverStart={() => setAutoPlay(false)}
+          onHoverEnd={() => setAutoPlay(true)}
+        >
+          <Carousel opts={{ align: "center", loop: true }} className="w-full" isAutoPlay={autoPlay} isDots={true}>
             <CarouselContent className="space-x-4 sm:pr-4">
               {testimoni?.slice(0, 6).map((data) => (
                 <CarouselItem key={data?.id} className="md:basis-1/2 basis-[100%]">
                   <Card>
                     <CardHeader className="space-y-4">
-                      <Image src="/assets/icons/ic_qoute.svg" alt="quote" width={24} height={24} />
+                      <Quote size={24} className="text-foreground" />
                       <Dialog>
                         <DialogTrigger asChild>
                           <p className="sm:text-sm text-xs text-slate-500 dark:text-slate-400 sm:leading-6 leading-5 line-clamp-3 cursor-pointer">{`"${data?.quote}"`}</p>
@@ -82,7 +109,7 @@ const TestimonialSection = () => {
               ))}
             </CarouselContent>
           </Carousel>
-        </>
+        </motion.div>
       ) : (
         <div className="flex gap-4">
           <Skeleton className="w-full h-72" />
@@ -90,7 +117,7 @@ const TestimonialSection = () => {
         </div>
       )}
 
-      {!loading && testimoni.length > 0 && (
+      {testimoni.length > 2 && (
         <div className="text-center text-hmc-base-blue italic hover:text-hmc-base-blue/80">
           <Link href="testimonial">{t("showmore")}</Link>
         </div>

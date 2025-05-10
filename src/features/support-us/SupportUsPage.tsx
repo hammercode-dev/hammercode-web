@@ -41,20 +41,7 @@ export default function SupportUsPage() {
             ease: "easeOut",
           }}
         >
-          <motion.h1
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "linear",
-              delay: 1.5,
-            }}
-            className="text-4xl font-bold mb-2 text-hmc-base-blue"
-          >
-            Donate to Make bigger Impact!
-          </motion.h1>
+          <h1 className="text-4xl font-bold mb-2 text-hmc-base-blue">Donate to Make bigger Impact!</h1>
         </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -65,7 +52,7 @@ export default function SupportUsPage() {
           }}
           className="mb-8 text-lg"
         >
-          {t("brief")}.{" "}
+          {t("brief")}. <br />
           <a
             className="text-blue-500 underline"
             href="https://docs.google.com/spreadsheets/d/1ZgmZXxf6ep4BvNC0oQ9B_cBKO3sVFO2IxS-m7RoR_xU/edit?gid=0#gid=0"

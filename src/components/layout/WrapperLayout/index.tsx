@@ -11,7 +11,7 @@ const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
   const isCertificateDetailPage = !!params?.slug && pathname.includes("certificates");
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       {isCertificateDetailPage ? (
         children
       ) : (
