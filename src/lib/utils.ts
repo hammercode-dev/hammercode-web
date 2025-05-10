@@ -6,16 +6,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function useFormatDate(date?: Date | string) {
+export function useFormatDate(date?: string | Date) {
   const format = useFormatter();
+  const dateTime = new Date(date as string);
 
-  if (!date) return "";
-
-  const parsedDate = typeof date === "string" ? new Date(date) : date;
-
-  if (isNaN(parsedDate.getTime())) return "";
-
-  return format.dateTime(parsedDate, {
+  return format.dateTime(dateTime, {
     year: "numeric",
     month: "long",
     day: "numeric",
