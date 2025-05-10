@@ -16,7 +16,7 @@ const EventInfo: FC<{ event: EventType; className?: string }> = ({ event, classN
         <div className="flex items-center h-4 gap-2">
           <CalendarRange className="size-4 text-slate-700 dark:text-slate-300" />
           <p className="font-semibold text-sm capitalize text-slate-700 dark:text-slate-300">
-            {useFormatDate(event?.date_event)}
+            {useFormatDate(event?.reservation_start_date)}
           </p>
         </div>
         <div className="flex items-center h-4 gap-2">
