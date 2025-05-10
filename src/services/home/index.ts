@@ -1,8 +1,8 @@
 import { fetcherLocal } from "../instance";
+import { TestimonialType } from "@/features/home/types";
 
 export const homeService = {
-  getAllTestimonial: async () => {
-    const res = await fetcherLocal.get("/api/testimonial");
-    return res.data;
+  getAllTestimonial(): Promise<{ status: number; message: string; data: TestimonialType[] }> {
+    return fetcherLocal.get("/api/testimonial");
   },
 };

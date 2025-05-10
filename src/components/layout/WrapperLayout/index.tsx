@@ -8,12 +8,12 @@ import { useParams, usePathname } from "next/navigation";
 const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
   const params = useParams();
   const pathname = usePathname();
-  const isAuthPage = pathname.includes("login") || pathname.includes("register");
+  // const isAuthPage = pathname.includes("login") || pathname.includes("register");
   const isCertificateDetailPage = !!params?.slug && pathname.includes("certificates");
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-      {isCertificateDetailPage || isAuthPage ? (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      {isCertificateDetailPage ? (
         children
       ) : (
         <>

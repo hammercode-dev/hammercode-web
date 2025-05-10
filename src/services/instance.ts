@@ -7,30 +7,33 @@ const config = {
   },
 };
 
-export const fetcher: AxiosInstance = axios.create({
-  baseURL: "https://lms-be-development.hammercode.org/api/v1/",
-  ...config,
-});
+const attachInterceptors = (instance: AxiosInstance): AxiosInstance => {
+  instance.interceptors.request.use(
+    (config: InternalAxiosRequestConfig) => {
+      return config;
+    },
+    (error: AxiosError) => {
+      return Promise.reject(error);
+    }
+  );
 
-export const fetcherLocal: AxiosInstance = axios.create({
-  baseURL: "",
-  ...config,
-});
+  instance.interceptors.response.use(
+    (response: AxiosResponse) => {
+      return response.data;
+    },
+    (error: AxiosError) => {
+      return Promise.reject(error?.response?.data);
+    }
+  );
 
-fetcher.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    return config;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  }
+  return instance;
+};
+
+export const fetcher: AxiosInstance = attachInterceptors(
+  axios.create({
+    baseURL: "https://lms-be-development.hammercode.org/api/v1/",
+    ...config,
+  })
 );
 
-fetcher.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response.data;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error?.response?.data);
-  }
-);
+export const fetcherLocal: AxiosInstance = attachInterceptors(axios.create(config));

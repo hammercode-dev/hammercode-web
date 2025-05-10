@@ -1,16 +1,18 @@
+import { HttpResponse } from "@/types/http";
 import { fetcher } from "../instance";
 import { RegistrationForm } from "@/domains/Events";
+import { TechEvent } from "@/features/events/types";
 
 export const eventsService = {
-  getEvents() {
+  getEvents(): Promise<HttpResponse<TechEvent[]>> {
     return fetcher.get("public/events");
   },
 
-  getEventById(id: string) {
+  getEventById(id: string): Promise<HttpResponse<TechEvent>> {
     return fetcher.get(`public/events/${id}`);
   },
 
-  registEvent(data: RegistrationForm) {
-    return fetcher.post("public/events/registrations", data);
+  registerEvent(payload: RegistrationForm): Promise<HttpResponse<{ order_no: string }>> {
+    return fetcher.post("public/events/registrations", payload);
   },
 };
