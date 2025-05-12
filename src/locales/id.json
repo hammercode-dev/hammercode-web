@@ -36,6 +36,28 @@
       "title": "Kontak"
     }
   },
+  "AuthPage": {
+    "LoginPage": {
+      "title": "Masuk",
+      "enter-email": "Masukan Email",
+      "enter-password": "Masukan Password",
+      "description": "Mari mulai! Silakan Masuk untuk mengakses sumber belajar terbaik.",
+      "sub-description": "Apakah Belum Punya Akun?",
+      "Login-button": "Masuk",
+      "Register-button": "Daftar"
+    },
+    "RegisterPage": {
+      "title": "Daftar",
+      "enter-username": "Masukan Username",
+      "enter-email": "Masukan Email",
+      "enter-password": "Masukan Password",
+      "conf-password": "Konfirmasi Password",
+      "description": "Mari mulai! Silakan Daftar untuk mengakses sumber belajar terbaik.",
+      "sub-description": "Sudah Punya Akun Sebelumnya?",
+      "Login-button": "Masuk",
+      "Register-button": "Daftar"
+    }
+  },
   "HomePage": {
     "section-hero": {
       "title": "Tingkatkan Keahlianmu dengan Kelas yang Berkualitas!",
