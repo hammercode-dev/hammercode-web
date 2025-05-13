@@ -128,6 +128,21 @@
       }
     }
   },
+  "AuthPage": {
+    "ResetPasswordPage": {
+      "title": "Atur ulang kata sandi Anda",
+      "instruction": "Silakan masukkan kata sandi baru Anda di bawah ini.",
+      "input-form": "Kata sandi baru",
+      "input-form-confirm": "Konfirmasi kata sandi baru",
+      "button-continue": "Lanjutkan"
+    },
+    "ForgetPasswordPage": {
+      "title": "Lupa kata sandi Anda?",
+      "instruction": "Masukkan alamat email Anda dan kami akan mengirimkan tautan untuk mengatur ulang kata sandi.",
+      "input-form": "Alamat email",
+      "button-continue": "Lanjutkan"
+    }
+  },
   "AboutPage": {
     "title": "Tentang Hammercode",
     "description": "Sejak 2017 - Sekarang",
