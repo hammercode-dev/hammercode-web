@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const EventSchema = z
+export const eventSchema = z
   .object({
     id: z.number(),
     title: z.string().optional(),
@@ -28,7 +28,7 @@ export const EventSchema = z
   })
   .optional();
 
-export type EventType = z.infer<typeof EventSchema>;
+export type EventType = z.infer<typeof eventSchema>;
 
 export const registrationSchema = z.object({
   name: z.string({ required_error: "Name is required" }).min(1, "Name must be at least 1 character long"),

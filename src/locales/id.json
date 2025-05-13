@@ -36,26 +36,30 @@
       "title": "Kontak"
     }
   },
-  "AuthPage": {
-    "LoginPage": {
-      "title": "Masuk",
+  "Auth": {
+    "Hook": {
+      "sign-in-success": "Sign In Berhasil",
+      "sign-in-failed": "Sign In Gagal"
+    },
+    "SignInPage": {
+      "title": "Selamat Datang Kembali 👋",
+      "description": "Mari mulai! Silakan Masuk untuk mengakses sumber belajar terbaik.",
       "enter-email": "Masukan Email",
       "enter-password": "Masukan Password",
-      "description": "Mari mulai! Silakan Masuk untuk mengakses sumber belajar terbaik.",
-      "sub-description": "Apakah Belum Punya Akun?",
-      "Login-button": "Masuk",
-      "Register-button": "Daftar"
+      "no-account": "Apakah Belum Punya Akun?",
+      "sign-in": "Sign In",
+      "sign-up": "Sign Up"
     },
-    "RegisterPage": {
-      "title": "Daftar",
+    "SignUpPage": {
+      "title": "Selamat Datang 👋",
+      "description": "Mari mulai! Silakan Daftar untuk mengakses sumber belajar terbaik.",
       "enter-username": "Masukan Username",
       "enter-email": "Masukan Email",
       "enter-password": "Masukan Password",
-      "conf-password": "Konfirmasi Password",
-      "description": "Mari mulai! Silakan Daftar untuk mengakses sumber belajar terbaik.",
-      "sub-description": "Sudah Punya Akun Sebelumnya?",
-      "Login-button": "Masuk",
-      "Register-button": "Daftar"
+      "confirm-password": "Konfirmasi Password",
+      "have-account": "Sudah Punya Akun Sebelumnya?",
+      "sign-in": "Sign In",
+      "sign-up": "Sign Up"
     }
   },
   "HomePage": {

@@ -1,7 +1,7 @@
-import { LoginPage } from "@/features/auth/login";
+import { SignInPage } from "@/features/auth/sign-in";
 
-const Login = () => {
-  return <LoginPage />;
+const SignIn = () => {
+  return <SignInPage />;
 };
 
-export default Login;
+export default SignIn;
