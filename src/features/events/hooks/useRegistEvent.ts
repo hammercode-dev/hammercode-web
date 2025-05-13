@@ -1,23 +1,17 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { useToast } from "@/components/hooks/UseToast";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
-import { eventsService } from "@/services/events";
 import { uploadsService } from "@/services/uploads";
+import { eventsService } from "@/services/events";
+import { EventType, RegistrationForm } from "@/domains/Events";
+import { useToast } from "@/components/hooks/UseToast";
+import { useState } from "react";
+import { useTranslations } from "next-intl";
 
-const useSubmitEventRegistration = ({ data }: { data: EventType }) => {
+export const useRegistEvent = (data: EventType) => {
   const t = useTranslations("EventsPage");
   const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
-  const form = useForm<RegistrationForm>({
-    resolver: zodResolver(registrationSchema),
-  });
-
-  const onSubmit = async (formData: RegistrationForm) => {
+  const registEvent = async (formData: RegistrationForm) => {
     setIsLoading(true);
 
     try {
@@ -48,7 +42,6 @@ const useSubmitEventRegistration = ({ data }: { data: EventType }) => {
 
       setIsLoading(false);
       setIsDialogOpen(false);
-      form.reset();
     } catch (error) {
       toast({
         title: t("EventRegistration.failure.title"),
@@ -59,7 +52,5 @@ const useSubmitEventRegistration = ({ data }: { data: EventType }) => {
     }
   };
 
-  return { onSubmit, isLoading, isDialogOpen, setIsDialogOpen, form };
+  return { registEvent, isLoading, isDialogOpen, setIsDialogOpen };
 };
-
-export default useSubmitEventRegistration;

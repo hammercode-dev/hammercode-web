@@ -1,29 +1,44 @@
+"use client";
+import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
-import { Input } from "@/components/ui/Input";
-import { SubmitButton } from "@/components/ui/SubmitButton";
-import { EventType } from "@/domains/Events";
 import { useFormatPrice } from "@/lib/utils";
+import { Input } from "@/components/ui/Input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitButton } from "@/components/ui/SubmitButton";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
+import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
+import { useRegistEvent } from "../hooks/useRegistEvent";
 import EventImage from "./EventImage";
-import useSubmitEventRegistration from "../hooks/useSubmitEventRegistration";
 
 const EventFormRegistration = ({ data }: { data: EventType }) => {
   const t = useTranslations("EventsPage");
-  const { form, isDialogOpen, isLoading, setIsDialogOpen, onSubmit } = useSubmitEventRegistration({ data });
+  const { registEvent, isLoading, isDialogOpen, setIsDialogOpen } = useRegistEvent(data);
+
+  const form = useForm<RegistrationForm>({
+    resolver: zodResolver(registrationSchema),
+  });
+
+  const onSubmit = async (formData: RegistrationForm) => {
+    if (!data) {
+      return;
+    }
+
+    registEvent(formData);
+  };
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger
-        className="w-full p-2 rounded-lg text-xs text-background bg-hmc-base-darkblue font-bold dark:bg-slate-200"
+        className="text-background bg-hmc-base-darkblue w-full rounded-lg p-2 text-xs font-bold dark:bg-slate-200"
         onClick={() => setIsDialogOpen(true)}
       >
         {t("EventDetail.register-button")}
       </DialogTrigger>
-      <DialogContent className="max-w-[900px] dark:border-hmc-base-darkblue dark:border">
+      <DialogContent className="dark:border-hmc-base-darkblue max-w-[900px] dark:border">
         <div>
-          <h1 className="text-3xl text-hmc-base-lightblue font-semibold">{t("EventDetail.register-button")}</h1>
+          <h1 className="text-hmc-base-lightblue text-3xl font-semibold">{t("EventDetail.register-button")}</h1>
           <p className="text-md font-semibold">{data?.title}</p>
         </div>
         <hr />
@@ -117,22 +132,22 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
             </Form>
           </div>
           <div className="col-span-2">
-            <Card className="border p-3 space-y-4">
+            <Card className="space-y-4 border p-3">
               <EventImage
                 src={data?.image_event as string}
                 alt="Banner"
                 width={1000}
                 height={500}
                 priority
-                className="rounded-lg w-full"
+                className="w-full rounded-lg"
               />
-              <div className="flex items-center justify-between w-full">
-                <span className="font-semibold text-xs sm:text-sm dark:text-slate-200">Regular</span>
+              <div className="flex w-full items-center justify-between">
+                <span className="text-xs font-semibold sm:text-sm dark:text-slate-200">Regular</span>
                 <p className="text-sm font-bold dark:text-slate-200">{useFormatPrice(data?.price)}</p>
               </div>
               <hr />
-              <div className="flex items-center justify-between w-full">
-                <span className="font-semibold text-xs sm:text-sm dark:text-slate-200">Total</span>
+              <div className="flex w-full items-center justify-between">
+                <span className="text-xs font-semibold sm:text-sm dark:text-slate-200">Total</span>
                 <p className="text-sm font-bold dark:text-slate-200">{useFormatPrice(data?.price)}</p>
               </div>
               <SubmitButton
