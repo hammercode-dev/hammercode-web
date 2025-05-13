@@ -6,8 +6,8 @@ export type TechEvent = {
   title: string;
   description: string;
   author: string;
+  date: string;
   image_event: string;
-  date_event: string;
   created_at?: string;
   updated_at?: string;
   type_event?: EventTypes;

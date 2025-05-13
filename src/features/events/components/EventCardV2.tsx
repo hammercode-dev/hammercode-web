@@ -8,7 +8,7 @@ import EventImage from "./EventImage";
 import { TechEvent } from "../types";
 
 const EventCardV2: FC<{ data: TechEvent }> = ({ data }) => {
-  const { title, image_event, date_event, status, duration, location } = data;
+  const { title, date, image_event, status, duration, location } = data;
   return (
     <Card className="flex size-full flex-col rounded-lg border shadow-md">
       <EventImage
@@ -32,7 +32,7 @@ const EventCardV2: FC<{ data: TechEvent }> = ({ data }) => {
         </TooltipProvider>
       </CardContent>
       <CardFooter className="mt-auto flex flex-col items-start gap-2 px-4 pt-3 pb-4">
-        <p className="line-clamp-1">{useFormatDate(date_event)}</p>
+        <p className="line-clamp-1">{useFormatDate(date)}</p>
         <div className="flex items-center gap-2">
           <Clock size={15} />
           <p className="text-sm">{duration}</p>
