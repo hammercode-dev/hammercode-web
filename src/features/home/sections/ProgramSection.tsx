@@ -11,14 +11,14 @@ const ProgramSection = () => {
   const MotionCard = motion.create(Card, { forwardMotionProps: true });
 
   return (
-    <div className="container mx-auto py-10 space-y-8">
+    <div className="container mx-auto space-y-8 py-10">
       <div className="flex flex-col gap-4">
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-tertiary md:text-3xl text-2xl font-bold"
+          className="text-tertiary text-2xl font-bold md:text-3xl"
         >
           {t("title")}
         </motion.h2>
@@ -27,7 +27,7 @@ const ProgramSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="max-w-3xl md:text-base text-sm text-slate-500 dark:text-slate-400 md:leading-7"
+          className="max-w-3xl text-sm text-slate-500 md:text-base md:leading-7 dark:text-slate-400"
         >
           {t("description")}
         </motion.p>
@@ -51,7 +51,7 @@ const ProgramSection = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid md:grid-cols-3 grid-cols-1 gap-8"
+        className="grid grid-cols-1 gap-8 md:grid-cols-3"
       >
         {programData.map((data) => (
           <MotionCard
@@ -71,17 +71,17 @@ const ProgramSection = () => {
             className="hover:shadow-sm hover:shadow-white/40"
           >
             <CardHeader>
-              <div className="flex justify-center w-full">
+              <div className="flex w-full justify-center">
                 <div className="space-y-4">
                   <Image
-                    className="md:w-36 w-28 md:h-36 h-28 rounded-2xl"
+                    className="h-28 w-28 rounded-2xl md:h-36 md:w-36"
                     src={data.icon}
                     alt={data.title}
                     width={140}
                     height={140}
                   />
                   <Image
-                    className="md:w-36 w-28 rounded-2xl"
+                    className="w-28 rounded-2xl md:w-36"
                     src="/assets/images/illustrations/shape-overlay.svg"
                     alt={data.title}
                     width={140}
@@ -91,15 +91,15 @@ const ProgramSection = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col items-center gap-4 mt-4">
+              <div className="mt-4 flex flex-col items-center gap-4">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="bg-sky-100 dark:bg-sky-900 p-2 w-9 h-9 text-sm text-hmc-primary flex justify-center items-center rounded-lg cursor-default"
+                  className="text-hmc-primary flex h-9 w-9 cursor-default items-center justify-center rounded-lg bg-sky-100 p-2 text-sm dark:bg-sky-900"
                 >
                   {data.id}
                 </motion.div>
-                <h3 className="text-xl text-center font-semibold">{t(`programs.${data.id}.title`)}</h3>
-                <p className="md:text-sm text-sm text-center text-slate-500 dark:text-slate-400 md:leading-6">
+                <h3 className="text-center text-xl font-semibold">{t(`programs.${data.id}.title`)}</h3>
+                <p className="text-center text-sm text-slate-500 md:text-sm md:leading-6 dark:text-slate-400">
                   {t(`programs.${data.id}.description`)}
                 </p>
               </div>

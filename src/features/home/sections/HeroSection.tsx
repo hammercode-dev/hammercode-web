@@ -9,7 +9,7 @@ import { socialMedia } from "../constants";
 const HeroSection = () => {
   const t = useTranslations("HomePage.section-hero");
   return (
-    <div className="container mx-auto py-32 flex lg:flex-row flex-col items-center gap-6 justify-between">
+    <div className="container mx-auto flex flex-col items-center justify-between gap-6 py-32 lg:flex-row">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -17,7 +17,7 @@ const HeroSection = () => {
         className="basis-[50%] space-y-4"
       >
         <div className="space-y-1.5">
-          <h1 className="text-hmc-primary md:text-[44px] text-3xl font-bold md:leading-[60px]">{t("title")}</h1>
+          <h1 className="text-hmc-primary text-3xl font-bold md:text-[44px] md:leading-[60px]">{t("title")}</h1>
           <p className="text-slate-600 dark:text-slate-400">{t("description")}</p>
         </div>
 
@@ -42,7 +42,7 @@ const HeroSection = () => {
           >
             <Button asChild size="lg" className="group flex items-center gap-2 hover:scale-[1.04]">
               <Link href="https://discord.com/invite/M9mNK6MBbu" target="_blank">
-                {t("join-button")} <HandCoins className="lg:w-6 w-5 group-hover:animate-ping" />
+                {t("join-button")} <HandCoins className="w-5 group-hover:animate-ping lg:w-6" />
               </Link>
             </Button>
             {socialMedia.map((data) => (
@@ -71,7 +71,7 @@ const HeroSection = () => {
                         ? `linear-gradient(135deg, ${data.color_one} 0%, ${data.color_two} 100%)`
                         : data.color_one,
                     }}
-                    className="p-2 rounded-md flex justify-center md:w-12 w-10 md:h-12 h-10"
+                    className="flex h-10 w-10 justify-center rounded-md p-2 md:h-12 md:w-12"
                   >
                     <Image src={data.icon} alt={data.icon} width={55} height={55} className="w-full" />
                   </Link>

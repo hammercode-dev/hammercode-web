@@ -8,17 +8,17 @@ import Link from "next/link";
 const DetailTestimoni: FC<{ data: TestimonialType }> = ({ data }) => {
   return (
     <DialogContent>
-      <div className="flex md:flex-row flex-col md:items-center items-start gap-2">
+      <div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
         <Image
           src={data.avatar_url}
           alt={data.name}
           width={512}
           height={512}
-          className="lg:w-14 w-16 lg:h-14 h-16 object-cover border-2 rounded-full"
+          className="h-16 w-16 rounded-full border-2 object-cover lg:h-14 lg:w-14"
         />
         <div className="flex flex-col gap-1">
           <h3>{data.name}</h3>
-          <div className="sm:text-sm text-xs text-slate-400 dark:text-slate-400">
+          <div className="text-xs text-slate-400 sm:text-sm dark:text-slate-400">
             {data.role} at{" "}
             <Link href={data.company_url} target="_blank" className="font-medium">
               {data.company_name}
@@ -26,7 +26,7 @@ const DetailTestimoni: FC<{ data: TestimonialType }> = ({ data }) => {
           </div>
         </div>
       </div>
-      <p className="sm:text-sm text-xs text-slate-500 dark:text-slate-400 sm:leading-6 leading-5">{`"${data.quote}"`}</p>
+      <p className="text-xs leading-5 text-slate-500 sm:text-sm sm:leading-6 dark:text-slate-400">{`"${data.quote}"`}</p>
     </DialogContent>
   );
 };

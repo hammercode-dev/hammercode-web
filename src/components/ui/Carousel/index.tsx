@@ -214,14 +214,14 @@ const CarouselBullets = () => {
   };
 
   return (
-    <div className="flex justify-center mt-4 space-x-2">
+    <div className="mt-4 flex justify-center space-x-2">
       {Array.from({ length: totalSlides }).map((_, index) => (
         <button
           key={index}
           onClick={() => scrollToSlide(index)}
           className={cn(
             "h-2 rounded-full",
-            selectedIndex === index ? "bg-tertiary dark:bg-slate-600 w-6" : "bg-gray-200 w-3"
+            selectedIndex === index ? "bg-tertiary w-6 dark:bg-slate-600" : "w-3 bg-gray-200"
           )}
           aria-label={`Slide ${index}`}
         />
@@ -240,9 +240,9 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         variant={variant}
         size={size}
         className={cn(
-          "absolute  h-8 w-8 rounded-full",
+          "absolute h-8 w-8 rounded-full",
           orientation === "horizontal"
-            ? "-left-12 top-1/2 -translate-y-1/2"
+            ? "top-1/2 -left-12 -translate-y-1/2"
             : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
           className
         )}
@@ -270,7 +270,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         className={cn(
           "absolute h-8 w-8 rounded-full",
           orientation === "horizontal"
-            ? "-right-12 top-1/2 -translate-y-1/2"
+            ? "top-1/2 -right-12 -translate-y-1/2"
             : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
           className
         )}

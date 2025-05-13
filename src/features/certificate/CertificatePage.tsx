@@ -12,27 +12,27 @@ const CertificatePage = ({ certificate }: Props) => {
   const { _id, event, image_link, name, share_link } = certificate;
   return (
     <div className="w-full">
-      <div className="p-4 my-12">
+      <div className="my-12 p-4">
         <div className="space-y-2">
-          <h3 className="text-hmc-primary md:text-2xl text-xl font-semibold text-center">
+          <h3 className="text-hmc-primary text-center text-xl font-semibold md:text-2xl">
             Terima Kasih kepada <strong className="font-extrabold">{name}</strong>!
           </h3>
-          <p className="md:text-base text-sm text-center text-slate-500 dark:text-slate-400">
+          <p className="text-center text-sm text-slate-500 md:text-base dark:text-slate-400">
             Kamu telah berpartisipasi dalam acara ini.
           </p>
         </div>
-        <div className="w-full h-full relative">
+        <div className="relative h-full w-full">
           <div className="flex justify-center">
             <Image
               src={image_link}
-              className="my-4 rounded-lg shadow-md object-cover object-center w-auto h-auto"
+              className="my-4 h-auto w-auto rounded-lg object-cover object-center shadow-md"
               width="640"
               height="480"
               alt={`Sertikat ${event} - ${name}`}
               priority
             />
           </div>
-          <p className="md:text-base text-sm text-center text-slate-500 dark:text-slate-400 mb-8">
+          <p className="mb-8 text-center text-sm text-slate-500 md:text-base dark:text-slate-400">
             Sertifikat : <b>{_id}</b>
           </p>
 
@@ -44,8 +44,8 @@ const CertificatePage = ({ certificate }: Props) => {
             </Button>
           </div>
           <div>
-            <p className="md:text-base text-sm text-center text-slate-500 dark:text-slate-400 my-4">
-              <strong className="md:text-lg text-md">Pamerkan</strong> sertifikat ini ke teman-temanmu!
+            <p className="my-4 text-center text-sm text-slate-500 md:text-base dark:text-slate-400">
+              <strong className="text-md md:text-lg">Pamerkan</strong> sertifikat ini ke teman-temanmu!
             </p>
 
             <div className="flex justify-center space-x-6">

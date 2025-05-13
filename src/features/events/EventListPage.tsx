@@ -36,22 +36,22 @@ const EventListPage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-[75vh]">
-        <LoaderIcon className="animate-spin size-12" />
+      <div className="flex h-[75vh] items-center justify-center">
+        <LoaderIcon className="size-12 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-5 pb-28 pt-24">
+    <div className="container mx-auto px-5 pt-24 pb-28">
       <div className="w-full rounded-lg">
-        <div className="h-16 flex flex-wrap gap-1 justify-between items-center">
+        <div className="flex h-16 flex-wrap items-center justify-between gap-1">
           <div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-hmc-base-blue text-xl sm:text-3xl font-semibold"
+              className="text-hmc-base-blue text-xl font-semibold sm:text-3xl"
             >
               {t("title")}
             </motion.h1>
@@ -59,7 +59,7 @@ const EventListPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="text-gray-500 text-xs sm:text-base"
+              className="text-xs text-gray-500 sm:text-base"
             >
               {t("description")}
             </motion.p>

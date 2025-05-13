@@ -19,10 +19,10 @@ function Announcement({ message, url }: AnnouncementProps) {
   return (
     <div
       role="alert"
-      className="bg-slate-950 flex justify-center items-center gap-2 text-white text-center px-4 py-2 text-sm md:text-normal"
+      className="md:text-normal flex items-center justify-center gap-2 bg-slate-950 px-4 py-2 text-center text-sm text-white"
     >
       <h2>{messageEl}</h2>
-      <button onClick={() => setHidden(true)} className="bg-slate-500 rounded-full p-1  ">
+      <button onClick={() => setHidden(true)} className="rounded-full bg-slate-500 p-1">
         <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </button>

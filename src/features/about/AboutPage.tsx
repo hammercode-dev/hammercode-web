@@ -11,15 +11,15 @@ const AboutPage = () => {
   const t = useTranslations("AboutPage");
   return (
     <div className="container mx-auto px-5 py-28">
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-7">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="md:col-span-5 space-y-4 text-justify"
+          className="space-y-4 text-justify md:col-span-5"
         >
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-hmc-base-blue">{t("title")}</h1>
+            <h1 className="text-hmc-base-blue mb-2 text-3xl font-bold">{t("title")}</h1>
             <p className="text-sm text-gray-500">{t("description")}</p>
           </div>
           <p>
@@ -27,28 +27,28 @@ const AboutPage = () => {
           </p>
           <ImagesList />
           <p>{t("text.2")}</p>
-          <div className="flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex flex-col items-center gap-4 md:flex-row">
             <Image
               src="/assets/images/about/meet-1.png"
               alt="meet"
               width={500}
               height={100}
-              className="md:w-2/3 w-full h-auto rounded-lg shadow-lg"
+              className="h-auto w-full rounded-lg shadow-lg md:w-2/3"
             />
-            <p className="md:w-2/3 w-full">{t("text.3")}</p>
+            <p className="w-full md:w-2/3">{t("text.3")}</p>
           </div>
           <p>{t("text.3")}</p>
           <div className="flex gap-2">
-            <Badge className="dark:text-white rounded-md bg-hmc-base-darkblue dark:bg-hmc-base-blue cursor-default">
+            <Badge className="bg-hmc-base-darkblue dark:bg-hmc-base-blue cursor-default rounded-md dark:text-white">
               #SiapBerkarirDibidangIT
             </Badge>
-            <Badge className="dark:text-white rounded-md bg-hmc-base-darkblue dark:bg-hmc-base-blue cursor-default">
+            <Badge className="bg-hmc-base-darkblue dark:bg-hmc-base-blue cursor-default rounded-md dark:text-white">
               #HammerCode
             </Badge>
           </div>
         </motion.div>
 
-        <div className="md:col-span-2 space-y-4">
+        <div className="space-y-4 md:col-span-2">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}

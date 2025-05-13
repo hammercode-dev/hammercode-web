@@ -7,14 +7,14 @@ import * as motion from "motion/react-client";
 const OurProgram: FC = () => {
   const t = useTranslations("AboutPage");
   return (
-    <Card className="p-4 space-y-4">
-      <h2 className="text-2xl font-semibold text-hmc-primary">{t("side.title-2")}</h2>
+    <Card className="space-y-4 p-4">
+      <h2 className="text-hmc-primary text-2xl font-semibold">{t("side.title-2")}</h2>
       {PROGRAM.map(({ id, title, desc, icon }) => (
-        <CardContent key={id} className="p-0 flex items-center gap-2">
+        <CardContent key={id} className="flex items-center gap-2 p-0">
           <motion.div
             whileHover={{ rotate: id % 2 === 0 ? 15 : -15 }}
             transition={{ duration: 0.4 }}
-            className="size-12 bg-card border rounded-full flex items-center justify-center"
+            className="bg-card flex size-12 items-center justify-center rounded-full border"
           >
             {icon}
           </motion.div>

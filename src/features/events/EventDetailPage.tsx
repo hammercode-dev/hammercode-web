@@ -41,8 +41,8 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
   }, [eventId]);
 
   return (
-    <div className="container py-24 mx-auto space-y-6">
-      <div className="grid items-center grid-cols-1 gap-2 lg:grid-cols-3">
+    <div className="container mx-auto space-y-6 py-24">
+      <div className="grid grid-cols-1 items-center gap-2 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           <div className="w-full rounded-lg">
             {!isLoading ? (
@@ -55,7 +55,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
                 className="rounded-lg"
               />
             ) : (
-              <Skeleton className="w-full h-24 rounded-lg sm:h-96" />
+              <Skeleton className="h-24 w-full rounded-lg sm:h-96" />
             )}
           </div>
           <EventBreadcrumbs />
@@ -64,23 +64,23 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
             {!isLoading ? (
               <EventInfo event={event} className="lg:hidden" />
             ) : (
-              <Skeleton className="w-full h-10 rounded-lg" />
+              <Skeleton className="h-10 w-full rounded-lg" />
             )}
             <div className="space-y-4">
               <TitleContainer>
                 <h2 className="font-semibold sm:text-xl">{t("EventDetail.desc-title")}</h2>
               </TitleContainer>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">{event?.description}</p>
+              <p className="text-sm text-slate-600 sm:text-base dark:text-slate-400">{event?.description}</p>
             </div>
           </div>
         </div>
-        <div className="fixed bottom-0 left-0 right-0 flex items-center self-start justify-between w-full gap-4 rounded-lg bg-white dark:bg-slate-950 lg:bg-transparent lg:flex-col lg:justify-start lg:sticky lg:top-24 lg:px-4">
-          <div className="hidden w-full p-4 space-y-6 border rounded-lg lg:block">
-            {!isLoading ? <EventInfo event={event} /> : <Skeleton className="w-full h-4 rounded-lg" />}
+        <div className="fixed right-0 bottom-0 left-0 flex w-full items-center justify-between gap-4 self-start rounded-lg bg-white lg:sticky lg:top-24 lg:flex-col lg:justify-start lg:bg-transparent lg:px-4 dark:bg-slate-950">
+          <div className="hidden w-full space-y-6 rounded-lg border p-4 lg:block">
+            {!isLoading ? <EventInfo event={event} /> : <Skeleton className="h-4 w-full rounded-lg" />}
           </div>
-          <div className="flex flex-col w-full gap-4 px-6 py-4 border-t rounded-lg sm:border">
-            <div className="flex items-center justify-between w-full">
-              <span className="font-semibold text-xs sm:text-sm dark:text-slate-200">
+          <div className="flex w-full flex-col gap-4 rounded-lg border-t px-6 py-4 sm:border">
+            <div className="flex w-full items-center justify-between">
+              <span className="text-xs font-semibold sm:text-sm dark:text-slate-200">
                 {t("EventDetail.price-title")}
               </span>
               <p className="text-sm font-bold dark:text-slate-200">{useFormatPrice(event?.price)}</p>

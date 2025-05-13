@@ -36,26 +36,26 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
           },
         },
       }}
-      className="relative bg-card border rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-white/20"
+      className="bg-card relative overflow-hidden rounded-xl border hover:shadow-2xl hover:shadow-white/20"
     >
-      <div className="p-5 border-b bg-muted/30 backdrop-blur-xs">
+      <div className="bg-muted/30 border-b p-5 backdrop-blur-xs">
         <div className="flex items-center gap-3">
           {method.icon && (
             <motion.div
               whileHover={{ scale: 1.2 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="p-1 rounded-lg bg-hmc-primary/10"
+              className="bg-hmc-primary/10 rounded-lg p-1"
             >
               <Image src={method.icon} alt={method.name} width={24} height={24} />
             </motion.div>
           )}
-          <h3 className="font-semibold text-lg">{method.name}</h3>
+          <h3 className="text-lg font-semibold">{method.name}</h3>
         </div>
       </div>
 
-      <div className="p-8 space-y-8">
+      <div className="space-y-8 p-8">
         <motion.div
-          className="flex justify-center relative group"
+          className="group relative flex justify-center"
           whileHover={{ scale: 1.02 }}
           onClick={handleDownloadQr}
         >
@@ -68,10 +68,10 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
                   width={160}
                   height={160}
                   loading="lazy"
-                  className="size-60 bg-white p-4 rounded-xl shadow-xl ring-1 ring-white/10 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-white/25"
+                  className="size-60 rounded-xl bg-white p-4 shadow-xl ring-1 ring-white/10 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-white/25"
                 />
                 <motion.div
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  className="absolute inset-0 rounded-xl opacity-0 transition-all duration-300 group-hover:opacity-100"
                   whileHover={{ scale: 1.02 }}
                 />
               </TooltipTrigger>
@@ -81,9 +81,9 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
         </motion.div>
 
         <div className="space-y-4">
-          <p className="text-xs md:text-sm text-center font-mono">{method.accountName}</p>
+          <p className="text-center font-mono text-xs md:text-sm">{method.accountName}</p>
           <motion.div
-            className="text-sm font-mono p-4 bg-muted/50 rounded-lg break-all border border-border/50"
+            className="bg-muted/50 border-border/50 rounded-lg border p-4 font-mono text-sm break-all"
             whileHover={{ scale: 1.01 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
@@ -91,13 +91,13 @@ export function DonateCard({ method, copiedId, onCopy }: Props) {
           </motion.div>
           <Button
             variant="outline"
-            className="w-full py-6 text-sm font-medium hover:bg-hmc-primary/5 hover:text-hmc-primary transition-colors"
+            className="hover:bg-hmc-primary/5 hover:text-hmc-primary w-full py-6 text-sm font-medium transition-colors"
             onClick={() => onCopy(method.accountNumber, method.id)}
           >
             {copiedId === method.id ? (
-              <Check className="size-5 mr-2 text-green-500" />
+              <Check className="mr-2 size-5 text-green-500" />
             ) : (
-              <Copy className="size-5 mr-2" />
+              <Copy className="mr-2 size-5" />
             )}
             {copiedId === method.id ? t("clipboard.copied") : t("clipboard.copy")}
           </Button>
