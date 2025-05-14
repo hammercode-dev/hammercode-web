@@ -16,7 +16,7 @@ export const useAuth = () => {
     try {
       const res = await authService.login(payload);
 
-      localStorage.setItem("accesToken", res.data);
+      localStorage.setItem("accessToken", res.data);
       router.push("/");
       toast({ description: t("sign-in-success") });
 
