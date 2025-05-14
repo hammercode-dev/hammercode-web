@@ -5,8 +5,8 @@ import { useFormatDate } from "@/lib/utils";
 import { CalendarRange, Clock, MapPin } from "lucide-react";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { AvatarFallback } from "@/components/ui/Avatar";
-
 import { EventType } from "@/domains/Events";
+
 const EventInfo: FC<{ event: EventType; className?: string }> = ({ event, className }) => {
   const t = useTranslations("EventsPage");
 

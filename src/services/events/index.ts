@@ -1,14 +1,13 @@
 import { HttpResponse } from "@/types/http";
 import { fetcher } from "../instance";
-import { RegistrationForm } from "@/domains/Events";
-import { TechEvent } from "@/features/events/types";
+import { EventType, RegistrationForm } from "@/domains/Events";
 
 export const eventsService = {
-  getEvents(): Promise<HttpResponse<TechEvent[]>> {
+  getEvents(): Promise<HttpResponse<EventType[]>> {
     return fetcher.get("public/events");
   },
 
-  getEventById(id: string): Promise<HttpResponse<TechEvent>> {
+  getEventById(id: string): Promise<HttpResponse<EventType>> {
     return fetcher.get(`public/events/${id}`);
   },
 

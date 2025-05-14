@@ -1,17 +1,15 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { useTranslations } from "next-intl";
 import { useFormatPrice } from "@/lib/utils";
-import { EventType } from "@/domains/Events";
-import { eventsService } from "@/services/events";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { useToast } from "@/components/hooks/UseToast";
 import TitleContainer from "@/components/ui/TitleContainer";
 import EventInfo from "./components/EventInfo";
 import EventImage from "./components/EventImage";
 import EventBreadcrumbs from "./components/EventBreadcrumb";
 import EventFormRegistration from "./components/EventFormRegistration";
+import { useEventById } from "./hooks/useEvent";
 
 interface EventDetailPageProp {
   eventId: string;
@@ -19,26 +17,7 @@ interface EventDetailPageProp {
 
 const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
   const t = useTranslations("EventsPage");
-  const { toast } = useToast();
-
-  const [event, setEvent] = useState<EventType>();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const getEvent = async () => {
-      setIsLoading(true);
-      try {
-        const res = await eventsService.getEventById(eventId);
-        setEvent(res.data);
-      } catch (err) {
-        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getEvent();
-  }, [eventId]);
+  const { event, isLoading } = useEventById(eventId);
 
   return (
     <div className="container mx-auto space-y-6 py-24">

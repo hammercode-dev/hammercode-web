@@ -3,12 +3,13 @@ import { Clock, Pin } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/Card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/Tooltip";
+import { EventType } from "@/domains/Events";
 import { useFormatDate } from "@/lib/utils";
 import EventImage from "./EventImage";
-import { TechEvent } from "../types";
 
-const EventCardV2: FC<{ data: TechEvent }> = ({ data }) => {
+const EventCardV2: FC<{ data: EventType }> = ({ data }) => {
   const { title, date, image_event, status, duration, location } = data;
+
   return (
     <Card className="flex size-full flex-col rounded-lg border shadow-md">
       <EventImage

@@ -1,38 +1,15 @@
 "use client";
-
-import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { eventsService } from "@/services/events";
-import { useToast } from "@/components/hooks/UseToast";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
-import { TechEvent } from "./types";
 import EventCardV2 from "./components/EventCardV2";
 import { LoaderIcon } from "lucide-react";
+import { useEvents } from "./hooks/useEvent";
 
 const EventListPage = () => {
   const t = useTranslations("EventsPage");
-  const { toast } = useToast();
-
-  const [events, setEvents] = useState<TechEvent[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      setIsLoading(true);
-      try {
-        const res = await eventsService.getEvents();
-        setEvents(res.data);
-      } catch (err) {
-        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getEvents();
-  }, []);
+  const { events, isLoading } = useEvents();
 
   if (isLoading) {
     return (
@@ -107,7 +84,7 @@ const EventListPage = () => {
         <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
           {events.map((event) => (
             <motion.div
-              key={event.id}
+              key={event?.id}
               variants={{
                 hidden: { y: 20, opacity: 0 },
                 show: {
@@ -121,11 +98,9 @@ const EventListPage = () => {
                 },
               }}
               whileHover={{ y: -5 }}
-              className={`${event.id === 1 ? "lg:col-span-2" : "col-span-1"}`}
+              className={`${event?.id === 1 ? "lg:col-span-2" : "col-span-1"}`}
             >
-              <Link href={`/events/${event.id}`}>
-                <EventCardV2 data={event} />
-              </Link>
+              <Link href={`/events/${event?.id}`}>{event && <EventCardV2 data={event} />}</Link>
             </motion.div>
           ))}
           {/* {mockEvents.map((event) => (

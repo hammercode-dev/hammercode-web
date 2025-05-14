@@ -7,7 +7,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/Card";
 import { TechEvent } from "../types";
 
 const EventCard: FC<{ data: TechEvent }> = ({ data }) => {
-  const { id, title, date_event, status, duration, location, image_event } = data;
+  const { id, title, date, status, duration, location, image_event } = data;
   return (
     <Card key={id} className="flex min-h-28 rounded-lg border shadow-md">
       <Image
@@ -23,7 +23,7 @@ const EventCard: FC<{ data: TechEvent }> = ({ data }) => {
             {status}
           </Badge>
           <h2 className="text-hmc-blue-600 text-xl font-bold">{title}</h2>
-          <p className="text-gray-800">{date_event}</p>
+          <p className="text-gray-800">{date}</p>
         </CardContent>
         <CardFooter className="mt-2 flex gap-2 pb-2 text-gray-500">
           <div className="flex items-center gap-2">

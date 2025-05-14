@@ -1,32 +1,46 @@
 import { z } from "zod";
 
-export const eventSchema = z
-  .object({
-    id: z.number(),
-    title: z.string().optional(),
-    description: z.string().optional(),
-    author: z.string().optional(),
-    image_event: z.string().optional(),
-    date_event: z.string().optional(),
-    type: z.string().optional(),
-    location: z.string().optional(),
-    duration: z.string().optional(),
-    capacity: z.number().optional(),
-    status: z.string().optional(),
-    Tags: z.null().optional(),
-    Speakers: z.null().optional(),
-    registration_link: z.string().optional(),
-    price: z.number().optional(),
-    created_by: z.number().optional(),
-    updated_by: z.number().optional(),
-    deleted_by: z.number().optional(),
-    reservation_start_date: z.string().optional(),
-    reseveration_end_date: z.string().optional(),
-    created_at: z.string().optional(),
-    updated_at: z.string().optional(),
-    deleted_at: z.null().optional(),
-  })
-  .optional();
+export const eventSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  description: z.string(),
+  author: z.string(),
+  image_event: z.string(),
+  date: z.string().optional(),
+  type: z.string(),
+  location: z.string(),
+  duration: z.string(),
+  capacity: z.number(),
+  status: z.enum(["open", "soon", "closed"]),
+  Tags: z
+    .array(
+      z.object({
+        id: z.number(),
+        event_id: z.number(),
+        tags: z.string(),
+      })
+    )
+    .optional(),
+  Speakers: z
+    .array(
+      z.object({
+        id: z.number(),
+        event_id: z.number(),
+        name: z.string(),
+      })
+    )
+    .optional(),
+  registration_link: z.string(),
+  price: z.number(),
+  created_by: z.number(),
+  updated_by: z.number(),
+  deleted_by: z.number(),
+  reservation_start_date: z.string().optional(),
+  reseveration_end_date: z.string().optional(),
+  created_at: z.string(),
+  updated_at: z.string().optional(),
+  deleted_at: z.string().optional(),
+});
 
 export type EventType = z.infer<typeof eventSchema>;
 
