@@ -14,7 +14,7 @@ const ImagesList: FC = () => {
     >
       <CarouselContent>
         {ACTIVITIES.map(({ id, logo, alt }) => (
-          <CarouselItem key={id} className="flex justify-center items-center sm:basis-1/3">
+          <CarouselItem key={id} className="flex items-center justify-center sm:basis-1/3">
             <Image src={logo} alt={alt} width={200} height={20} className="w-full rounded-lg shadow-lg" />
           </CarouselItem>
         ))}

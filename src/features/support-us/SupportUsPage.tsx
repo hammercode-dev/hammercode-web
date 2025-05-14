@@ -29,7 +29,7 @@ export default function SupportUsPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="max-w-7xl pt-32 pb-16 container mx-auto px-5 space-y-10"
+      className="container mx-auto max-w-7xl space-y-10 px-5 pt-32 pb-16"
     >
       <section className="text-center">
         <motion.div
@@ -41,7 +41,7 @@ export default function SupportUsPage() {
             ease: "easeOut",
           }}
         >
-          <h1 className="text-4xl font-bold mb-2 text-hmc-base-blue">Donate to Make bigger Impact!</h1>
+          <h1 className="text-hmc-base-blue mb-2 text-4xl font-bold">Donate to Make bigger Impact!</h1>
         </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -62,7 +62,7 @@ export default function SupportUsPage() {
           </a>
         </motion.p>
         <motion.div
-          className="grid lg:grid-cols-3 gap-8 py-4"
+          className="grid gap-8 py-4 lg:grid-cols-3"
           variants={{
             hidden: { opacity: 0, y: 20 },
             show: {
@@ -85,18 +85,18 @@ export default function SupportUsPage() {
         </motion.div>
       </section>
 
-      <section className="text-center py-12">
+      <section className="py-12 text-center">
         <h3 className="mb-4 text-2xl font-black">Let's Chat</h3>
-        <div className="flex py-2 flex-col md:flex-row gap-4 justify-center">
+        <div className="flex flex-col justify-center gap-4 py-2 md:flex-row">
           <Button size="lg" asChild variant="tertiary" className="flex items-center gap-2">
             <Link href="https://wa.me/6281355893352" target="_blank">
-              Whatsapp <MessageSquare className="lg:w-6 w-5" />
+              Whatsapp <MessageSquare className="w-5 lg:w-6" />
             </Link>
           </Button>
 
           <Button size="lg" asChild variant="tertiary" className="flex items-center gap-2">
             <Link href="mailto:hammercode28@gmail.com" target="_blank">
-              Email Us <Send className="lg:w-6 w-5" />
+              Email Us <Send className="w-5 lg:w-6" />
             </Link>
           </Button>
 

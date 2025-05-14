@@ -1,7 +1,7 @@
-import { RegisterPage } from "@/features/auth/register";
+import { SignUpPage } from "@/features/auth/sign-up";
 
-const Register = () => {
-  return <RegisterPage />;
+const SignUp = () => {
+  return <SignUpPage />;
 };
 
-export default Register;
+export default SignUp;
