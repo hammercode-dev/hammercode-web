@@ -11,7 +11,7 @@ export const eventsService = {
     return fetcher.get(`public/events/${id}`);
   },
 
-  registerEvent(payload: RegistrationForm): Promise<HttpResponse<{ order_no: string }>> {
+  registEvent(payload: RegistrationForm): Promise<HttpResponse<{ order_no: string }>> {
     return fetcher.post("public/events/registrations", payload);
   },
 };

@@ -33,7 +33,7 @@ export const useRegistEvent = (data: EventType) => {
         event_id: data?.id as number,
       };
 
-      const res = await eventsService.registerEvent(registPayload);
+      const res = await eventsService.registEvent(registPayload);
 
       toast({
         title: t("EventRegistration.success.title"),
