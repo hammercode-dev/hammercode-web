@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "@/lib/navigation";
 import NavLink from "../../../lib/navigation/NavLink";
 import { ThemeToggle } from "../../common/ThemeToggle";
@@ -6,11 +7,13 @@ import LocaleToggle from "../../common/LocaleToggle";
 import { LINKS } from "./constant";
 
 // import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
-import Sidebar from "../Sidebar";
 import Image from "next/image";
+import { Button } from "@/components/ui/Button";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const t = useTranslations("Layout");
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <header className="fixed top-0 z-50 w-full">
       {/* <AnnouncementLayout /> */}
@@ -18,7 +21,20 @@ const Navbar = () => {
         <div className="container mx-auto py-5">
           <div className="flex items-center justify-between gap-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="h-8 w-10 bg-[url('/assets/icons/ic_hmc-light.svg')] bg-cover bg-center dark:bg-[url('/assets/icons/ic_hmc-dark.svg')]"></div>
+              <Image
+                src="/assets/icons/ic_hmc-light.svg"
+                alt="HMC Light"
+                width={40}
+                height={40}
+                className="dark:hidden"
+              />
+              <Image
+                src="/assets/icons/ic_hmc-dark.svg"
+                alt="HMC Dark"
+                width={40}
+                height={40}
+                className="hidden dark:inline"
+              />
               <Image
                 src="/assets/icons/ic_hmc-text-light.svg"
                 alt="HMC Light"
@@ -35,7 +51,7 @@ const Navbar = () => {
               />
             </Link>
 
-            <nav className="hidden items-center gap-7 lg:flex">
+            <nav className="hidden items-center gap-7 md:flex">
               {LINKS.map(({ href, id }) => (
                 <NavLink key={id} href={href} title={t(`navbar.link-${id}`)} />
               ))}
@@ -44,8 +60,32 @@ const Navbar = () => {
                 <LocaleToggle />
               </div>
             </nav>
-            <div className="flex lg:hidden">
-              <Sidebar />
+
+            <Button
+              className="p-2 md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X /> : <Menu />}
+            </Button>
+          </div>
+
+          <div
+            className={`transition-all duration-300 ease-in-out md:hidden ${
+              isOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden py-0 opacity-0"
+            }`}
+          >
+            <div className="container mx-auto space-y-4 px-4 pt-4">
+              <nav className="flex flex-col items-center gap-4">
+                {LINKS.map(({ href, id }) => (
+                  <NavLink key={id} href={href} title={t(`navbar.link-${id}`)} onClick={() => setIsOpen(false)} />
+                ))}
+              </nav>
+              <div className="flex items-center justify-center gap-2">
+                <ThemeToggle />
+                <LocaleToggle />
+              </div>
             </div>
           </div>
         </div>
