@@ -39,7 +39,9 @@
   "Auth": {
     "Hook": {
       "sign-in-success": "Sign In Successfully",
-      "sign-in-failed": "Sign In Failed"
+      "sign-in-failed": "Sign In Failed",
+      "sign-up-success": "Sign Up Successfully",
+      "sign-up-failed": "Sign Up Failed"
     },
     "SignInPage": {
       "title": "Welcome Back 👋",

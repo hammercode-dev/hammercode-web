@@ -39,7 +39,9 @@
   "Auth": {
     "Hook": {
       "sign-in-success": "Sign In Berhasil",
-      "sign-in-failed": "Sign In Gagal"
+      "sign-in-failed": "Sign In Gagal",
+      "sign-up-success": "Sign Up Berhasil",
+      "sign-up-failed": "Sign Up Gagal"
     },
     "SignInPage": {
       "title": "Selamat Datang Kembali 👋",

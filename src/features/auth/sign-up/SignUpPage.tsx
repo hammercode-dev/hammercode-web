@@ -2,15 +2,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Lock, LockKeyhole, Mail, User } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/Form";
 import { useTranslations } from "next-intl";
+import { RegisterForm, registerSchema } from "@/domains/Auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "../hooks/useAuth";
 
 const SignUpPage = () => {
-  const form = useForm();
   const t = useTranslations("Auth.SignUpPage");
+  const { register, isLoading } = useAuth();
+
+  const form = useForm<RegisterForm>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+    },
+  });
+
+  const onSubmit: SubmitHandler<RegisterForm> = (formData) => {
+    register(formData);
+  };
 
   return (
     <div className="relative h-screen w-screen overflow-hidden p-4">
@@ -30,8 +47,8 @@ const SignUpPage = () => {
             <h1 className="text-4xl font-bold">{t("title")}</h1>
             <p className="text-muted-foreground text-sm">{t("description")}</p>
           </div>
-          <div className="space-y-4">
-            <Form {...form}>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="username"
@@ -106,19 +123,23 @@ const SignUpPage = () => {
                   </FormItem>
                 )}
               />
-            </Form>
-          </div>
-          <div className="group space-y-2">
-            <Button className="from-hmc-base-blue to-hmc-base-lightblue w-full rounded-2xl bg-linear-to-l text-white">
-              {t("sign-up")}
-            </Button>
-            <p className="text-center text-xs">
-              {t("have-account")}{" "}
-              <Link href="/sign-in" className="text-hmc-base group-hover:underline">
-                {t("sign-in")}
-              </Link>
-            </p>
-          </div>
+              <div className="group space-y-2">
+                <Button
+                  className="from-hmc-base-blue to-hmc-base-lightblue w-full rounded-2xl bg-linear-to-l text-white"
+                  type="submit"
+                  loading={isLoading}
+                >
+                  {t("sign-up")}
+                </Button>
+                <p className="text-center text-xs">
+                  {t("have-account")}{" "}
+                  <Link href="/sign-in" className="text-hmc-base group-hover:underline">
+                    {t("sign-in")}
+                  </Link>
+                </p>
+              </div>
+            </form>
+          </Form>
         </div>
       </div>
     </div>
