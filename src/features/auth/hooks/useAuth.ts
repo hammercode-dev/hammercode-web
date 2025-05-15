@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useToast } from "@/components/hooks/UseToast";
-import { LoginForm } from "@/domains/Auth";
+import { LoginForm, RegisterForm } from "@/domains/Auth";
 import { authService } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -28,7 +28,21 @@ export const useAuth = () => {
     }
   };
 
-  // TODO: register
+  const register = async (payload: RegisterForm) => {
+    setIsLoading(true);
+    try {
+      const res = await authService.register(payload);
 
-  return { login, isLoading };
+      router.push("/sign-in");
+      toast({ description: t("sign-up-success") });
+
+      return res.data;
+    } catch (err) {
+      toast({ description: (err as Error)?.message || t("sign-up-failed"), variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { login, register, isLoading };
 };
