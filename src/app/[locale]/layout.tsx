@@ -10,9 +10,9 @@ import { Toaster } from "@/components/ui/Toaster";
 const sora = Sora({ subsets: ["latin"] });
 
 type Props = {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
   children: React.ReactNode;
 };
 
@@ -20,7 +20,11 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const t = await getTranslations({ locale, namespace: "LocaleLayout" });
 
   return {
@@ -29,7 +33,13 @@ export async function generateMetadata({ params: { locale } }: Props) {
   };
 }
 
-export default async function LocaleRootLayout({ children, params: { locale } }: Readonly<Props>) {
+export default async function LocaleRootLayout(props: Readonly<Props>) {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  const { children } = props;
+
   if (!locales.includes(locale as any)) notFound();
 
   unstable_setRequestLocale(locale);

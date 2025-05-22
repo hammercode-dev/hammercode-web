@@ -10,12 +10,13 @@ const getCertificateData = async (slug: string): Promise<EventCertificate | null
 };
 
 type CertificateDetailProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-const CertificateDetail = async ({ params }: CertificateDetailProps) => {
+const CertificateDetail = async (props: CertificateDetailProps) => {
+  const params = await props.params;
   const data = await getCertificateData(params.slug);
 
   if (!data) {
