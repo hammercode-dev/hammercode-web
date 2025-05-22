@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Sora } from "next/font/google";
 import "./globals.css";
 import WrapperLayout from "@/components/layout/WrapperLayout";
@@ -42,12 +42,12 @@ export default async function LocaleRootLayout(props: Readonly<Props>) {
 
   if (!locales.includes(locale as any)) notFound();
 
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
-  const messages = await getMessages({ locale });
+  const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${sora.className}`}>
         <NextIntlClientProvider messages={messages}>
           <WrapperLayout>{children}</WrapperLayout>

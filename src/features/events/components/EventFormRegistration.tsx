@@ -5,12 +5,12 @@ import { Card } from "@/components/ui/Card";
 import { useFormatPrice } from "@/lib/format";
 import { Input } from "@/components/ui/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitButton } from "@/components/ui/SubmitButton";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
 import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
 import { useRegistEvent } from "../hooks/useRegistEvent";
 import EventImage from "./EventImage";
+import { Button } from "@/components/ui/Button";
 
 const EventFormRegistration = ({ data }: { data: EventType }) => {
   const t = useTranslations("EventsPage");
@@ -150,7 +150,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                 <span className="text-xs font-semibold sm:text-sm dark:text-slate-200">Total</span>
                 <p className="text-sm font-bold dark:text-slate-200">{useFormatPrice(data?.price)}</p>
               </div>
-              <SubmitButton
+              <Button
                 size="sm"
                 className="w-full"
                 type="submit"
@@ -159,7 +159,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                 onClick={form.handleSubmit(onSubmit)}
               >
                 Submit
-              </SubmitButton>
+              </Button>
             </Card>
           </div>
         </div>
