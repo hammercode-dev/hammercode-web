@@ -44,7 +44,7 @@ export default async function LocaleRootLayout(props: Readonly<Props>) {
 
   unstable_setRequestLocale(locale);
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale}>

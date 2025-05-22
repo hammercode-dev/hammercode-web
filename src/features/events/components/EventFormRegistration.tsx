@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
-import { useFormatPrice } from "@/lib/utils";
+import { useFormatPrice } from "@/lib/format";
 import { Input } from "@/components/ui/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitButton } from "@/components/ui/SubmitButton";

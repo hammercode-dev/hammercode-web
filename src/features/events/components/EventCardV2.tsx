@@ -4,7 +4,8 @@ import Badge from "@/components/ui/Badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/Card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/Tooltip";
 import { EventType } from "@/domains/Events";
-import { useFormatDate } from "@/lib/utils";
+import { useFormatDate } from "@/lib/format";
+
 import EventImage from "./EventImage";
 
 const EventCardV2: FC<{ data: EventType }> = ({ data }) => {
