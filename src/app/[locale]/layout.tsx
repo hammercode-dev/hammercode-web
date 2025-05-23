@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Sora } from "next/font/google";
@@ -11,7 +10,7 @@ const sora = Sora({ subsets: ["latin"] });
 
 type Props = {
   params: Promise<{
-    locale: string;
+    locale: "en" | "id";
   }>;
   children: React.ReactNode;
 };
@@ -40,7 +39,7 @@ export default async function LocaleRootLayout(props: Readonly<Props>) {
 
   const { children } = props;
 
-  if (!locales.includes(locale as any)) notFound();
+  if (!locales.includes(locale)) notFound();
 
   setRequestLocale(locale);
 

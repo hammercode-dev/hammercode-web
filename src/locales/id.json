@@ -4,7 +4,11 @@
       "link-1": "Tentang Kami",
       "link-2": "Acara",
       "link-3": "Testimoni",
-      "link-4": "Donasi"
+      "link-4": "Donasi",
+      "sign-in": "Masuk",
+      "sign-up": "Daftar",
+      "sign-out": "Keluar",
+      "profile": "Profil"
     },
     "breadcrumb": {
       "link-1": "Tentang Kami",

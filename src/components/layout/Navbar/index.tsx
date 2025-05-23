@@ -1,19 +1,28 @@
+"use client";
+
 import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { motion } from "motion/react";
 import { Link } from "@/lib/navigation";
+import { Button } from "@/components/ui/Button";
+import { useAuthUser } from "@/components/hooks/UseAuthUser";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/DropdownMenu";
+import { LINKS } from "./constant";
+import LocaleToggle from "../../common/LocaleToggle";
 import NavLink from "../../../lib/navigation/NavLink";
 import { ThemeToggle } from "../../common/ThemeToggle";
-import { useTranslations } from "next-intl";
-import LocaleToggle from "../../common/LocaleToggle";
-import { LINKS } from "./constant";
-
+import { useAuth } from "@/features/auth/hooks/useAuth";
 // import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
-import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const t = useTranslations("Layout");
-  const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useAuth();
+  const { user, isAuthenticated } = useAuthUser();
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <header className="fixed top-0 z-50 w-full">
       {/* <AnnouncementLayout /> */}
@@ -51,16 +60,43 @@ const Navbar = () => {
               />
             </Link>
 
+            {/* Desktop Menu */}
             <nav className="hidden items-center gap-7 md:flex">
               {LINKS.map(({ href, id }) => (
                 <NavLink key={id} href={href} title={t(`navbar.link-${id}`)} />
               ))}
+
               <div className="flex items-center gap-2">
                 <ThemeToggle />
                 <LocaleToggle />
               </div>
+
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+                {!isAuthenticated ? (
+                  <Button size="sm">
+                    <Link href="/sign-in">{t("navbar.sign-in")}</Link>
+                  </Button>
+                ) : (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="sm" className="flex items-center gap-2">
+                        {user?.username} <ChevronDown size={16} />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem>
+                        <Link href="/profile">{t("navbar.profile")}</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={logout}>
+                        <span className="text-destructive hover:text-destructive/80">{t("navbar.sign-out")}</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+              </motion.div>
             </nav>
 
+            {/* Mobile Menu Trigger */}
             <Button
               className="p-2 md:hidden"
               onClick={() => setIsOpen(!isOpen)}
@@ -71,6 +107,7 @@ const Navbar = () => {
             </Button>
           </div>
 
+          {/* Mobile Menu */}
           <div
             className={`transition-all duration-300 ease-in-out md:hidden ${
               isOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden py-0 opacity-0"
