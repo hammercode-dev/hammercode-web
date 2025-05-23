@@ -97,7 +97,7 @@ const TestimonialPage = () => {
               whileHover={{ y: -5 }}
               key={data.id}
             >
-              <Card className="shadow-md">
+              <Card className="min-h-60 shadow-md">
                 <CardHeader className="pb-0">
                   <div className="flex w-full items-center gap-4">
                     <div className="space-y-4">
