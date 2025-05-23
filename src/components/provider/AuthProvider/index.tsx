@@ -13,9 +13,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const token = localStorage.getItem("accessToken");
     if (!token) return;
 
-    const { username, email, isTokenExpired } = decodeToken(token);
+    const { username, email, role, isTokenExpired } = decodeToken(token);
     if (!isTokenExpired) {
-      setUser({ username, email });
+      setUser({ username, email, role });
     }
   }, []);
 

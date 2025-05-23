@@ -5,6 +5,7 @@ export function decodeToken(token: string): {
   isTokenExpired: boolean;
   username: string;
   email: string;
+  role: string;
   err?: unknown;
 } {
   try {
@@ -17,8 +18,8 @@ export function decodeToken(token: string): {
       localStorage.removeItem("accessToken");
     }
 
-    return { username: decoded.username, email: decoded.email, isTokenExpired };
+    return { username: decoded.username, email: decoded.email, role: decoded.role, isTokenExpired };
   } catch (e) {
-    return { err: e, isTokenExpired: true, username: "", email: "" };
+    return { err: e, isTokenExpired: true, username: "", email: "", role: "" };
   }
 }
