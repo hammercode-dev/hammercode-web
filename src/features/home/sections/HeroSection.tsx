@@ -1,8 +1,8 @@
 import { HandCoins } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import * as motion from "motion/react-client";
-import { Link } from "@/lib/navigation";
 import { Button } from "@/components/ui/Button";
 import { socialMedia } from "../constants";
 

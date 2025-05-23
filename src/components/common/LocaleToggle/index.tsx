@@ -3,7 +3,7 @@ import { useTransition } from "react";
 import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
 import { usePathname, useRouter } from "@/lib/navigation";
-import { Locale } from "@/lib/i18n";
+
 import { Button } from "@/components/ui/Button";
 
 const LocaleToggle = () => {
@@ -14,7 +14,7 @@ const LocaleToggle = () => {
   const params = useParams();
 
   const handleSwitch = (value: string) => {
-    const nextLocale = value as Locale;
+    const nextLocale = value;
     startTransition(() => {
       router.replace(
         // @ts-expect-error -- TypeScript will validate that only known `params`

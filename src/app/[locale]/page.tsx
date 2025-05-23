@@ -1,18 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HomePage } from "@/features/home";
 import { locales } from "@/lib/locales";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 type Props = {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 };
 
-export default function Home({ params: { locale } }: Props) {
+export default async function Home(props: Props) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   if (!locales.includes(locale as any)) notFound();
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return <HomePage />;
 }

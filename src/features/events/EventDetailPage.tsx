@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { useTranslations } from "next-intl";
-import { useFormatPrice } from "@/lib/utils";
+import { useFormatPrice } from "@/lib/format";
 import { Skeleton } from "@/components/ui/Skeleton";
 import TitleContainer from "@/components/ui/TitleContainer";
 import EventInfo from "./components/EventInfo";

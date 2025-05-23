@@ -1,4 +1,4 @@
-import { Pathnames, LocalePrefix } from "next-intl/routing";
+import { Pathnames } from "next-intl/routing";
 import { Locales } from "../locales";
 
 export const pathnames: Pathnames<Locales> = {
@@ -20,5 +20,3 @@ export const pathnames: Pathnames<Locales> = {
     id: "/support-us",
   },
 } satisfies Pathnames<Locales>;
-
-export const localePrefix: LocalePrefix<Locales> = "as-needed" satisfies LocalePrefix;
