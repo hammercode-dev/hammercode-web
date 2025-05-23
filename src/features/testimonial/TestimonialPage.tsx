@@ -97,9 +97,9 @@ const TestimonialPage = () => {
               whileHover={{ y: -5 }}
               key={data.id}
             >
-              <Card>
-                <CardHeader>
-                  <div className="flex w-full justify-center">
+              <Card className="shadow-md">
+                <CardHeader className="pb-0">
+                  <div className="flex w-full items-center gap-4">
                     <div className="space-y-4">
                       <Image
                         src={data.avatar_url}
@@ -107,27 +107,22 @@ const TestimonialPage = () => {
                         width={140}
                         height={140}
                         loading="lazy"
-                        className="w-28 rounded-full border-4 object-cover md:w-32 lg:w-36"
+                        className="w-28 rounded-full border-4 object-cover md:w-32 lg:w-20"
                       />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">{data.name}</h3>
+                      <p className="text-sm text-slate-400 dark:text-slate-400">{`${data.role}`}</p>
+                      <p className="text-sm text-slate-400 dark:text-slate-400">
+                        <Link className="font-semibold" href={data.company_url} target="_blank">
+                          At {data.company_name}
+                        </Link>
+                      </p>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col items-center gap-1">
-                    <h3 className="font-semibold">{data.name}</h3>
-                    <p className="text-center text-sm text-slate-400 dark:text-slate-400">
-                      {`${data.role} at `}
-                      <Link className="font-semibold" href={data.company_url} target="_blank">
-                        {data.company_name}
-                      </Link>
-                    </p>
-                    <Image
-                      className="mt-4 self-start text-white"
-                      src="/assets/icons/ic_qoute.svg"
-                      height={24}
-                      width={24}
-                      alt="qoute"
-                    />
                     <Dialog>
                       <DialogTrigger asChild>
                         <p className="line-clamp-4 cursor-pointer pt-3 text-sm leading-6 text-slate-400 dark:text-slate-400">
