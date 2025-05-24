@@ -7,7 +7,7 @@ function NavLink({ href, onClick, title }: { href: string; onClick?: () => void;
   return (
     <Link href={href} onClick={onClick}>
       <span
-        className={path?.includes(href as string) ? "text-hmc-base-blue" : "text-hmc-base-darkblue dark:text-white"}
+        className={`${path?.includes(href as string) ? "text-hmc-base-blue" : "text-hmc-base-darkblue dark:text-white"} text-nowrap`}
       >
         {title}
       </span>
