@@ -1,13 +1,13 @@
 "use client";
-import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Card } from "@/components/ui/Card";
 import { useFormatPrice } from "@/lib/format";
 import { Input } from "@/components/ui/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
-import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
+import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
 import { useRegistEvent } from "../hooks/useRegistEvent";
 import EventImage from "./EventImage";
 import { Button } from "@/components/ui/Button";
@@ -20,7 +20,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
     resolver: zodResolver(registrationSchema),
   });
 
-  const onSubmit = async (formData: RegistrationForm) => {
+  const onSubmit: SubmitHandler<RegistrationForm> = (formData) => {
     if (!data) {
       return;
     }

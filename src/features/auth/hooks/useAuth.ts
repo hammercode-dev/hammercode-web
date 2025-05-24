@@ -1,14 +1,19 @@
 import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { authService } from "@/services/auth";
 import { useToast } from "@/components/hooks/UseToast";
 import { LoginForm, RegisterForm } from "@/domains/Auth";
-import { authService } from "@/services/auth";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { jwtDecode } from "jwt-decode";
+import { AuthJwtPayload } from "@/types";
+import { useAuthUser } from "@/components/hooks/UseAuthUser";
 
 export const useAuth = () => {
   const t = useTranslations("Auth.Hook");
   const router = useRouter();
   const { toast } = useToast();
+  const { setUser } = useAuthUser();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const login = async (payload: LoginForm) => {
@@ -16,8 +21,15 @@ export const useAuth = () => {
     try {
       const res = await authService.login(payload);
 
-      localStorage.setItem("accesToken", res.data);
-      router.push("/");
+      localStorage.setItem("accessToken", res.data);
+      const user = jwtDecode<AuthJwtPayload>(res.data);
+      setUser(user);
+
+      if (user.role === "admin") {
+        router.replace("/"); // TODO: redirect to admin dashboard
+      } else {
+        router.push("/");
+      }
       toast({ description: t("sign-in-success") });
 
       return res.data;
@@ -44,5 +56,11 @@ export const useAuth = () => {
     }
   };
 
-  return { login, register, isLoading };
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    setUser(null);
+    router.push("/sign-in");
+  };
+
+  return { login, register, logout, isLoading };
 };
