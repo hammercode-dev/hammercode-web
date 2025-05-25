@@ -8,7 +8,10 @@ Hammercode is a technology community based in Palu, Indonesia. The community foc
 
 Add collaborator if you contribute on this repo
 
+- [@eezhal92](https://www.github.com/eezhal92)
 - [@mpsalunggg](https://www.github.com/mpsalunggg)
+- [@vickyadrii](https://www.github.com/vickyadrii)
+- [@adzaky](https://www.github.com/adzaky)
 
 ## Tech Stack
 
