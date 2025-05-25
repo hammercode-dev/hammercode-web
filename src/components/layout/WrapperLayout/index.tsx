@@ -1,8 +1,9 @@
 "use client";
 
 import Navbar from "@/components/layout/Navbar";
-import { ThemeProvider } from "./ThemeProvider";
 import Footer from "@/components/layout/Footer";
+import { AuthProvider } from "@/components/provider/AuthProvider";
+import { ThemeProvider } from "@/components/provider/ThemeProvider";
 import { useParams, usePathname } from "next/navigation";
 
 const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
@@ -12,17 +13,19 @@ const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
   const isCertificateDetailPage = !!params?.slug && pathname.includes("certificates");
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-      {isCertificateDetailPage || isAuthPage ? (
-        children
-      ) : (
-        <>
-          <Navbar />
-          {children}
-          <Footer />
-        </>
-      )}
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        {isCertificateDetailPage || isAuthPage ? (
+          children
+        ) : (
+          <>
+            <Navbar />
+            {children}
+            <Footer />
+          </>
+        )}
+      </ThemeProvider>
+    </AuthProvider>
   );
 };
 export default WrapperLayout;
