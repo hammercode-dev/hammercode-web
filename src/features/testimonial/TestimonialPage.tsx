@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { useToast } from "@/components/hooks/UseToast";
-import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
+import { Dialog, DialogTitle, DialogTrigger } from "@/components/ui/Dialog";
 import DetailTestimoni from "../home/components/DetailTestimoni";
 import { TestimonialType } from "../home/types";
 import { homeService } from "@/services/home";
@@ -129,6 +129,7 @@ const TestimonialPage = () => {
                           {data.quote}
                         </p>
                       </DialogTrigger>
+                      <DialogTitle />
                       <DetailTestimoni data={data} />
                     </Dialog>
                   </div>
