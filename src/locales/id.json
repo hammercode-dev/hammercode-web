@@ -4,7 +4,11 @@
       "link-1": "Tentang Kami",
       "link-2": "Acara",
       "link-3": "Testimoni",
-      "link-4": "Donasi"
+      "link-4": "Donasi",
+      "sign-in": "Masuk",
+      "sign-up": "Daftar",
+      "sign-out": "Keluar",
+      "profile": "Profil"
     },
     "breadcrumb": {
       "link-1": "Tentang Kami",
@@ -34,6 +38,34 @@
     },
     "contact": {
       "title": "Kontak"
+    }
+  },
+  "Auth": {
+    "Hook": {
+      "sign-in-success": "Sign In Berhasil",
+      "sign-in-failed": "Sign In Gagal",
+      "sign-up-success": "Sign Up Berhasil",
+      "sign-up-failed": "Sign Up Gagal"
+    },
+    "SignInPage": {
+      "title": "Selamat Datang Kembali 👋",
+      "description": "Mari mulai! Silakan Masuk untuk mengakses sumber belajar terbaik.",
+      "enter-email": "Masukan Email",
+      "enter-password": "Masukan Password",
+      "no-account": "Apakah Belum Punya Akun?",
+      "sign-in": "Sign In",
+      "sign-up": "Sign Up"
+    },
+    "SignUpPage": {
+      "title": "Selamat Datang 👋",
+      "description": "Mari mulai! Silakan Daftar untuk mengakses sumber belajar terbaik.",
+      "enter-username": "Masukan Username",
+      "enter-email": "Masukan Email",
+      "enter-password": "Masukan Password",
+      "confirm-password": "Konfirmasi Password",
+      "have-account": "Sudah Punya Akun Sebelumnya?",
+      "sign-in": "Sign In",
+      "sign-up": "Sign Up"
     }
   },
   "HomePage": {

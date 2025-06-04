@@ -4,7 +4,11 @@
       "link-1": "About Us",
       "link-2": "Events",
       "link-3": "Testimonial",
-      "link-4": "Donate"
+      "link-4": "Donate",
+      "sign-in": "Sign In",
+      "sign-up": "Sign Up",
+      "sign-out": "Sign Out",
+      "profile": "Profile"
     },
     "breadcrumb": {
       "link-1": "About Us",
@@ -34,6 +38,34 @@
     },
     "contact": {
       "title": "Contact"
+    }
+  },
+  "Auth": {
+    "Hook": {
+      "sign-in-success": "Sign In Successfully",
+      "sign-in-failed": "Sign In Failed",
+      "sign-up-success": "Sign Up Successfully",
+      "sign-up-failed": "Sign Up Failed"
+    },
+    "SignInPage": {
+      "title": "Welcome Back 👋",
+      "description": "Let's started! Please sign in to unlock the best learning resources.",
+      "enter-email": "Enter Email",
+      "enter-password": "Enter Password",
+      "no-account": "Don't have an account yet?",
+      "sign-in": "Sign In",
+      "sign-up": "Sign Up"
+    },
+    "SignUpPage": {
+      "title": "Welcome 👋",
+      "description": "Let's started! Please sign up to unlock the best learning resources.",
+      "enter-username": "Enter Username",
+      "enter-email": "Enter Email",
+      "enter-password": "Enter Password",
+      "confirm-password": "Confirm Password",
+      "have-account": "Already have an account?",
+      "sign-in": "Sign In",
+      "sign-up": "Sign Up"
     }
   },
   "HomePage": {

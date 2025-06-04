@@ -9,14 +9,14 @@ const ClassSection = () => {
 
   return (
     <div className="bg-sky-50 dark:bg-slate-900">
-      <div className="container mx-auto md:py-14 py-10 my-10 space-y-6">
+      <div className="container mx-auto my-10 space-y-6 py-10 md:py-14">
         <div className="flex flex-col items-center gap-2">
           <motion.h2
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             whileInView={{ scale: 1, opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-tertiary md:text-3xl text-2xl font-bold"
+            className="text-tertiary text-2xl font-bold md:text-3xl"
           >
             {t("title")}
           </motion.h2>
@@ -25,7 +25,7 @@ const ClassSection = () => {
             whileInView={{ scale: 1, opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="max-w-3xl md:text-base text-center text-sm text-slate-500 dark:text-slate-400 md:leading-7"
+            className="max-w-3xl text-center text-sm text-slate-500 md:text-base md:leading-7 dark:text-slate-400"
           >
             {t("description")}
           </motion.p>
@@ -61,7 +61,7 @@ const ClassSection = () => {
               {courseData.map((data) => (
                 <CarouselItem
                   key={data.id}
-                  className="flex justify-center items-center xl:basis-1/4 lg:basis-1/3 sm:basis-1/2"
+                  className="flex items-center justify-center sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                 >
                   <motion.div
                     variants={{
@@ -75,17 +75,17 @@ const ClassSection = () => {
                         },
                       },
                     }}
-                    className="flex items-center gap-2 rounded-full w-full border border-slate-200 bg-white text-slate-950 shadow-xs dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50"
+                    className="flex w-full items-center gap-2 rounded-full border border-slate-200 bg-white text-slate-950 shadow-xs dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50"
                   >
                     <div className="p-2">
-                      <div className="p-5 md:w-20 w-20 md:h-20 h-20 bg-sky-50 dark:bg-slate-900 rounded-full shrink-0">
+                      <div className="h-20 w-20 shrink-0 rounded-full bg-sky-50 p-5 md:h-20 md:w-20 dark:bg-slate-900">
                         <Image src={data.logo} alt={data.title} width={100} height={100} />
                       </div>
                     </div>
                     <div className="p-0">
                       <div className="space-y-1">
-                        <h3 className="text-tertiary md:text-xl text-lg font-semibold">{data.title}</h3>
-                        <p className="md:text-sm text-sm text-slate-500 dark:text-slate-400">{data.role}</p>
+                        <h3 className="text-tertiary text-lg font-semibold md:text-xl">{data.title}</h3>
+                        <p className="text-sm text-slate-500 md:text-sm dark:text-slate-400">{data.role}</p>
                       </div>
                     </div>
                   </motion.div>

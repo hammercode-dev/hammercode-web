@@ -37,8 +37,8 @@ const TestimonialPage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <LoaderIcon className="animate-spin size-12" />
+      <div className="flex h-screen items-center justify-center">
+        <LoaderIcon className="size-12 animate-spin" />
       </div>
     );
   }
@@ -51,7 +51,7 @@ const TestimonialPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-hmc-base-blue text-xl sm:text-3xl font-semibold"
+            className="text-hmc-base-blue text-xl font-semibold sm:text-3xl"
           >
             {t("title")}
           </motion.h1>
@@ -59,7 +59,7 @@ const TestimonialPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="text-gray-500 text-xs sm:text-base"
+            className="text-xs text-gray-500 sm:text-base"
           >
             {t("description")}
           </motion.p>
@@ -79,7 +79,7 @@ const TestimonialPage = () => {
           }}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6"
+          className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {testimoni?.map((data) => (
             <motion.div
@@ -97,9 +97,9 @@ const TestimonialPage = () => {
               whileHover={{ y: -5 }}
               key={data.id}
             >
-              <Card>
-                <CardHeader>
-                  <div className="flex justify-center w-full">
+              <Card className="min-h-60 shadow-md">
+                <CardHeader className="pb-0">
+                  <div className="flex w-full items-center gap-4">
                     <div className="space-y-4">
                       <Image
                         src={data.avatar_url}
@@ -107,30 +107,25 @@ const TestimonialPage = () => {
                         width={140}
                         height={140}
                         loading="lazy"
-                        className="w-28 md:w-32 lg:w-36 rounded-full object-cover border-4"
+                        className="w-28 rounded-full border-4 object-cover md:w-32 lg:w-20"
                       />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">{data.name}</h3>
+                      <p className="text-sm text-slate-400 dark:text-slate-400">{`${data.role}`}</p>
+                      <p className="text-sm text-slate-400 dark:text-slate-400">
+                        <Link className="font-semibold" href={data.company_url} target="_blank">
+                          At {data.company_name}
+                        </Link>
+                      </p>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col items-center gap-1">
-                    <h3 className="font-semibold">{data.name}</h3>
-                    <p className="text-center text-slate-400 dark:text-slate-400 text-sm">
-                      {`${data.role} at `}
-                      <Link className="font-semibold" href={data.company_url} target="_blank">
-                        {data.company_name}
-                      </Link>
-                    </p>
-                    <Image
-                      className="mt-4 self-start text-white"
-                      src="/assets/icons/ic_qoute.svg"
-                      height={24}
-                      width={24}
-                      alt="qoute"
-                    />
                     <Dialog>
                       <DialogTrigger asChild>
-                        <p className="cursor-pointer text-slate-400 dark:text-slate-400 text-sm leading-6 pt-3 line-clamp-4">
+                        <p className="line-clamp-4 cursor-pointer pt-3 text-sm leading-6 text-slate-400 dark:text-slate-400">
                           {data.quote}
                         </p>
                       </DialogTrigger>

@@ -7,9 +7,9 @@ type TitleBarProps = {
 
 const TitleContainer = ({ children, className }: TitleBarProps) => {
   return (
-    <div className={cn("flex items-stretch w-fit", className)}>
-      <div className="w-1 bg-primary rounded-r-xl" />
-      <div className="flex items-center ml-2">{children}</div>
+    <div className={cn("flex w-fit items-stretch", className)}>
+      <div className="bg-primary w-1 rounded-r-xl" />
+      <div className="ml-2 flex items-center">{children}</div>
     </div>
   );
 };
