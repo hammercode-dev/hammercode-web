@@ -4,7 +4,8 @@
       "link-1": "About Us",
       "link-2": "Events",
       "link-3": "Testimonial",
-      "link-4": "Donate",
+      "link-4": "Blogs",
+      "link-5": "Donate",
       "sign-in": "Sign In",
       "sign-up": "Sign Up",
       "sign-out": "Sign Out",
@@ -14,7 +15,8 @@
       "link-1": "About Us",
       "link-2": "Events",
       "link-3": "Testimonial",
-      "link-4": "Donate"
+      "link-4": "Blogs",
+      "link-5": "Donate"
     }
   },
   "LocaleLayout": {

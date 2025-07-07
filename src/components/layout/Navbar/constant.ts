@@ -13,6 +13,10 @@ export const LINKS = [
   },
   {
     id: "4",
+    href: "/blogs",
+  },
+  {
+    id: "5",
     href: "/support-us",
   },
 ];
