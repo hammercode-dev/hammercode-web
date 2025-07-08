@@ -89,7 +89,7 @@ const HeroSection = () => {
         whileHover={{ scale: 1.02 }}
         className="basis-[50%]"
       >
-        <Image src="/assets/images/illustrations/hero-section.webp" alt="hero-section" width={640} height={560} />
+        <Image src="/assets/images/illustrations/hero-section.svg" alt="hero-section" width={640} height={560} />
       </motion.div>
     </div>
   );
