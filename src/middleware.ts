@@ -1,18 +1,22 @@
 import createMiddleware from "next-intl/middleware";
-// import { locales } from "./lib/config";
 import { NextRequest } from "next/server";
 
+const locales = ["en", "id"] as const;
+type Locale = (typeof locales)[number];
+
 export default async function middleware(request: NextRequest) {
-  const defaultLocale = request.headers.get("x-next-intl-locale") || "id";
+  const headerLocale = request.headers.get("x-next-intl-locale");
+
+  const defaultLocale: Locale = locales.includes(headerLocale as Locale) ? (headerLocale as Locale) : "id";
 
   const handleI18nRouting = createMiddleware({
-    locales: ["en", "id"],
+    locales,
     defaultLocale,
     localePrefix: "as-needed",
     alternateLinks: false,
   });
-  const response = handleI18nRouting(request);
 
+  const response = handleI18nRouting(request);
   response.headers.set("x-next-intl-locale", defaultLocale);
 
   return response;

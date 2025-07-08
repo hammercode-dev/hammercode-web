@@ -1,11 +1,12 @@
 "use client";
 import { FC } from "react";
 import { useTranslations } from "next-intl";
-import { useFormatDate } from "@/lib/utils";
+
 import { CalendarRange, Clock, MapPin } from "lucide-react";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { AvatarFallback } from "@/components/ui/Avatar";
 import { EventType } from "@/domains/Events";
+import { useFormatDate } from "@/lib/format";
 
 const EventInfo: FC<{ event: EventType; className?: string }> = ({ event, className }) => {
   const t = useTranslations("EventsPage");

@@ -7,7 +7,7 @@ const config = {
   },
 };
 
-const attachInterceptors = (instance: AxiosInstance): AxiosInstance => {
+const injectInterceptors = (instance: AxiosInstance): AxiosInstance => {
   instance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
       return config;
@@ -29,11 +29,11 @@ const attachInterceptors = (instance: AxiosInstance): AxiosInstance => {
   return instance;
 };
 
-export const fetcher: AxiosInstance = attachInterceptors(
+export const fetcher: AxiosInstance = injectInterceptors(
   axios.create({
     baseURL: "https://lms-be-development.hammercode.org/api/v1/",
     ...config,
   })
 );
 
-export const fetcherLocal: AxiosInstance = attachInterceptors(axios.create(config));
+export const fetcherLocal: AxiosInstance = injectInterceptors(axios.create(config));

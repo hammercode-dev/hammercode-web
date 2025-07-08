@@ -1,7 +1,4 @@
-import { NavLinkProps } from "../../../lib/navigation/NavLink";
-import { ValidPathnames } from "../../../lib/navigation/types";
-
-export const LINKS: NavLinkProps<ValidPathnames>[] = [
+export const LINKS = [
   {
     id: "1",
     href: "/about",
@@ -16,6 +13,10 @@ export const LINKS: NavLinkProps<ValidPathnames>[] = [
   },
   {
     id: "4",
+    href: "/blogs",
+  },
+  {
+    id: "5",
     href: "/support-us",
   },
 ];

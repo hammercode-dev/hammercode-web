@@ -1,4 +1,4 @@
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Logo](./public/images/hammercode.png)
 
 # Hammercode Web
 
@@ -8,7 +8,10 @@ Hammercode is a technology community based in Palu, Indonesia. The community foc
 
 Add collaborator if you contribute on this repo
 
+- [@eezhal92](https://www.github.com/eezhal92)
 - [@mpsalunggg](https://www.github.com/mpsalunggg)
+- [@vickyadrii](https://www.github.com/vickyadrii)
+- [@adzaky](https://www.github.com/adzaky)
 
 ## Tech Stack
 
