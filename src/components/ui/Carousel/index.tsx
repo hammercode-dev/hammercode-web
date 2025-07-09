@@ -221,7 +221,7 @@ const CarouselBullets = () => {
           onClick={() => scrollToSlide(index)}
           className={cn(
             "h-2 rounded-full",
-            selectedIndex === index ? "bg-tertiary w-6 dark:bg-slate-600" : "w-3 bg-gray-200"
+            selectedIndex === index ? "bg-hmc-base-blue w-6 dark:bg-slate-600" : "w-3 bg-gray-200"
           )}
           aria-label={`Slide ${index}`}
         />

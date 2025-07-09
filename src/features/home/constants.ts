@@ -167,6 +167,16 @@ export const testimonialData: TestimonialType[] = [
   },
   {
     id: 4,
+    name: "Dwi Pasca Nursanti",
+    role: "Ex Frontend Developer",
+    quote:
+      "Pada tahun 2018, saya sempat ragu apakah saya bisa berkarier sebagai seorang software developer atau tidak, karena tinggal jauh dari pusat industri teknologi. Namun, setelah bergabung dengan komunitas Hammercode menjadi titik balik dalam perjalanan saya. Lewat komunitas ini, saya mendapatkan banyak dukungan, baik dalam hal soft skills maupun hard skills. Bagi saya, Hammercode bukan sekadar komunitas, tetapi jembatan yang membuka peluang besar yang dulu terasa tidak bisa digapai",
+    avatar_url: "/assets/images/peoples/dwi.webp",
+    company_name: "Mudah.my",
+    company_url: "https://www.mudah.my/",
+  },
+  {
+    id: 5,
     name: "Khairun Nisa Cipta Hapsari",
     role: "Backend Engineer",
     quote:
@@ -176,7 +186,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://www.kjafurqan.com",
   },
   {
-    id: 5,
+    id: 6,
     name: "Muhamad Putra Satria",
     role: "Software Engineer",
     quote:
@@ -186,7 +196,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://tandigital.id",
   },
   {
-    id: 6,
+    id: 7,
     name: "Vicky Herdiansyah Adri",
     role: "Software Engineer",
     quote:
@@ -196,7 +206,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://pegadaian.co.id",
   },
   {
-    id: 7,
+    id: 8,
     name: "Faldiansyah",
     role: "Ex Software Engineer Intern",
     quote:
@@ -206,7 +216,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://educourse.id",
   },
   {
-    id: 8,
+    id: 9,
     name: "Widya Ayunindya Poge",
     role: "Ex Web Developer Intern",
     quote:
@@ -216,7 +226,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://www.infinitelearning.id",
   },
   {
-    id: 9,
+    id: 10,
     name: "Tiara Juli Arsita",
     role: "Ex Backend Developer Intern",
     quote:
@@ -226,7 +236,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://satudikti.id",
   },
   {
-    id: 10,
+    id: 11,
     name: "Aisyah Rahmadani Pohontu",
     role: "Ex Backend Developer Intern",
     quote:
@@ -236,7 +246,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://pddikti.kemdiktisaintek.go.id",
   },
   {
-    id: 11,
+    id: 12,
     name: "Nadya Afriyani Azmi",
     role: "Ex Frontend Developer Intern",
     quote:
@@ -246,7 +256,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://pilihjurusan.id",
   },
   {
-    id: 12,
+    id: 13,
     name: "Ade Sinta",
     role: "Ex Frontend Developer Intern",
     quote:
@@ -256,7 +266,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://www.telkom.co.id",
   },
   {
-    id: 13,
+    id: 14,
     name: "Adlim Dzaky",
     role: "Fullstack Developer Intern",
     quote:
@@ -266,7 +276,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://qbit.co.id",
   },
   {
-    id: 14,
+    id: 15,
     name: "Tjoet Muty Ahmad",
     role: "Fullstack Web Developer Intern",
     quote:
@@ -276,7 +286,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://dprd.sultengprov.go.id",
   },
   {
-    id: 15,
+    id: 16,
     name: "Muhammad Farhan Saleh",
     role: "Ex Frontend Developer Intern",
     quote:
@@ -286,7 +296,7 @@ export const testimonialData: TestimonialType[] = [
     company_url: "https://www.infinitelearning.id",
   },
   {
-    id: 16,
+    id: 17,
     name: "Khairul Insan Karim",
     role: "MSIB Backend Engineering Student",
     quote:
