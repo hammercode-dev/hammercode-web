@@ -168,7 +168,7 @@ export const testimonialData: TestimonialType[] = [
   {
     id: 4,
     name: "Dwi Pasca Nursanti",
-    role: "Ex Frontend Developer",
+    role: "Freelance Frontend Developer",
     quote:
       "Pada tahun 2018, saya sempat ragu apakah saya bisa berkarier sebagai seorang software developer atau tidak, karena tinggal jauh dari pusat industri teknologi. Namun, setelah bergabung dengan komunitas Hammercode menjadi titik balik dalam perjalanan saya. Lewat komunitas ini, saya mendapatkan banyak dukungan, baik dalam hal soft skills maupun hard skills. Bagi saya, Hammercode bukan sekadar komunitas, tetapi jembatan yang membuka peluang besar yang dulu terasa tidak bisa digapai",
     avatar_url: "/assets/images/peoples/dwi.webp",
