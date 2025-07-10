@@ -1,9 +1,10 @@
 import { BlogPage } from "@/features/blog";
 
 interface BlogsPageProps {
-  searchParams: Promise<{
+  searchParams: {
     category?: string;
-  }>;
+    page?: string;
+  };
 }
 
 export function generateMetadata() {
@@ -13,8 +14,9 @@ export function generateMetadata() {
   };
 }
 
-export default async function BlogsPage({ searchParams }: BlogsPageProps) {
-  const { category } = await searchParams;
+export default function BlogsPage({ searchParams }: BlogsPageProps) {
+  const page = searchParams.page ? parseInt(searchParams.page, 10) : 1;
+  const category = searchParams.category;
 
-  return <BlogPage category={category} />;
+  return <BlogPage category={category} page={page} perPage={5} />;
 }
