@@ -1,10 +1,25 @@
 import { getAllBlogs, getBlogsByCategory } from "@/lib/mdx";
 import { Link } from "@/lib/navigation";
 import BlogCard from "./components/BlogCard";
+import { CategoryFilter } from "./components/CategoriesFilter";
+import { PaginationCustom } from "@/components/common/PaginationCustom";
 
-const BlogPage = async ({ category }: { category?: string }) => {
+interface BlogPageProps {
+  category?: string;
+  page?: number;
+  perPage?: number;
+}
+
+const BlogPage = async ({ category, page = 1, perPage = 1 }: BlogPageProps) => {
   const sanitizedCategory = category?.replace(/\/$/, "");
-  const blogs = sanitizedCategory ? await getBlogsByCategory(sanitizedCategory) : await getAllBlogs();
+  const allBlogs = sanitizedCategory ? await getBlogsByCategory(sanitizedCategory) : await getAllBlogs();
+
+  const totalBlogs = allBlogs.length;
+  const totalPages = Math.ceil(totalBlogs / perPage);
+  const startIndex = (page - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  const blogs = allBlogs.slice(startIndex, endIndex);
+
   const categories = ["technology", "tutorial", "news", "announcement"];
 
   return (
@@ -22,6 +37,7 @@ const BlogPage = async ({ category }: { category?: string }) => {
         <div className="mb-6 flex flex-wrap gap-2">
           <Link
             href={`/blogs`}
+            prefetch={true}
             className={`rounded-full px-4 py-2 text-sm transition-colors ${
               !sanitizedCategory
                 ? "bg-hmc-base-lightblue text-white"
@@ -30,22 +46,7 @@ const BlogPage = async ({ category }: { category?: string }) => {
           >
             All
           </Link>
-          {categories.map((cat) => {
-            console.log(category, cat);
-            return (
-              <Link
-                key={cat}
-                href={`/blogs?category=${cat}`}
-                className={`rounded-full px-4 py-2 text-sm transition-colors ${
-                  sanitizedCategory === cat
-                    ? "bg-hmc-base-lightblue text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-                }`}
-              >
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </Link>
-            );
-          })}
+          <CategoryFilter categories={categories} sanitizedCategory={sanitizedCategory} />
         </div>
       </header>
 
@@ -56,15 +57,18 @@ const BlogPage = async ({ category }: { category?: string }) => {
           </p>
         </div>
       ) : (
-        <div className="grid gap-6">
-          {blogs.map((blog) => (
-            <div key={blog.slug}>
-              <BlogCard blog={blog} />
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="grid gap-6">
+            {blogs.map((blog) => (
+              <BlogCard key={blog.slug} blog={blog} />
+            ))}
+          </div>
+
+          <PaginationCustom currentPage={page} totalPages={totalPages} />
+        </>
       )}
     </section>
   );
 };
+
 export default BlogPage;
