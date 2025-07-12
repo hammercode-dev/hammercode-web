@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/Pagination";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { CategoryFilter } from "./components/CategoriesFilter";
 
 interface BlogPageProps {
   category?: string;
@@ -62,19 +63,7 @@ const BlogPage = async ({ category, page = 1, perPage = 5 }: BlogPageProps) => {
           >
             All
           </Link>
-          {categories.map((cat) => (
-            <Link
-              key={cat}
-              href={`/blogs?category=${cat}`}
-              className={`rounded-full px-4 py-2 text-sm transition-colors ${
-                sanitizedCategory === cat
-                  ? "bg-hmc-base-lightblue text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-              }`}
-            >
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
-            </Link>
-          ))}
+          <CategoryFilter categories={categories} sanitizedCategory={sanitizedCategory} />
         </div>
 
         <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
