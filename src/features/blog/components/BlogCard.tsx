@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { BlogPost } from "@/lib/mdx";
 import { Card } from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
+import { Link } from "@/lib/navigation";
 
 interface BlogCardProps {
   blog: BlogPost;
@@ -9,7 +9,7 @@ interface BlogCardProps {
 
 const BlogCard = ({ blog }: BlogCardProps) => {
   return (
-    <Link href={`/blogs/${blog.slug}`} className="!cursor-pointer">
+    <Link href={`/blogs/${blog.slug}`} prefetch={true} className="!cursor-pointer">
       <section className="grid gap-4 lg:grid-cols-4">
         <Card
           className="hidden rounded-lg bg-cover bg-center shadow-md lg:col-span-1 lg:flex"

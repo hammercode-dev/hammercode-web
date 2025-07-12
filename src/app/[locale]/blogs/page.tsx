@@ -18,5 +18,5 @@ export function generateMetadata(): Metadata {
 export default async function BlogsPage({ searchParams }: BlogsPageProps) {
   const { page, category } = await searchParams;
 
-  return <BlogPage category={category} page={Number(page) || 1} perPage={5} />;
+  return <BlogPage category={category} page={Number(page) || 1} />;
 }
