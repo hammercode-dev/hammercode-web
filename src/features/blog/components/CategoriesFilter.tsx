@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 
 interface CategoryFilterProps {
@@ -13,7 +14,7 @@ export function CategoryFilter({ categories, sanitizedCategory }: CategoryFilter
   return (
     <div className="flex flex-wrap gap-2">
       {categories.map((cat) => (
-        <button
+        <Button
           key={cat}
           onClick={() => router.push(`/blogs?category=${cat}`)}
           className={`rounded-full px-4 py-2 text-sm transition-colors ${
@@ -23,7 +24,7 @@ export function CategoryFilter({ categories, sanitizedCategory }: CategoryFilter
           }`}
         >
           {cat.charAt(0).toUpperCase() + cat.slice(1)}
-        </button>
+        </Button>
       ))}
     </div>
   );
