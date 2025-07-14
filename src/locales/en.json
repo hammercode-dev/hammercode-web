@@ -56,7 +56,8 @@
       "enter-password": "Enter Password",
       "no-account": "Don't have an account yet?",
       "sign-in": "Sign In",
-      "sign-up": "Sign Up"
+      "sign-up": "Sign Up",
+      "forgot-password": "Forgot Password?"
     },
     "SignUpPage": {
       "title": "Welcome 👋",
@@ -68,6 +69,19 @@
       "have-account": "Already have an account?",
       "sign-in": "Sign In",
       "sign-up": "Sign Up"
+    },
+    "ForgotPassPage": {
+      "title": "Forgot Password",
+      "description": "Enter your email to reset your password.",
+      "enter-email": "Enter Email",
+      "reset-password": "Reset Password"
+    },
+    "ResetPassPage": {
+      "title": "Reset Password",
+      "description": "Enter your new password.",
+      "enter-password": "Enter Password",
+      "enter-confirm-password": "Enter Confirm Password",
+      "reset-password": "Reset Password"
     }
   },
   "HomePage": {

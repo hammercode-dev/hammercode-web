@@ -1,32 +1,30 @@
 "use client";
-import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { LockKeyhole, Mail } from "lucide-react";
+import { LockKeyhole } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginForm, loginSchema } from "@/domains/Auth";
+import { ResetPasswordForm, resetPasswordSchema } from "@/domains/Auth";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/Form";
 import { useAuth } from "../hooks/useAuth";
 
-const SignInPage = () => {
-  const t = useTranslations("Auth.SignInPage");
-  const { login, isLoading } = useAuth();
+const ResetPassPage = () => {
+  const t = useTranslations("Auth.ResetPassPage");
+  const { resetPassword, isLoading } = useAuth();
 
-  const form = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<ResetPasswordForm>({
+    resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
-      email: "",
       password: "",
+      confirm_password: "",
     },
   });
 
-  const onSubmit: SubmitHandler<LoginForm> = (formData) => {
-    login(formData);
+  const onSubmit: SubmitHandler<ResetPasswordForm> = (formData) => {
+    resetPassword(formData);
   };
-
   return (
     <div className="relative h-screen w-screen overflow-hidden p-4">
       <div className="from-hmc-base-lightblue absolute -top-20 -left-20 size-70 rounded-full bg-radial to-transparent to-70% blur-3xl" />
@@ -48,24 +46,6 @@ const SignInPage = () => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
-                name="email"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder={t("enter-email")}
-                        className="dark:ring-hmc-base-blue"
-                        prefix={<Mail className="text-muted-foreground" />}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
                 name="password"
                 control={form.control}
                 render={({ field }) => (
@@ -84,25 +64,33 @@ const SignInPage = () => {
                   </FormItem>
                 )}
               />
-              <p className="group text-hmc-base text-right text-xs">
-                <Link href="/forgot-password" className="text-hmc-base group-hover:underline">
-                  {t("forgot-password")}
-                </Link>
-              </p>
+              <FormField
+                name="confirm_password"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder={t("enter-confirm-password")}
+                        className="dark:ring-hmc-base-blue"
+                        classIcon="text-muted-foreground"
+                        prefix={<LockKeyhole className="text-muted-foreground" />}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <div className="flex flex-col gap-4">
                 <Button
                   className="from-hmc-base-blue to-hmc-base-lightblue rounded-2xl bg-linear-to-l text-white"
                   type="submit"
                   loading={isLoading}
                 >
-                  {t("sign-in")}
+                  {t("reset-password")}
                 </Button>
-                <p className="group text-center text-xs">
-                  {t("no-account")}{" "}
-                  <Link href="/sign-up" className="text-hmc-base group-hover:underline">
-                    {t("sign-up")}
-                  </Link>
-                </p>
               </div>
             </form>
           </Form>
@@ -112,4 +100,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default ResetPassPage;

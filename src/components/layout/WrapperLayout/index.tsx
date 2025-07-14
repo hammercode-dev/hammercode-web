@@ -9,7 +9,8 @@ import { useParams, usePathname } from "next/navigation";
 const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
   const params = useParams();
   const pathname = usePathname();
-  const isAuthPage = pathname.includes("sign-in") || pathname.includes("sign-up");
+  const authPaths = ["sign-in", "sign-up", "forgot-password", "reset-password"];
+  const isAuthPage = authPaths.some((path) => pathname.includes(path));
   const isCertificateDetailPage = !!params?.slug && pathname.includes("certificates");
 
   return (
