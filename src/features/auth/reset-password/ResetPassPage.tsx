@@ -35,7 +35,7 @@ const ResetPassPage = () => {
           width={460}
           height={340}
           src="/assets/auth/signin-astronout.svg"
-          alt="Sign In Background"
+          alt="Reset Password Background"
           className="hidden lg:block"
         />
         <div className="flex max-w-xl flex-col justify-center gap-6">

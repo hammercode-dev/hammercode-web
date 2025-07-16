@@ -34,7 +34,7 @@ const ForgotPassPage = () => {
           width={460}
           height={340}
           src="/assets/auth/signup-astronout.svg"
-          alt="Sign In Background"
+          alt="Forgot Password Background"
           className="hidden lg:block"
         />
         <div className="flex max-w-xl flex-col justify-center gap-6">
