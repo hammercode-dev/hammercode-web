@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { authService } from "@/services/auth";
 import { useToast } from "@/components/hooks/UseToast";
-import { LoginForm, RegisterForm } from "@/domains/Auth";
+import { LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm } from "@/domains/Auth";
 import { jwtDecode } from "jwt-decode";
 import { AuthJwtPayload } from "@/types";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
@@ -56,11 +56,37 @@ export const useAuth = () => {
     }
   };
 
+  const forgotPassword = async (payload: ForgotPasswordForm) => {
+    setIsLoading(true);
+    try {
+      const res = await authService.forgotPassword(payload);
+      toast({ description: t("forgot-password-success") });
+      return res.data;
+    } catch (err) {
+      toast({ description: (err as Error)?.message || t("forgot-password-failed"), variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetPassword = async (payload: ResetPasswordForm) => {
+    setIsLoading(true);
+    try {
+      const res = await authService.resetPassword(payload);
+      toast({ description: t("reset-password-success") });
+      return res.data;
+    } catch (err) {
+      toast({ description: (err as Error)?.message || t("reset-password-failed"), variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem("accessToken");
     setUser(null);
     router.push("/sign-in");
   };
 
-  return { login, register, logout, isLoading };
+  return { login, register, logout, isLoading, forgotPassword, resetPassword };
 };

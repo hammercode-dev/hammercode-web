@@ -56,7 +56,8 @@
       "enter-password": "Masukan Password",
       "no-account": "Apakah Belum Punya Akun?",
       "sign-in": "Sign In",
-      "sign-up": "Sign Up"
+      "sign-up": "Sign Up",
+      "forgot-password": "Lupa Password?"
     },
     "SignUpPage": {
       "title": "Selamat Datang 👋",
@@ -68,6 +69,19 @@
       "have-account": "Sudah Punya Akun Sebelumnya?",
       "sign-in": "Sign In",
       "sign-up": "Sign Up"
+    },
+    "ForgotPassPage": {
+      "title": "Lupa Password?",
+      "description": "Masukan email untuk mendapatkan link reset password.",
+      "enter-email": "Masukan Email",
+      "reset-password": "Reset Password"
+    },
+    "ResetPassPage": {
+      "title": "Reset Password",
+      "description": "Masukan password baru.",
+      "enter-password": "Masukan Password",
+      "enter-confirm-password": "Masukan Konfirmasi Password",
+      "reset-password": "Reset Password"
     }
   },
   "HomePage": {

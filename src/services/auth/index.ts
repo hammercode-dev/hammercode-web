@@ -1,5 +1,5 @@
 import { fetcher } from "../instance";
-import { LoginForm, RegisterForm } from "@/domains/Auth";
+import { LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm } from "@/domains/Auth";
 import { User } from "@/features/auth/types";
 import { HttpResponse } from "@/types/http";
 
@@ -10,5 +10,13 @@ export const authService = {
 
   register(payload: RegisterForm): Promise<HttpResponse<User>> {
     return fetcher.post("auth/register", payload);
+  },
+
+  forgotPassword(payload: ForgotPasswordForm): Promise<HttpResponse<string>> {
+    return fetcher.post("auth/forgot-password", payload);
+  },
+
+  resetPassword(payload: ResetPasswordForm): Promise<HttpResponse<string>> {
+    return fetcher.post("auth/reset-password", payload);
   },
 };
