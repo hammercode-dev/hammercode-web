@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/DropdownMenu";
 import { Link } from "@/lib/navigation";
 import { User as UserType } from "@/types";
-import { ChevronDown, User, X } from "lucide-react";
+import { ChevronDown, LogOut, User } from "lucide-react";
 
 interface UserMenuProps {
   user: UserType | null;
@@ -43,7 +43,7 @@ const DesktopUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) =>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={logout}>
           <span className="text-destructive hover:text-destructive/80 flex cursor-pointer items-center gap-2">
-            <X size={16} />
+            <LogOut size={16} />
             {t("navbar.sign-out")}
           </span>
         </DropdownMenuItem>
@@ -76,7 +76,7 @@ const MobileUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) => 
             className="text-destructive hover:text-destructive/80 w-full cursor-pointer justify-start"
             onClick={logout}
           >
-            <X size={16} className="mr-2" />
+            <LogOut size={16} className="mr-2" />
             {t("navbar.sign-out")}
           </Button>
         </div>
