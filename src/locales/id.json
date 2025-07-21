@@ -9,7 +9,10 @@
       "sign-in": "Masuk",
       "sign-up": "Daftar",
       "sign-out": "Keluar",
-      "profile": "Profil"
+      "profile": "Profil",
+      "user": {
+        "my-blogs": "Blog Saya"
+      }
     },
     "breadcrumb": {
       "link-1": "Tentang Kami",
@@ -213,5 +216,10 @@
   "TestimonialPage": {
     "title": "Testimoni",
     "description": "Berbagai testimonial yang dapat membantu kami memahami manfaat Hammercode"
+  },
+  "MyBlogPage": {
+    "title": "Blog Saya",
+    "description": "Daftar postingan dan artikel blog",
+    "not-found": "Tidak ada blog yang ditemukan."
   }
 }

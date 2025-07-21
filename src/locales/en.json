@@ -9,7 +9,10 @@
       "sign-in": "Sign In",
       "sign-up": "Sign Up",
       "sign-out": "Sign Out",
-      "profile": "Profile"
+      "profile": "Profile",
+      "user": {
+        "my-blogs": "My Blogs"
+      }
     },
     "breadcrumb": {
       "link-1": "About Us",
@@ -213,5 +216,10 @@
   "TestimonialPage": {
     "title": "Testimonial",
     "description": "Some friends and alumni who feel the benefits from Hammercode"
+  },
+  "MyBlogPage": {
+    "title": "My Blogs",
+    "description": "List of post and blog article",
+    "not-found": "No blogs found."
   }
 }

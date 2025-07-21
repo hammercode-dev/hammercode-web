@@ -41,6 +41,9 @@ const DesktopUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) =>
             </div>
           </Link>
         </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/my-blogs">{t("navbar.user.my-blogs")}</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={logout}>
           <span className="text-destructive hover:text-destructive/80 flex cursor-pointer items-center gap-2">
             <LogOut size={16} />
@@ -70,6 +73,9 @@ const MobileUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) => 
               <p className="text-muted-foreground text-xs">{user?.email}</p>
             </div>
           </Link>
+          <Button variant="outline" size="sm" className="w-full cursor-pointer justify-start">
+            {t("navbar.user.my-blogs")}
+          </Button>
           <Button
             variant="outline"
             size="sm"
