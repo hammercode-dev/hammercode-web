@@ -1,22 +1,21 @@
-import { getAllBlogs, getBlogsByCategory } from "@/lib/mdx";
+import { BlogPost } from "@/lib/mdx";
 import { Link } from "@/lib/navigation";
 import { CategoryFilter } from "./components/CategoriesFilter";
 import BlogList from "./components/BlogList";
 
 interface BlogPageProps {
-  category?: string;
+  allBlogs: BlogPost[];
+  sanitizedCategory?: string;
   page?: number;
   perPage?: number;
 }
 
-const BlogPage = async ({ category, page = 1, perPage = 1 }: BlogPageProps) => {
-  const sanitizedCategory = category?.replace(/\/$/, "");
-  const allBlogs = sanitizedCategory ? await getBlogsByCategory(sanitizedCategory) : await getAllBlogs();
-
+const BlogPage = ({ allBlogs, sanitizedCategory, page = 1, perPage = 1 }: BlogPageProps) => {
   const totalBlogs = allBlogs.length;
   const totalPages = Math.ceil(totalBlogs / perPage);
   const startIndex = (page - 1) * perPage;
   const endIndex = startIndex + perPage;
+
   const blogs = allBlogs.slice(startIndex, endIndex);
 
   const categories = ["technology", "tutorial", "news", "announcement"];
