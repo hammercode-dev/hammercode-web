@@ -51,7 +51,7 @@
     },
     "SignInPage": {
       "title": "Selamat Datang Kembali 👋",
-      "description": "Mari mulai! Silakan Masuk untuk mengakses sumber belajar terbaik.",
+      "description": "Masuk untuk terhubung, belajar, dan berkembang bersama.",
       "enter-email": "Masukan Email",
       "enter-password": "Masukan Password",
       "no-account": "Apakah Belum Punya Akun?",
@@ -60,8 +60,8 @@
       "forgot-password": "Lupa Password?"
     },
     "SignUpPage": {
-      "title": "Selamat Datang 👋",
-      "description": "Mari mulai! Silakan Daftar untuk mengakses sumber belajar terbaik.",
+      "title": "Bergabunglah dengan Kami! 👋",
+      "description": "Daftar untuk memulai perjalananmu!",
       "enter-username": "Masukan Username",
       "enter-email": "Masukan Email",
       "enter-password": "Masukan Password",

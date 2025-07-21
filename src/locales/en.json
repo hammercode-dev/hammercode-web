@@ -51,7 +51,7 @@
     },
     "SignInPage": {
       "title": "Welcome Back 👋",
-      "description": "Let's started! Please sign in to unlock the best learning resources.",
+      "description": "Sign in to connect, learn, and grow together.",
       "enter-email": "Enter Email",
       "enter-password": "Enter Password",
       "no-account": "Don't have an account yet?",
@@ -60,8 +60,8 @@
       "forgot-password": "Forgot Password?"
     },
     "SignUpPage": {
-      "title": "Welcome 👋",
-      "description": "Let's started! Please sign up to unlock the best learning resources.",
+      "title": "Let's Join Us! 👋",
+      "description": "Sign up to start your journey!",
       "enter-username": "Enter Username",
       "enter-email": "Enter Email",
       "enter-password": "Enter Password",
