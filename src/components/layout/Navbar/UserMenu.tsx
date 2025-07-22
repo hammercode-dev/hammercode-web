@@ -3,6 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Link } from "@/lib/navigation";
 import { User as UserType } from "@/types";
 import { ChevronDown, LogOut, User } from "lucide-react";
+import { USER_LINKS } from "./constant";
 
 interface UserMenuProps {
   user: UserType | null;
@@ -41,9 +42,11 @@ const DesktopUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) =>
             </div>
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/my-blogs">{t("navbar.user.my-blogs")}</Link>
-        </DropdownMenuItem>
+        {USER_LINKS.map(({ id, href }) => (
+          <DropdownMenuItem key={id} asChild>
+            <Link href={href}>{t(`navbar.user.${id}`)}</Link>
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuItem onClick={logout}>
           <span className="text-destructive hover:text-destructive/80 flex cursor-pointer items-center gap-2">
             <LogOut size={16} />
@@ -73,9 +76,13 @@ const MobileUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) => 
               <p className="text-muted-foreground text-xs">{user?.email}</p>
             </div>
           </Link>
-          <Button variant="outline" size="sm" className="w-full cursor-pointer justify-start">
-            {t("navbar.user.my-blogs")}
-          </Button>
+          {USER_LINKS.map(({ id, href }) => (
+            <Link key={id} href={href}>
+              <Button variant="outline" size="sm" className="w-full cursor-pointer justify-start">
+                {t(`navbar.user.${id}`)}
+              </Button>
+            </Link>
+          ))}
           <Button
             variant="outline"
             size="sm"

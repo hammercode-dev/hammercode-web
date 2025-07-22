@@ -11,7 +11,8 @@
       "sign-out": "Sign Out",
       "profile": "Profile",
       "user": {
-        "my-blogs": "My Blogs"
+        "my-blogs": "My Blogs",
+        "my-events": "My Events"
       }
     },
     "breadcrumb": {

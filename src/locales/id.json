@@ -11,7 +11,8 @@
       "sign-out": "Keluar",
       "profile": "Profil",
       "user": {
-        "my-blogs": "Blog Saya"
+        "my-blogs": "Blog Saya",
+        "my-events": "Event Saya"
       }
     },
     "breadcrumb": {
