@@ -1,5 +1,6 @@
 import { getBlogBySlug } from "@/lib/mdx";
 import BlogDetailPage from "@/features/blog/BlogDetailPage";
+import { notFound } from "next/navigation";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -26,5 +27,11 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  return <BlogDetailPage slug={slug} />;
+  const post = await getBlogBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return <BlogDetailPage post={post} />;
 }

@@ -1,31 +1,28 @@
-import Link from "next/link";
-import { getBlogBySlug } from "@/lib/mdx";
+"use client";
+
+import { BlogPost } from "@/lib/mdx";
 import { ArrowLeft } from "lucide-react";
 import Badge from "@/components/ui/Badge";
-import { notFound } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface BlogDetailPageProps {
-  slug: string;
+  post: BlogPost;
 }
 
-const BlogDetailPage = async ({ slug }: BlogDetailPageProps) => {
-  const post = await getBlogBySlug(slug);
-
-  if (!post) {
-    notFound();
-  }
+const BlogDetailPage = ({ post }: BlogDetailPageProps) => {
+  const router = useRouter();
 
   return (
     <section className="container mx-auto px-5 pt-24 pb-28">
-      <Link
-        href={`/blogs`}
-        className="mb-8 inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+      <div
+        className="mt-2 mb-8 inline-flex cursor-pointer items-center rounded-2xl text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+        onClick={() => router.back()}
       >
         <Badge>
           <ArrowLeft />
           Back to Blogs
         </Badge>
-      </Link>
+      </div>
 
       <header className="mb-8">
         <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-gray-100">{post.metadata.title}</h1>
