@@ -23,4 +23,12 @@ export const pathnames: Pathnames<Locales> = {
     en: "/support-us",
     id: "/support-us",
   },
+  "/my-events": {
+    en: "/my-events",
+    id: "/my-events",
+  },
+  "/my-blogs": {
+    en: "/my-blogs",
+    id: "/my-blogs",
+  },
 } satisfies Pathnames<Locales>;

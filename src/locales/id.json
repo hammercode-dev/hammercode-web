@@ -218,6 +218,10 @@
     "title": "Testimoni",
     "description": "Berbagai testimonial yang dapat membantu kami memahami manfaat Hammercode"
   },
+  "MyEventPage": {
+    "title": "Event Saya",
+    "description": "Daftar event yang sudah diregistrasi"
+  },
   "MyBlogPage": {
     "title": "Blog Saya",
     "description": "Daftar postingan dan artikel blog",
