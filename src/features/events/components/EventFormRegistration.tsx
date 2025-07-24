@@ -1,15 +1,16 @@
 "use client";
+
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Card } from "@/components/ui/Card";
 import { useFormatPrice } from "@/lib/format";
 import { Input } from "@/components/ui/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/Dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
 import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
 import { useRegistEvent } from "../hooks/useRegistEvent";
-import EventImage from "./EventImage";
 import { Button } from "@/components/ui/Button";
 
 const EventFormRegistration = ({ data }: { data: EventType }) => {
@@ -18,6 +19,12 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
 
   const form = useForm<RegistrationForm>({
     resolver: zodResolver(registrationSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone_number: "",
+      net_amount: 0,
+    },
   });
 
   const onSubmit: SubmitHandler<RegistrationForm> = (formData) => {
@@ -37,10 +44,12 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
         {t("EventDetail.register-button")}
       </DialogTrigger>
       <DialogContent className="dark:border-hmc-base-darkblue max-w-[900px] dark:border">
-        <div>
-          <h1 className="text-hmc-base-lightblue text-3xl font-semibold">{t("EventDetail.register-button")}</h1>
-          <p className="text-md font-semibold">{data?.title}</p>
-        </div>
+        <DialogTitle>
+          <div>
+            <h1 className="text-hmc-base-lightblue text-3xl font-semibold">{t("EventDetail.register-button")}</h1>
+            <p className="text-md font-semibold">{data?.title}</p>
+          </div>
+        </DialogTitle>
         <hr />
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-3">
@@ -90,15 +99,14 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                     <FormField
                       name="image_proof_payment"
                       control={form.control}
-                      render={({ field }) => (
+                      render={({ field: { onChange } }) => (
                         <FormItem>
                           <FormLabel>{t("EventRegistration.image-proof-payment.label")}</FormLabel>
                           <FormControl>
                             <Input
-                              {...field}
                               type="file"
-                              onChange={(e) => field.onChange(e.target.files?.[0])}
-                              value={undefined}
+                              accept="image/*"
+                              onChange={(e) => onChange(e.target.files?.[0])}
                               placeholder={t("EventRegistration.image-proof-payment.placeholder")}
                             />
                           </FormControl>
@@ -116,10 +124,12 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                           <FormLabel>{t("EventRegistration.net-amount.label")}</FormLabel>
                           <FormControl>
                             <Input
-                              type="number"
                               {...field}
+                              type="number"
                               placeholder={t("EventRegistration.net-amount.placeholder")}
-                              onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                              onChange={(e) => {
+                                field.onChange(Number(e.target.value || 0));
+                              }}
                             />
                           </FormControl>
                           <FormMessage />
@@ -133,11 +143,11 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
           </div>
           <div className="col-span-2">
             <Card className="space-y-4 border p-3">
-              <EventImage
-                src={data?.image_event as string}
+              <Image
+                src={data?.image_event ?? "/assets/images/events/fallbackImage.webp"}
                 alt="Banner"
                 width={1000}
-                height={500}
+                height={460}
                 priority
                 className="w-full rounded-lg"
               />

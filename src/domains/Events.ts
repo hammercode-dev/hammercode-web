@@ -50,20 +50,14 @@ export const registrationSchema = z.object({
   phone_number: z
     .string({ required_error: "Phone number is required" })
     .min(10, "Phone number must be at least 10 digits"),
-  image_proof_payment: z
-    .any()
-    .refine((file) => file instanceof File && file.size > 0, {
-      message: "Proof of payment is required",
-    })
-    .refine(
-      (file) => {
-        const validTypes = ["image/jpeg", "image/jpg", "image/png"];
-        return file instanceof File && validTypes.includes(file.type);
-      },
-      {
-        message: "Only JPG, JPEG, and PNG files are accepted",
-      }
-    ),
+  image_proof_payment: z.union([
+    z
+      .instanceof(File)
+      .refine((file) => ["image/png", "image/jpeg", "image/jpg", "image/svg+xml", "image/gif"].includes(file.type), {
+        message: "Invalid image file type",
+      }),
+    z.string().min(1, "Image proof payment is required"),
+  ]),
   net_amount: z.number({ required_error: "Net amount is required" }).min(1, "Net amount must be at least 1"),
 });
 
