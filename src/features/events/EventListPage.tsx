@@ -20,8 +20,8 @@ const EventListPage = () => {
   }
 
   return (
-    <div className="container mx-auto px-5 pt-24 pb-28">
-      <div className="w-full rounded-lg">
+    <section className="container mx-auto px-5 pt-24 pb-28">
+      <header className="w-full rounded-lg">
         <div className="flex h-16 flex-wrap items-center justify-between gap-1">
           <div>
             <motion.h1
@@ -62,7 +62,7 @@ const EventListPage = () => {
             </Select>
           </motion.div>
         </div>
-      </div>
+      </header>
       <motion.div
         variants={{
           hidden: { opacity: 0, y: 20 },
@@ -110,7 +110,7 @@ const EventListPage = () => {
           ))} */}
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 export default EventListPage;
