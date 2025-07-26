@@ -1,12 +1,12 @@
 "use client";
 
 import { FC } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useFormatPrice } from "@/lib/format";
 import { Skeleton } from "@/components/ui/Skeleton";
 import TitleContainer from "@/components/ui/TitleContainer";
 import EventInfo from "./components/EventInfo";
-import EventImage from "./components/EventImage";
 import EventBreadcrumbs from "./components/EventBreadcrumb";
 import EventFormRegistration from "./components/EventFormRegistration";
 import { useEventById } from "./hooks/useEvent";
@@ -25,8 +25,8 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
         <div className="space-y-4 lg:col-span-2">
           <div className="w-full rounded-lg">
             {!isLoading ? (
-              <EventImage
-                src={event?.image_event as string}
+              <Image
+                src={event?.image_event ?? "/assets/images/events/fallbackImage.webp"}
                 alt="Banner"
                 width={1000}
                 height={500}

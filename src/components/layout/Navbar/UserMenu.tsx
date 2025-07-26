@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/Button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/DropdownMenu";
 import { Link } from "@/lib/navigation";
 import { User as UserType } from "@/types";
-import { ChevronDown, User, X } from "lucide-react";
+import { ChevronDown, LogOut, User } from "lucide-react";
+import { USER_LINKS } from "./constant";
 
 interface UserMenuProps {
   user: UserType | null;
@@ -41,9 +42,14 @@ const DesktopUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) =>
             </div>
           </Link>
         </DropdownMenuItem>
+        {USER_LINKS.map(({ id, href }) => (
+          <DropdownMenuItem key={id} asChild>
+            <Link href={href}>{t(`navbar.user.${id}`)}</Link>
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuItem onClick={logout}>
           <span className="text-destructive hover:text-destructive/80 flex cursor-pointer items-center gap-2">
-            <X size={16} />
+            <LogOut size={16} />
             {t("navbar.sign-out")}
           </span>
         </DropdownMenuItem>
@@ -70,13 +76,20 @@ const MobileUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) => 
               <p className="text-muted-foreground text-xs">{user?.email}</p>
             </div>
           </Link>
+          {USER_LINKS.map(({ id, href }) => (
+            <Link key={id} href={href}>
+              <Button variant="outline" size="sm" className="w-full cursor-pointer justify-start">
+                {t(`navbar.user.${id}`)}
+              </Button>
+            </Link>
+          ))}
           <Button
             variant="outline"
             size="sm"
             className="text-destructive hover:text-destructive/80 w-full cursor-pointer justify-start"
             onClick={logout}
           >
-            <X size={16} className="mr-2" />
+            <LogOut size={16} className="mr-2" />
             {t("navbar.sign-out")}
           </Button>
         </div>

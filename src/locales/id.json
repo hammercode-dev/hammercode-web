@@ -9,7 +9,11 @@
       "sign-in": "Masuk",
       "sign-up": "Daftar",
       "sign-out": "Keluar",
-      "profile": "Profil"
+      "profile": "Profil",
+      "user": {
+        "my-blogs": "Blog Saya",
+        "my-events": "Event Saya"
+      }
     },
     "breadcrumb": {
       "link-1": "Tentang Kami",
@@ -51,7 +55,7 @@
     },
     "SignInPage": {
       "title": "Selamat Datang Kembali 👋",
-      "description": "Mari mulai! Silakan Masuk untuk mengakses sumber belajar terbaik.",
+      "description": "Masuk untuk terhubung, belajar, dan berkembang bersama.",
       "enter-email": "Masukan Email",
       "enter-password": "Masukan Password",
       "no-account": "Apakah Belum Punya Akun?",
@@ -60,8 +64,8 @@
       "forgot-password": "Lupa Password?"
     },
     "SignUpPage": {
-      "title": "Selamat Datang 👋",
-      "description": "Mari mulai! Silakan Daftar untuk mengakses sumber belajar terbaik.",
+      "title": "Bergabunglah dengan Kami! 👋",
+      "description": "Daftar untuk memulai perjalananmu!",
       "enter-username": "Masukan Username",
       "enter-email": "Masukan Email",
       "enter-password": "Masukan Password",
@@ -213,5 +217,14 @@
   "TestimonialPage": {
     "title": "Testimoni",
     "description": "Berbagai testimonial yang dapat membantu kami memahami manfaat Hammercode"
+  },
+  "MyEventPage": {
+    "title": "Event Saya",
+    "description": "Daftar event yang sudah diregistrasi"
+  },
+  "MyBlogPage": {
+    "title": "Blog Saya",
+    "description": "Daftar postingan dan artikel blog",
+    "not-found": "Tidak ada blog yang ditemukan."
   }
 }

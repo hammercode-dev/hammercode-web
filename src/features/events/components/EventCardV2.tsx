@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Image from "next/image";
 import { Clock, Pin } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/Card";
@@ -6,20 +7,20 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { EventType } from "@/domains/Events";
 import { useFormatDate } from "@/lib/format";
 
-import EventImage from "./EventImage";
-
 const EventCardV2: FC<{ data: EventType }> = ({ data }) => {
   const { title, date, image_event, status, duration, location } = data;
 
   return (
     <Card className="flex size-full flex-col rounded-lg border shadow-md">
-      <EventImage
-        src={image_event}
-        alt={title}
-        width={540}
-        height={240}
-        className="h-40 w-full rounded-t-lg object-cover object-center md:h-64"
-      />
+      <div className="bg-muted overflow-hidden rounded-t-lg">
+        <Image
+          src={image_event ?? "/assets/images/events/fallbackImage.webp"}
+          alt={title}
+          width={540}
+          height={240}
+          className="h-40 w-full object-cover object-center md:h-64"
+        />
+      </div>
       <CardContent className="px-4 pt-4 pb-0">
         <Badge className="mb-2" variant={`${status}`}>
           {status}

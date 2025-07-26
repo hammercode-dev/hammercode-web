@@ -1,30 +1,28 @@
-import { getAllBlogs, getBlogsByCategory } from "@/lib/mdx";
+import { BlogPost } from "@/lib/mdx";
 import { Link } from "@/lib/navigation";
-import BlogCard from "./components/BlogCard";
 import { CategoryFilter } from "./components/CategoriesFilter";
-import { PaginationCustom } from "@/components/common/PaginationCustom";
+import BlogList from "./components/BlogList";
 
 interface BlogPageProps {
-  category?: string;
+  allBlogs: BlogPost[];
+  sanitizedCategory?: string;
   page?: number;
   perPage?: number;
 }
 
-const BlogPage = async ({ category, page = 1, perPage = 1 }: BlogPageProps) => {
-  const sanitizedCategory = category?.replace(/\/$/, "");
-  const allBlogs = sanitizedCategory ? await getBlogsByCategory(sanitizedCategory) : await getAllBlogs();
-
+const BlogPage = ({ allBlogs, sanitizedCategory, page = 1, perPage = 1 }: BlogPageProps) => {
   const totalBlogs = allBlogs.length;
   const totalPages = Math.ceil(totalBlogs / perPage);
   const startIndex = (page - 1) * perPage;
   const endIndex = startIndex + perPage;
+
   const blogs = allBlogs.slice(startIndex, endIndex);
 
   const categories = ["technology", "tutorial", "news", "announcement"];
 
   return (
     <section className="container mx-auto px-5 pt-24 pb-28">
-      <header className="mb-8">
+      <header className="my-8">
         <h1 className="text-hmc-base-blue text-xl font-bold sm:text-3xl">
           {sanitizedCategory
             ? `${sanitizedCategory.charAt(0).toUpperCase() + sanitizedCategory.slice(1)} Blogs`
@@ -57,15 +55,7 @@ const BlogPage = async ({ category, page = 1, perPage = 1 }: BlogPageProps) => {
           </p>
         </div>
       ) : (
-        <>
-          <div className="grid gap-6">
-            {blogs.map((blog) => (
-              <BlogCard key={blog.slug} blog={blog} />
-            ))}
-          </div>
-
-          <PaginationCustom currentPage={page} totalPages={totalPages} />
-        </>
+        <BlogList blogs={blogs} currentPage={page} totalPages={totalPages} />
       )}
     </section>
   );

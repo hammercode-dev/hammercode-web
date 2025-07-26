@@ -2,6 +2,9 @@ import { useFormatter } from "next-intl";
 
 export function useFormatDate(date?: string | Date) {
   const format = useFormatter();
+
+  if (!date) return "";
+
   const dateTime = new Date(date as string);
 
   return format.dateTime(dateTime, {

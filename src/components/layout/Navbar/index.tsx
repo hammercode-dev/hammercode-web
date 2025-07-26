@@ -93,7 +93,7 @@ const Navbar = () => {
           {/* Mobile Menu */}
           <div
             className={`transition-all duration-300 ease-in-out lg:hidden ${
-              isOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden py-0 opacity-0"
+              isOpen ? "max-h-screen opacity-100" : "max-h-0 overflow-hidden py-0 opacity-0"
             }`}
           >
             <div className="mx-auto mt-5 w-full space-y-6">

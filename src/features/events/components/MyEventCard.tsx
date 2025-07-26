@@ -1,0 +1,56 @@
+import { FC } from "react";
+import Image from "next/image";
+import { Clock, Pin } from "lucide-react";
+import Badge from "@/components/ui/Badge";
+import { Card, CardContent, CardFooter } from "@/components/ui/Card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/Tooltip";
+import { EventType } from "@/domains/Events";
+import { useFormatDate } from "@/lib/format";
+import { Link } from "@/lib/navigation";
+
+const MyEventCard: FC<{ data: EventType }> = ({ data }) => {
+  const { id, title, date, image_event, status, duration, location } = data;
+
+  return (
+    <Link href={`/events/${id}`}>
+      <div className="grid gap-4 lg:grid-cols-4">
+        <div className="bg-muted overflow-hidden rounded-lg">
+          <Image
+            src={image_event ?? "/assets/images/events/fallbackImage.webp"}
+            alt={title}
+            width={540}
+            height={240}
+            className="object-cover object-center"
+          />
+        </div>
+        <Card className="flex size-full flex-col rounded-lg border shadow-md lg:col-span-3">
+          <CardContent className="px-4 pt-4 pb-0">
+            <Badge className="mb-2" variant={`${status}`}>
+              {status}
+            </Badge>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <h2 className="text-hmc-blue-600 line-clamp-2 text-base font-bold sm:text-xl">{title}</h2>
+                </TooltipTrigger>
+                <TooltipContent>{title}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </CardContent>
+          <CardFooter className="mt-auto flex flex-col items-start gap-2 px-4 pt-3 pb-4">
+            <p className="line-clamp-1">{useFormatDate(date)}</p>
+            <div className="flex items-center gap-2">
+              <Clock size={15} />
+              <p className="text-sm">{duration}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Pin size={15} />
+              <p className="text-sm">{location}</p>
+            </div>
+          </CardFooter>
+        </Card>
+      </div>
+    </Link>
+  );
+};
+export default MyEventCard;

@@ -1,4 +1,5 @@
 import { BlogPage } from "@/features/blog";
+import { getAllBlogs, getBlogsByCategory } from "@/lib/mdx";
 import { Metadata } from "next";
 
 interface BlogsPageProps {
@@ -18,5 +19,8 @@ export function generateMetadata(): Metadata {
 export default async function BlogsPage({ searchParams }: BlogsPageProps) {
   const { page, category } = await searchParams;
 
-  return <BlogPage category={category} page={Number(page) || 1} />;
+  const sanitizedCategory = category?.replace(/\/$/, "");
+  const allBlogs = sanitizedCategory ? await getBlogsByCategory(sanitizedCategory) : await getAllBlogs();
+
+  return <BlogPage allBlogs={allBlogs} sanitizedCategory={sanitizedCategory} page={Number(page) || 1} />;
 }

@@ -20,3 +20,14 @@ export const LINKS = [
     href: "/support-us",
   },
 ];
+
+export const USER_LINKS = [
+  {
+    id: "my-blogs",
+    href: "/my-blogs",
+  },
+  {
+    id: "my-events",
+    href: "/my-events",
+  },
+];
