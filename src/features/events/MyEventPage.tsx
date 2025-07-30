@@ -33,7 +33,7 @@ const MyEventPage = ({ page = 1, perPage = 10 }: MyEventPageProps) => {
     );
   }
   return (
-    <section className="container mx-auto px-5 pt-24 pb-28">
+    <section>
       <header className="my-8">
         <div className="flex h-16 flex-wrap items-center justify-between gap-1">
           <div>
