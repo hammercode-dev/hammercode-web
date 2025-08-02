@@ -3,13 +3,13 @@ import { getAllBlogs, getBlogsByCategory } from "@/lib/mdx";
 import { Metadata } from "next";
 
 interface BlogsPageProps {
-  searchParams?: {
+  searchParams: Promise<{
     category?: string;
     page?: string;
-  };
+  }>;
 }
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Blogs",
     description: "Read our latest blog posts and articles.",
@@ -17,8 +17,9 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function BlogsPage({ searchParams }: BlogsPageProps) {
-  const page = Number(searchParams?.page || 1);
-  const category = searchParams?.category?.replace(/\/$/, "");
+  const query = await searchParams;
+  const page = Number(query.page || 1);
+  const category = query.category?.replace(/\/$/, "");
 
   const allBlogs = category ? await getBlogsByCategory(category) : await getAllBlogs();
 

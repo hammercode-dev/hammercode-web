@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!token) return;
 
     const { username, email, role, isTokenExpired } = decodeToken(token);
+
     if (!isTokenExpired) {
       setUser({ username, email, role });
     }

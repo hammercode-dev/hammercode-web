@@ -10,6 +10,7 @@ import EventInfo from "./components/EventInfo";
 import EventBreadcrumbs from "./components/EventBreadcrumb";
 import EventFormRegistration from "./components/EventFormRegistration";
 import { useEventById } from "./hooks/useEvent";
+import { Separator } from "@/components/ui/separator";
 
 interface EventDetailPageProp {
   eventId: string;
@@ -59,11 +60,12 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
           </div>
           <div className="flex w-full flex-col gap-4 rounded-lg border-t px-6 py-4 sm:border">
             <div className="flex w-full items-center justify-between">
-              <span className="text-xs font-semibold sm:text-sm dark:text-slate-200">
+              <span className="text-xs font-semibold sm:text-lg dark:text-slate-200">
                 {t("EventDetail.price-title")}
               </span>
               <p className="text-sm font-bold dark:text-slate-200">{useFormatPrice(event?.price)}</p>
             </div>
+            <Separator />
             <EventFormRegistration data={event} />
           </div>
         </div>
