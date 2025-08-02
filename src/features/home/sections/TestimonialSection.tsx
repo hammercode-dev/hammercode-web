@@ -6,9 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import * as motion from "motion/react-client";
 import { Quote } from "lucide-react";
+import { toast } from "sonner";
 import { homeService } from "@/services/home";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { useToast } from "@/components/hooks/UseToast";
 import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 import { Card, CardFooter, CardHeader } from "@/components/ui/Card";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/Carousel";
@@ -17,7 +17,6 @@ import DetailTestimoni from "../components/DetailTestimoni";
 
 const TestimonialSection = () => {
   const t = useTranslations("HomePage.section-testimonial");
-  const { toast } = useToast();
 
   const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +29,7 @@ const TestimonialSection = () => {
         const res = await homeService.getAllTestimonial();
         setTestimoni(res.data);
       } catch (err) {
-        toast({ description: (err as Error)?.message || "Something went wrong.", variant: "destructive" });
+        toast.error((err as Error)?.message || "Something went wrong.");
       } finally {
         setIsLoading(false);
       }

@@ -3,24 +3,20 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { MessageSquare, Send } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/Button";
-import { useToast } from "@/components/hooks/UseToast";
 import { Link } from "@/lib/navigation";
 import { DonateCard } from "./components/DonateCard";
 import { DonationMethods } from "./constants";
 
 export default function SupportUsPage() {
   const t = useTranslations("SupportUsPage");
-  const { toast } = useToast();
   const [copiedId, setCopiedId] = useState<string>("");
 
   const copyToClipboard = (accountNumber: string, id: string) => {
     navigator.clipboard.writeText(accountNumber);
     setCopiedId(id);
-    toast({
-      title: t("clipboard.title"),
-      description: t("clipboard.description"),
-    });
+    toast.success(t("clipboard.title"), { description: t("clipboard.description") });
     setTimeout(() => setCopiedId(""), 2000);
   };
 

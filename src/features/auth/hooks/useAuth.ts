@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { authService } from "@/services/auth";
-import { useToast } from "@/components/hooks/UseToast";
-import { LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm } from "@/domains/Auth";
 import { jwtDecode } from "jwt-decode";
-import { AuthJwtPayload } from "@/types";
+import { toast } from "sonner";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
+import { LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm } from "@/domains/Auth";
+import { authService } from "@/services/auth";
+import { AuthJwtPayload } from "@/types";
 
 export const useAuth = () => {
   const t = useTranslations("Auth.Hook");
   const router = useRouter();
-  const { toast } = useToast();
   const { setUser } = useAuthUser();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -30,11 +29,11 @@ export const useAuth = () => {
       } else {
         router.push("/");
       }
-      toast({ description: t("sign-in-success") });
+      toast.success(t("sign-in-success"));
 
       return res.data;
     } catch (err) {
-      toast({ description: (err as Error)?.message || t("sign-in-failed"), variant: "destructive" });
+      toast((err as Error)?.message || t("sign-in-failed"));
     } finally {
       setIsLoading(false);
     }
@@ -46,11 +45,11 @@ export const useAuth = () => {
       const res = await authService.register(payload);
 
       router.push("/sign-in");
-      toast({ description: t("sign-up-success") });
+      toast.success(t("sign-up-success"));
 
       return res.data;
     } catch (err) {
-      toast({ description: (err as Error)?.message || t("sign-up-failed"), variant: "destructive" });
+      toast.error((err as Error)?.message || t("sign-up-failed"));
     } finally {
       setIsLoading(false);
     }
@@ -60,10 +59,10 @@ export const useAuth = () => {
     setIsLoading(true);
     try {
       const res = await authService.forgotPassword(payload);
-      toast({ description: t("forgot-password-success") });
+      toast.success(t("forgot-password-success"));
       return res.data;
     } catch (err) {
-      toast({ description: (err as Error)?.message || t("forgot-password-failed"), variant: "destructive" });
+      toast.error((err as Error)?.message || t("forgot-password-failed"));
     } finally {
       setIsLoading(false);
     }
@@ -73,10 +72,10 @@ export const useAuth = () => {
     setIsLoading(true);
     try {
       const res = await authService.resetPassword(payload);
-      toast({ description: t("reset-password-success") });
+      toast.success(t("reset-password-success"));
       return res.data;
     } catch (err) {
-      toast({ description: (err as Error)?.message || t("reset-password-failed"), variant: "destructive" });
+      toast.error((err as Error)?.message || t("reset-password-failed"));
     } finally {
       setIsLoading(false);
     }
