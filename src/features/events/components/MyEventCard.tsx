@@ -9,14 +9,14 @@ import { useFormatDate } from "@/lib/format";
 import { Link } from "@/lib/navigation";
 
 const MyEventCard: FC<{ data: EventType }> = ({ data }) => {
-  const { id, title, date, image_event, status, duration, location } = data;
+  const { id, title, date, image, status, duration, location } = data;
 
   return (
     <Link href={`/events/${id}`}>
       <div className="grid gap-4 lg:grid-cols-4">
         <div className="bg-muted overflow-hidden rounded-lg">
           <Image
-            src={image_event ?? "/assets/images/events/fallbackImage.webp"}
+            src={image ?? "/assets/images/events/fallbackImage.webp"}
             alt={title}
             width={540}
             height={240}

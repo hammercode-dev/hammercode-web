@@ -26,7 +26,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
           <div className="w-full rounded-lg">
             {!isLoading ? (
               <Image
-                src={event?.image_event ?? "/assets/images/events/fallbackImage.webp"}
+                src={event?.image ?? "/assets/images/events/fallbackImage.webp"}
                 alt="Banner"
                 width={1000}
                 height={500}

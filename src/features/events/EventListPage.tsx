@@ -82,7 +82,7 @@ const EventListPage = () => {
         className="pt-16 md:pt-8"
       >
         <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
-          {events.map((event) => (
+          {events.map((event, index) => (
             <motion.div
               key={event?.id}
               variants={{
@@ -98,7 +98,7 @@ const EventListPage = () => {
                 },
               }}
               whileHover={{ y: -5 }}
-              className={`${event?.id === 1 ? "lg:col-span-2" : "col-span-1"}`}
+              className={`${index === 0 ? "lg:col-span-2" : "col-span-1"}`}
             >
               <Link href={`/events/${event?.id}`}>{event && <EventCardV2 data={event} />}</Link>
             </motion.div>

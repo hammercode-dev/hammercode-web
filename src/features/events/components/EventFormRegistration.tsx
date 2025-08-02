@@ -144,7 +144,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
           <div className="col-span-2">
             <Card className="space-y-4 border p-3">
               <Image
-                src={data?.image_event ?? "/assets/images/events/fallbackImage.webp"}
+                src={data?.image ?? "/assets/images/events/fallbackImage.webp"}
                 alt="Banner"
                 width={1000}
                 height={460}
