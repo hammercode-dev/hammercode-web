@@ -1,7 +1,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Sora } from "next/font/google";
-import "./globals.css";
 import WrapperLayout from "@/components/layout/WrapperLayout";
 import { locales } from "@/lib/locales";
 import { notFound } from "next/navigation";
