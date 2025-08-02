@@ -4,18 +4,17 @@ import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { LoaderIcon } from "lucide-react";
+import { toast } from "sonner";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
-import { useToast } from "@/components/hooks/UseToast";
 import { Dialog, DialogTitle, DialogTrigger } from "@/components/ui/Dialog";
+import { homeService } from "@/services/home";
 import DetailTestimoni from "../home/components/DetailTestimoni";
 import { TestimonialType } from "../home/types";
-import { homeService } from "@/services/home";
-import { LoaderIcon } from "lucide-react";
 
 const TestimonialPage = () => {
   const t = useTranslations("TestimonialPage");
 
-  const { toast } = useToast();
   const [testimoni, setTestimoni] = useState<TestimonialType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +25,7 @@ const TestimonialPage = () => {
         const res = await homeService.getAllTestimonial();
         setTestimoni(res.data);
       } catch (err) {
-        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+        toast.error(err instanceof Error ? err.message : "Something went wrong.");
       } finally {
         setIsLoading(false);
       }

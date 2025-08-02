@@ -1,13 +1,12 @@
+import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import { uploadsService } from "@/services/uploads";
 import { eventsService } from "@/services/events";
 import { EventType, RegistrationForm } from "@/domains/Events";
-import { useToast } from "@/components/hooks/UseToast";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
 
 export const useRegistEvent = (data: EventType) => {
   const t = useTranslations("EventsPage");
-  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -35,18 +34,15 @@ export const useRegistEvent = (data: EventType) => {
 
       const res = await eventsService.registEvent(registPayload);
 
-      toast({
-        title: t("EventRegistration.success.title"),
+      toast.success(`${t("EventRegistration.success.title")}`, {
         description: `${t("EventRegistration.success.description")} ${res.data.order_no}`,
       });
 
       setIsLoading(false);
       setIsDialogOpen(false);
     } catch (error) {
-      toast({
-        title: t("EventRegistration.failure.title"),
+      toast.error(t("EventRegistration.failure.title"), {
         description: error instanceof Error ? error.message : t("EventRegistration.failure.description"),
-        variant: "destructive",
       });
       setIsLoading(false);
     }
