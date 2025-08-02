@@ -22,10 +22,10 @@ export const LINKS = [
 ];
 
 export const USER_LINKS = [
-  {
-    id: "my-blogs",
-    href: "/my-blogs",
-  },
+  // {
+  //   id: "my-blogs",
+  //   href: "/my-blogs",
+  // },
   {
     id: "my-events",
     href: "/my-events",
