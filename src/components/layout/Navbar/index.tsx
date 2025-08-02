@@ -6,19 +6,15 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/lib/navigation";
 import { Button } from "@/components/ui/Button";
-import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import { LINKS } from "./constant";
 import LocaleToggle from "../../common/LocaleToggle";
 import NavLink from "../../../lib/navigation/NavLink";
 import { ThemeToggle } from "../../common/ThemeToggle";
-import { useAuth } from "@/features/auth/hooks/useAuth";
 import { DesktopUserMenu, MobileUserMenu } from "./UserMenu";
 // import AnnouncementLayout from "@/components/layout/AnnouncementLayout";
 
 const Navbar = () => {
   const t = useTranslations("Layout");
-  const { user, isAuthenticated } = useAuthUser();
-  const { logout } = useAuth();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -70,7 +66,7 @@ const Navbar = () => {
                 <ThemeToggle />
 
                 {/* Desktop User Menu */}
-                <DesktopUserMenu user={user} isAuthenticated={isAuthenticated} logout={logout} t={t} />
+                <DesktopUserMenu />
               </div>
             </nav>
 
@@ -104,7 +100,7 @@ const Navbar = () => {
               </nav>
 
               {/* Mobile User Menu */}
-              <MobileUserMenu user={user} isAuthenticated={isAuthenticated} logout={logout} t={t} />
+              <MobileUserMenu />
             </div>
           </div>
         </div>
