@@ -9,14 +9,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { EventType, RegistrationForm, registrationSchema } from "@/domains/Events";
 import { useRegistEvent } from "../hooks/useRegistEvent";
 import { Button } from "@/components/ui/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import { useRouter } from "@/lib/navigation";
 
 const EventFormRegistration = ({ data }: { data: EventType }) => {
   const t = useTranslations("EventsPage");
   const router = useRouter();
-  const { isAuthenticated } = useAuthUser();
+  const { isAuthenticated, user } = useAuthUser();
 
   const [formActive, setFormActive] = useState(false);
   const { registEvent, isLoading } = useRegistEvent(data);
@@ -38,6 +38,17 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
 
     registEvent(formData);
   };
+
+  useEffect(() => {
+    if (user) {
+      form.reset({
+        name: user.username || "",
+        email: user.email || "",
+        phone_number: user.phone_number || "",
+        net_amount: 0,
+      });
+    }
+  }, [user, form]);
 
   return (
     <section>
