@@ -1,9 +1,22 @@
+"use client";
+
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 import RouteBreadcrumb from "@/components/common/RouteBreadcrumb";
+import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import AdminSidebar from "@/components/layout/AdminSidebar";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const { user, isLoading } = useAuthUser();
+
+  useEffect(() => {
+    if (!isLoading && (!user || user.role !== "admin")) {
+      redirect("/");
+    }
+  }, [isLoading, user]);
+
   return (
     <SidebarProvider>
       <AdminSidebar />
