@@ -1,10 +1,9 @@
-import { useToast } from "@/components/hooks/UseToast";
-import { eventsService } from "@/services/events";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { eventsService } from "@/services/events";
 import { EventType } from "@/domains/Events";
 
 export const useEventById = (eventId: string) => {
-  const { toast } = useToast();
   const [event, setEvent] = useState<EventType>({} as EventType);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -15,7 +14,7 @@ export const useEventById = (eventId: string) => {
         const res = await eventsService.getEventById(eventId);
         setEvent(res.data);
       } catch (err) {
-        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+        toast.error(err instanceof Error ? err.message : "Something went wrong.");
       } finally {
         setIsLoading(false);
       }
@@ -28,7 +27,6 @@ export const useEventById = (eventId: string) => {
 };
 
 export const useEvents = () => {
-  const { toast } = useToast();
   const [events, setEvents] = useState<EventType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -39,7 +37,7 @@ export const useEvents = () => {
         const res = await eventsService.getEvents();
         setEvents(res.data);
       } catch (err) {
-        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+        toast.error(err instanceof Error ? err.message : "Something went wrong.");
       } finally {
         setIsLoading(false);
       }
@@ -52,7 +50,6 @@ export const useEvents = () => {
 };
 
 export const useMyEvents = (page: number = 1, limit: number = 10) => {
-  const { toast } = useToast();
   const [myEvents, setMyEvents] = useState<EventType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -63,7 +60,7 @@ export const useMyEvents = (page: number = 1, limit: number = 10) => {
         const res = await eventsService.getMyEvents(page, limit);
         setMyEvents(res.data);
       } catch (err) {
-        toast({ description: err instanceof Error ? err.message : "Something went wrong.", variant: "destructive" });
+        toast.error(err instanceof Error ? err.message : "Something went wrong.");
       } finally {
         setIsLoading(false);
       }
