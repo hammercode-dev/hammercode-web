@@ -9,7 +9,7 @@ export interface AuthJwtPayload extends JwtPayload {
 export interface User {
   username: string;
   email: string;
-  role: string;
+  role: string | "admin";
 }
 
 export interface UserContextType {
