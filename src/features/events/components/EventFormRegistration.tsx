@@ -44,7 +44,6 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
       form.reset({
         name: user.username || "",
         email: user.email || "",
-        phone_number: user.phone_number || "",
         net_amount: 0,
       });
     }

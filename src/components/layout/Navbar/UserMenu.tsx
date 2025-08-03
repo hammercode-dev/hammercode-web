@@ -1,18 +1,17 @@
 import { Button } from "@/components/ui/Button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/DropdownMenu";
 import { Link } from "@/lib/navigation";
-import { User as UserType } from "@/types";
-import { ChevronDown, LogOut, User } from "lucide-react";
+import { ChevronLeft, LogOut, User } from "lucide-react";
 import { USER_LINKS } from "./constant";
+import { useTranslations } from "next-intl";
+import { useAuthUser } from "@/components/hooks/UseAuthUser";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 
-interface UserMenuProps {
-  user: UserType | null;
-  isAuthenticated: boolean;
-  t: (key: string, values?: Record<string, string | number | Date> | undefined) => string;
-  logout: () => void;
-}
+const DesktopUserMenu = () => {
+  const t = useTranslations("Layout");
+  const { user, isAuthenticated } = useAuthUser();
+  const { logout } = useAuth();
 
-const DesktopUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) => {
   return !isAuthenticated ? (
     <Button asChild size="sm" className="w-full">
       <Link href="/sign-in">{t("navbar.sign-in")}</Link>
@@ -27,7 +26,7 @@ const DesktopUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) =>
           <div className="flex flex-col items-start text-left">
             <span className="text-sm leading-none font-medium">{user?.username}</span>
           </div>
-          <ChevronDown size={16} className="ml-auto" />
+          <ChevronLeft size={16} className="ml-auto" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-background space-y-1">
@@ -58,7 +57,11 @@ const DesktopUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) =>
   );
 };
 
-const MobileUserMenu = ({ user, isAuthenticated, logout, t }: UserMenuProps) => {
+const MobileUserMenu = () => {
+  const t = useTranslations("Layout");
+  const { user, isAuthenticated } = useAuthUser();
+  const { logout } = useAuth();
+
   return (
     <div className="border-t pt-4">
       {!isAuthenticated ? (

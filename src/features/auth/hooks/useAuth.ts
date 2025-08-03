@@ -21,11 +21,11 @@ export const useAuth = () => {
       const res = await authService.login(payload);
 
       localStorage.setItem("accessToken", res.data);
-      const user = jwtDecode<AuthJwtPayload>(res.data);
+      const user = await jwtDecode<AuthJwtPayload>(res.data);
       setUser(user);
 
       if (user.role === "admin") {
-        router.replace("/"); // TODO: redirect to admin dashboard
+        router.replace("/admin/events"); // TODO: redirect to admin dashboard
       } else {
         router.push("/");
       }

@@ -10,7 +10,7 @@ import EventInfo from "./components/EventInfo";
 import EventBreadcrumbs from "./components/EventBreadcrumb";
 import EventFormRegistration from "./components/EventFormRegistration";
 import { useEventById } from "./hooks/useEvent";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/ui/Separator";
 
 interface EventDetailPageProp {
   eventId: string;
@@ -22,7 +22,7 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
 
   return (
     <div className="container mx-auto space-y-6 py-24">
-      <div className="grid grid-cols-1 items-center gap-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           <div className="w-full rounded-lg">
             {!isLoading ? (
@@ -50,7 +50,32 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
               <TitleContainer>
                 <h2 className="font-semibold sm:text-xl">{t("EventDetail.desc-title")}</h2>
               </TitleContainer>
-              <p className="text-sm text-slate-600 sm:text-base dark:text-slate-400">{event?.description}</p>
+              <p className="text-sm text-slate-600 sm:text-base dark:text-slate-400">
+                {event?.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, doloremque?
+                Blanditiis a aspernatur eveniet, similique magni pariatur autem debitis odit suscipit laboriosam
+                repellat consequuntur distinctio consequatur, doloribus ea deserunt? Voluptatibus quaerat, facere ipsa
+                eum temporibus eaque ad commodi? Temporibus esse minima vitae nisi reprehenderit obcaecati doloremque
+                voluptatibus autem accusantium delectus, voluptatem hic ipsam aspernatur voluptatum quod necessitatibus?
+                Ad exercitationem molestiae voluptas dolorem excepturi, earum deserunt ab. Aspernatur molestias impedit
+                repudiandae blanditiis eaque minima, a quasi laudantium cumque quo, neque possimus sunt, inventore
+                minus. Quae eius facere cupiditate libero excepturi incidunt qui temporibus? Molestiae sint fugiat
+                delectus. Alias ea doloremque totam veritatis fuga sequi labore, numquam unde, natus nostrum illum neque
+                facilis laudantium corporis hic fugiat ullam. Voluptatum ut fuga placeat molestiae nobis quasi corrupti
+                in, iure itaque quae tempora doloribus error dolore, totam quo rerum rem quos ex consequatur! Vel
+                laudantium harum, libero inventore eum velit eveniet cumque, illum modi ducimus accusantium quas,
+                mollitia distinctio ratione molestias ipsam impedit repudiandae itaque. Eligendi sed architecto ex
+                explicabo nostrum aspernatur accusantium ratione veritatis delectus laudantium eius magnam voluptatibus
+                autem, quas cum enim consequuntur veniam incidunt quisquam saepe aliquid sequi eveniet officiis atque!
+                Inventore alias odit debitis sunt, animi ea maiores porro dolorem sint ipsa? Saepe, molestiae cumque
+                voluptate, a quaerat ad, quia placeat explicabo animi ullam totam aliquam! Distinctio beatae aliquam eos
+                dicta vero, placeat praesentium voluptas labore nesciunt illum at esse, ducimus recusandae veniam
+                accusamus optio minima earum cumque. Nostrum corrupti fuga provident quibusdam repellendus, molestias ut
+                vel aspernatur eum mollitia in quisquam praesentium minus doloremque esse? Fugiat, distinctio fuga
+                repellendus pariatur illo fugit, quisquam odio neque, dignissimos reprehenderit eveniet. Aspernatur
+                praesentium tempora perspiciatis excepturi, exercitationem, dolores non labore deserunt assumenda ab
+                animi debitis obcaecati nemo est corrupti sint laudantium ipsa quibusdam explicabo nobis, saepe sunt
+                nostrum perferendis optio! Ullam, quisquam!
+              </p>
             </div>
           </div>
         </div>

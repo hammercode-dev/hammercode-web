@@ -10,13 +10,14 @@ import { authPaths } from "./constant";
 const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
   const params = useParams();
   const pathname = usePathname();
+  const isAdminPage = pathname.includes("admin");
   const isAuthPage = authPaths.some((path) => pathname.includes(path));
   const isCertificateDetailPage = !!params?.slug && pathname.includes("certificates");
 
   return (
     <AuthProvider>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-        {isCertificateDetailPage || isAuthPage ? (
+        {isAdminPage || isAuthPage || isCertificateDetailPage ? (
           children
         ) : (
           <>
