@@ -26,6 +26,7 @@ const injectInterceptors = (instance: AxiosInstance): AxiosInstance => {
       return response.data;
     },
     (error: AxiosError) => {
+      console.log({ error });
       return Promise.reject(error?.response?.data);
     }
   );

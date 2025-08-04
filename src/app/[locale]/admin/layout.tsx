@@ -1,21 +1,21 @@
-"use client";
-
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import RouteBreadcrumb from "@/components/common/RouteBreadcrumb";
-import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import AdminSidebar from "@/components/layout/AdminSidebar";
+
+import { jwtDecode } from "jwt-decode";
+import { redirect } from "next/navigation";
+import { AuthJwtPayload } from "@/types";
 import { Separator } from "@/components/ui/Separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/Sidebar";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { user, isLoading } = useAuthUser();
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
 
-  useEffect(() => {
-    if (!isLoading && (!user || user.role !== "admin")) {
-      redirect("/");
-    }
-  }, [isLoading, user]);
+  if (!token) return redirect("/");
+
+  const payload = jwtDecode<AuthJwtPayload>(token.value);
+  if (payload.role !== "admin") return redirect("/");
 
   return (
     <SidebarProvider>

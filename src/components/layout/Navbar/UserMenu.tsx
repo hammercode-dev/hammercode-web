@@ -5,12 +5,12 @@ import { ChevronLeft, LogOut, User } from "lucide-react";
 import { USER_LINKS } from "./constant";
 import { useTranslations } from "next-intl";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAuthService } from "@/features/auth/hooks/useAuth";
 
 const DesktopUserMenu = () => {
   const t = useTranslations("Layout");
   const { user, isAuthenticated } = useAuthUser();
-  const { logout } = useAuth();
+  const { logout } = useAuthService();
 
   return !isAuthenticated ? (
     <Button asChild size="sm" className="w-full">
@@ -41,6 +41,11 @@ const DesktopUserMenu = () => {
             </div>
           </Link>
         </DropdownMenuItem>
+        {user?.role === "admin" && (
+          <DropdownMenuItem asChild>
+            <Link href="/admin/events">Dashboard</Link>
+          </DropdownMenuItem>
+        )}
         {USER_LINKS.map(({ id, href }) => (
           <DropdownMenuItem key={id} asChild>
             <Link href={href}>{t(`navbar.user.${id}`)}</Link>
@@ -60,7 +65,7 @@ const DesktopUserMenu = () => {
 const MobileUserMenu = () => {
   const t = useTranslations("Layout");
   const { user, isAuthenticated } = useAuthUser();
-  const { logout } = useAuth();
+  const { logout } = useAuthService();
 
   return (
     <div className="border-t pt-4">

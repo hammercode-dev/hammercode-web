@@ -9,11 +9,11 @@ import { useTranslations } from "next-intl";
 import { RegisterForm, registerSchema } from "@/domains/Auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "@/lib/navigation";
-import { useAuth } from "../hooks/useAuth";
+import { useAuthService } from "../hooks/useAuth";
 
 const SignUpPage = () => {
   const t = useTranslations("Auth.SignUpPage");
-  const { register, isLoading } = useAuth();
+  const { register, isLoading } = useAuthService();
 
   const form = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),

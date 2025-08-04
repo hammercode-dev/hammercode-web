@@ -1,37 +1,27 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { jwtDecode } from "jwt-decode";
 import { toast } from "sonner";
-import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import { LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm } from "@/domains/Auth";
 import { authService } from "@/services/auth";
-import { AuthJwtPayload } from "@/types";
 
-export const useAuth = () => {
+/**
+ * Hooks for interacting with Auth API of backend server
+ */
+export const useAuthService = () => {
   const t = useTranslations("Auth.Hook");
   const router = useRouter();
-  const { setUser } = useAuthUser();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const login = async (payload: LoginForm) => {
     setIsLoading(true);
+
     try {
       const res = await authService.login(payload);
-
-      localStorage.setItem("accessToken", res.data);
-      const user = await jwtDecode<AuthJwtPayload>(res.data);
-      setUser(user);
-
-      if (user.role === "admin") {
-        router.replace("/admin/events"); // TODO: redirect to admin dashboard
-      } else {
-        router.push("/");
-      }
+      router.push("/");
       toast.success(t("sign-in-success"));
 
-      return res.data;
+      return res;
     } catch (err) {
       toast((err as Error)?.message || t("sign-in-failed"));
     } finally {
@@ -82,9 +72,10 @@ export const useAuth = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem("accessToken");
-    setUser(null);
-    router.push("/sign-in");
+    return authService.logout().then(() => {
+      localStorage.removeItem("accessToken");
+      router.push("/sign-in");
+    });
   };
 
   return { login, register, logout, isLoading, forgotPassword, resetPassword };
