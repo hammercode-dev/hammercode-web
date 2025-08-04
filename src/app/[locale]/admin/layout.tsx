@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import RouteBreadcrumb from "@/components/common/RouteBreadcrumb";
 import AdminSidebar from "@/components/layout/AdminSidebar";
 
-
 import { jwtDecode } from "jwt-decode";
 import { redirect } from "next/navigation";
 import { AuthJwtPayload } from "@/types";
@@ -16,7 +15,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!token) return redirect("/");
 
   const payload = jwtDecode<AuthJwtPayload>(token.value);
-  if (payload.role !== "user") return redirect("/");
+  if (payload.role !== "admin") return redirect("/");
 
   return (
     <SidebarProvider>

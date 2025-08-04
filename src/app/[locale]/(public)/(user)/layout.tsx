@@ -1,28 +1,26 @@
+"use client";
+
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/Avatar";
 
 import { Calendar1, User } from "lucide-react";
 import { Separator } from "@/components/ui/Separator";
 import { Link } from "@/lib/navigation";
+import { useAuthUser } from "@/components/hooks/UseAuthUser";
 
-const user = {
-  name: "Putra Satria",
-  image: "",
-  fallback: "PS",
-};
-
-export default async function UserLayout({ children }: { children: React.ReactNode }) {
+export default function UserLayout({ children }: { children: React.ReactNode }) {
+  const { user } = useAuthUser();
   return (
     <section className="container mx-auto px-5 pt-24 pb-28">
       <div className="grid grid-cols-5 gap-8">
         <aside className="fixed right-0 bottom-0 left-0 col-span-1 mt-8 flex w-full flex-col justify-between gap-4 self-start rounded-lg bg-white lg:sticky lg:top-24 lg:flex-col lg:justify-start lg:bg-transparent dark:bg-slate-950">
           <div className="flex items-center gap-4">
             <Avatar className="h-12 w-12">
-              <AvatarImage src={user.image} />
-              <AvatarFallback>{user.fallback}</AvatarFallback>
+              <AvatarImage src="" />
+              <AvatarFallback>US</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-muted-foreground text-sm">Hi</p>
-              <p className="font-semibold">{user.name}</p>
+              <p className="text-muted-foreground text-sm">Hello</p>
+              <p className="font-semibold">{user?.username}</p>
             </div>
           </div>
 

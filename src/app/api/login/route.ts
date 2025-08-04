@@ -7,15 +7,15 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { email, password } = body;
-    const result = await authService.getToken({ email, password });
-    const token = result.data;
+    const token = await authService.getToken({ email, password });
     const decoded = jwtDecode<AuthJwtPayload>(token);
 
-    const res = NextResponse.json(token);
-    // TODO: fix(security) set cookie with these attributes
-    // httpOnly=true, secure=true if prod, same-site
-    // max-age to follow the token. extract from token
-    // TODO: create logout endpoint and remove cookie there
+    const res = NextResponse.json({
+      token,
+      payload: decoded,
+    });
+    // TODO: fix(security)
+    // set cookie with these attributes: same-site
 
     // Now server components will have access to token
     // Question: should we encrypt token?

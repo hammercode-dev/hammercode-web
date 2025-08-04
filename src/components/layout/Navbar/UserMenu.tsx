@@ -41,6 +41,11 @@ const DesktopUserMenu = () => {
             </div>
           </Link>
         </DropdownMenuItem>
+        {user?.role === "admin" && (
+          <DropdownMenuItem asChild>
+            <Link href="/admin/events">Dashboard</Link>
+          </DropdownMenuItem>
+        )}
         {USER_LINKS.map(({ id, href }) => (
           <DropdownMenuItem key={id} asChild>
             <Link href={href}>{t(`navbar.user.${id}`)}</Link>

@@ -17,5 +17,6 @@ export interface User {
 export interface UserContextType {
   user: User | null;
   isAuthenticated: boolean;
+  setUser: (user: User) => void;
   isLoading: boolean;
 }

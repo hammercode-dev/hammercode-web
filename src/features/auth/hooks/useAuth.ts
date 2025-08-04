@@ -21,7 +21,7 @@ export const useAuthService = () => {
       router.push("/");
       toast.success(t("sign-in-success"));
 
-      return res.data;
+      return res;
     } catch (err) {
       toast((err as Error)?.message || t("sign-in-failed"));
     } finally {

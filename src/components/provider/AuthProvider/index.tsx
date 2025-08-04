@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { AuthJwtPayload, UserContextType } from "@/types";
 
 export const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -15,8 +15,10 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ payload, children }: AuthProviderProps) => {
-  const user = payload || null;
+  const [user, setUser] = useState(payload || null);
   const isAuthenticated = !!user;
 
-  return <UserContext.Provider value={{ user, isAuthenticated, isLoading: false }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, setUser, isAuthenticated, isLoading: false }}>{children}</UserContext.Provider>
+  );
 };
