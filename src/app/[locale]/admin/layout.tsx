@@ -5,8 +5,8 @@ import { redirect } from "next/navigation";
 import RouteBreadcrumb from "@/components/common/RouteBreadcrumb";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import AdminSidebar from "@/components/layout/AdminSidebar";
-import { Separator } from "@/components/ui/separator";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/Separator";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/Sidebar";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuthUser();

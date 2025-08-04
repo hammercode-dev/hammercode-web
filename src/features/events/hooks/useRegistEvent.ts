@@ -8,7 +8,7 @@ import { EventType, RegistrationForm } from "@/domains/Events";
 export const useRegistEvent = (data: EventType) => {
   const t = useTranslations("EventsPage");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  // const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const registEvent = async (formData: RegistrationForm) => {
     setIsLoading(true);
@@ -39,8 +39,9 @@ export const useRegistEvent = (data: EventType) => {
       });
 
       setIsLoading(false);
-      setIsDialogOpen(false);
+      // setIsDialogOpen(false);
     } catch (error) {
+      console.log(error);
       toast.error(t("EventRegistration.failure.title"), {
         description: error instanceof Error ? error.message : t("EventRegistration.failure.description"),
       });
@@ -48,5 +49,5 @@ export const useRegistEvent = (data: EventType) => {
     }
   };
 
-  return { registEvent, isLoading, isDialogOpen, setIsDialogOpen };
+  return { registEvent, isLoading };
 };

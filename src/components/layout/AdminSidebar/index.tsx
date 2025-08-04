@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/Sidebar";
 import { SIDEBAR_NAV } from "./constant";
 import { DesktopUserMenu } from "../Navbar/UserMenu";
 
