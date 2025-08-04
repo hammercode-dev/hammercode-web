@@ -8,11 +8,11 @@ import { Button } from "@/components/ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ResetPasswordForm, resetPasswordSchema } from "@/domains/Auth";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/Form";
-import { useAuth } from "../hooks/useAuth";
+import { useAuthService } from "../hooks/useAuth";
 
 const ResetPassPage = () => {
   const t = useTranslations("Auth.ResetPassPage");
-  const { resetPassword, isLoading } = useAuth();
+  const { resetPassword, isLoading } = useAuthService();
 
   const form = useForm<ResetPasswordForm>({
     resolver: zodResolver(resetPasswordSchema),

@@ -9,11 +9,11 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { LoginForm, loginSchema } from "@/domains/Auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "@/lib/navigation";
-import { useAuth } from "../hooks/useAuth";
+import { useAuthService } from "../hooks/useAuth";
 
 const SignInPage = () => {
   const t = useTranslations("Auth.SignInPage");
-  const { login, isLoading } = useAuth();
+  const { login, isLoading } = useAuthService();
 
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),

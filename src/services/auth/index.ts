@@ -2,9 +2,18 @@ import { fetcher } from "../instance";
 import { LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm } from "@/domains/Auth";
 import { User } from "@/features/auth/types";
 import { HttpResponse } from "@/types/http";
+import axios from "axios";
 
 export const authService = {
   login(payload: LoginForm): Promise<HttpResponse<string>> {
+    return axios.post("/api/login", payload);
+  },
+
+  logout(): Promise<HttpResponse<unknown>> {
+    return axios.post("/api/logout");
+  },
+
+  getToken(payload: LoginForm): Promise<HttpResponse<string>> {
     return fetcher.post("auth/login", payload);
   },
 
