@@ -10,10 +10,6 @@ const config = {
 const injectInterceptors = (instance: AxiosInstance): AxiosInstance => {
   instance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-      const token = localStorage.getItem("accessToken");
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
       return config;
     },
     (error: AxiosError) => {
@@ -26,7 +22,6 @@ const injectInterceptors = (instance: AxiosInstance): AxiosInstance => {
       return response.data;
     },
     (error: AxiosError) => {
-      console.log({ error });
       return Promise.reject(error?.response?.data);
     }
   );
@@ -36,7 +31,9 @@ const injectInterceptors = (instance: AxiosInstance): AxiosInstance => {
 
 export const fetcher: AxiosInstance = injectInterceptors(
   axios.create({
-    baseURL: "https://lms-be-development.hammercode.org/api/v1/",
+    // baseURL: "https://lms-be-development.hammercode.org/api/v1/",
+    baseURL: "http://localhost:8000/api/v1/",
+    withCredentials: true,
     ...config,
   })
 );

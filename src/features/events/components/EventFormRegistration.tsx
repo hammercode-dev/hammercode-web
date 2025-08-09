@@ -27,7 +27,6 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
       name: "",
       email: "",
       phone_number: "",
-      net_amount: 0,
     },
   });
 
@@ -44,7 +43,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
       form.reset({
         name: user.username || "",
         email: user.email || "",
-        net_amount: 0,
+        phone_number: "",
       });
     }
   }, [user, form]);
@@ -70,7 +69,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       <FormItem>
                         <FormLabel>{t("EventRegistration.name.label")}</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder={t("EventRegistration.name.placeholder")} />
+                          <Input {...field} readOnly placeholder={t("EventRegistration.name.placeholder")} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -83,7 +82,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       <FormItem>
                         <FormLabel>{t("EventRegistration.email.label")}</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder={t("EventRegistration.email.placeholder")} />
+                          <Input {...field} readOnly placeholder={t("EventRegistration.email.placeholder")} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -114,26 +113,6 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                             accept="image/*"
                             onChange={(e) => onChange(e.target.files?.[0])}
                             placeholder={t("EventRegistration.image-proof-payment.placeholder")}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    name="net_amount"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("EventRegistration.net-amount.label")}</FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            type="number"
-                            placeholder={t("EventRegistration.net-amount.placeholder")}
-                            onChange={(e) => {
-                              field.onChange(Number(e.target.value || 0));
-                            }}
                           />
                         </FormControl>
                         <FormMessage />

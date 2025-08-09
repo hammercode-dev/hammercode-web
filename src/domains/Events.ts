@@ -45,8 +45,8 @@ export const eventSchema = z.object({
 export type EventType = z.infer<typeof eventSchema>;
 
 export const registrationSchema = z.object({
-  name: z.string({ required_error: "Name is required" }).min(1, "Name must be at least 1 character long"),
-  email: z.string({ required_error: "Email is required" }).email("Invalid email address"),
+  name: z.string().optional(),
+  email: z.string().optional(),
   phone_number: z
     .string({ required_error: "Phone number is required" })
     .min(10, "Phone number must be at least 10 digits"),
@@ -58,7 +58,6 @@ export const registrationSchema = z.object({
       }),
     z.string().min(1, "Image proof payment is required"),
   ]),
-  net_amount: z.number({ required_error: "Net amount is required" }).min(1, "Net amount must be at least 1"),
 });
 
 export type RegistrationForm = z.infer<typeof registrationSchema>;

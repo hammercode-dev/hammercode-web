@@ -9,7 +9,7 @@ const mockData: EventType = {
   title: "Advanced Frontend Workshop",
   description: "A deep dive into modern frontend development techniques and best practices.",
   author: "user_001",
-  image_event:
+  image:
     "https://static01.nyt.com/images/2021/05/02/business/00google-office1/00google-office1-videoSixteenByNineJumbo1600.jpg",
   date: "2024-09-15",
   status: "closed",

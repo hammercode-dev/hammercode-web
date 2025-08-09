@@ -7,11 +7,11 @@ import axios from "axios";
 
 export const authService = {
   login(payload: LoginForm): Promise<HttpResponse<{ token: string; payload: AuthJwtPayload }>> {
-    return axios.post("/api/login", payload);
+    return fetcher.post("auth/login", payload);
   },
 
   logout(): Promise<HttpResponse<unknown>> {
-    return axios.post("/api/logout");
+    return fetcher.post("logout");
   },
 
   getToken(payload: LoginForm): Promise<string> {
