@@ -4,10 +4,10 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { LoaderIcon } from "lucide-react";
-import { useMyEvents } from "./hooks/useEvent";
-import MyEventCard from "./components/MyEventCard";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { PaginationCustom } from "@/components/common/PaginationCustom";
+import { useMyEvents } from "./hooks/useMyEvent";
+import MyEventCard from "./components/MyEventCard";
 
 interface MyEventPageProps {
   page?: number;

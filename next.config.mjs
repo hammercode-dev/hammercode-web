@@ -15,6 +15,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "lms-be-development.hammercode.org",
       },
+      {
+        protocol: "http",
+        port: "8000",
+        hostname: "localhost",
+      },
     ],
   },
   trailingSlash: true,

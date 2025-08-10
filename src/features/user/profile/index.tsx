@@ -2,6 +2,7 @@
 import { motion } from "motion/react";
 
 const ProfilePage = () => {
+  // TODO: Implement profile page
   return (
     <section>
       <header className="my-8">
