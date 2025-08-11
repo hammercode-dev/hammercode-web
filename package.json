@@ -16,7 +16,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format && git add -A . --allow-empty"
+      "pre-commit": "pnpm format && git add -A . --allow-empty"
     }
   },
   "dependencies": {
