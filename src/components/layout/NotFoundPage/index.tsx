@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const NotFoundPage = () => {
   return (
-    <div className="flex flex-col items-center gap-6 text-center">
+    <div className="flex h-screen w-full flex-col items-center justify-center gap-6 text-center">
       <Image
         src="/assets/images/illustrations/404.svg"
         alt="not-found"
