@@ -1,26 +1,28 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const NotFoundPage = () => {
+  const t = useTranslations("Layout.not_found");
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center gap-6 text-center">
+    <div className="flex h-screen w-full flex-col items-center justify-center text-center">
       <Image
-        src="/assets/images/illustrations/404.svg"
+        src="/assets/images/illustrations/404.gif"
         alt="not-found"
         width={320}
         height={320}
-        className="h-86 w-86 object-contain"
+        className="w-xl min-w-72 object-contain"
       />
-      <div className="space-y-4">
-        <h1 className="text-hmc-base-darkblue text-2xl font-bold tracking-tight lg:text-4xl">404 - Page Not Found</h1>
-        <p className="text-muted-foreground text-lg">Oops! The page you're looking for doesn't exist.</p>
+      <div className="-mt-14 space-y-4 md:-mt-24">
+        <h1 className="text-muted-foreground text-xl font-bold tracking-tight lg:text-3xl">{t("heading")}</h1>
+        <p className="text-muted-foreground text-lg">{t("sub-heading")}</p>
         <div className="pt-4">
           <Link
             href="/"
             className="bg-hmc-base-darkblue hover:bg-hmc-darkblue-blue/90 cursor-pointer rounded-lg p-3 text-white"
           >
-            Back to Home
+            {t("btn")}
           </Link>
         </div>
       </div>

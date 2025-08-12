@@ -21,6 +21,11 @@
       "link-3": "Testimoni",
       "link-4": "Blog",
       "link-5": "Donasi"
+    },
+    "not_found": {
+      "heading": "Halaman Tidak Ditemukan",
+      "sub-heading": "Oops! Halaman yang sedang dicari tidak ditemukan",
+      "btn": "Kembali ke Home"
     }
   },
   "LocaleLayout": {

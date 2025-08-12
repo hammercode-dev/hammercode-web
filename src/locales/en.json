@@ -21,6 +21,11 @@
       "link-3": "Testimonial",
       "link-4": "Blogs",
       "link-5": "Donate"
+    },
+    "not_found": {
+      "heading": "Page Not Found",
+      "sub-heading": "Oops! The page you're looking for doesn't exist",
+      "btn": "Back to Home"
     }
   },
   "LocaleLayout": {
