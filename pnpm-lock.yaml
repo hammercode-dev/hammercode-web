@@ -62,6 +62,9 @@ importers:
       embla-carousel-react:
         specifier: ^8.2.0
         version: 8.6.0(react@19.1.0)
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       jwt-decode:
         specifier: ^4.0.0
         version: 4.0.0
@@ -135,6 +138,9 @@ importers:
       "@testing-library/user-event":
         specifier: ^14.5.2
         version: 14.6.1(@testing-library/dom@10.4.1)
+      "@types/js-cookie":
+        specifier: ^3.0.6
+        version: 3.0.6
       "@types/node":
         specifier: ^20
         version: 20.19.9
@@ -1709,6 +1715,10 @@ packages:
   "@types/hast@3.0.4":
     resolution:
       { integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ== }
+
+  "@types/js-cookie@3.0.6":
+    resolution:
+      { integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ== }
 
   "@types/json5@0.0.29":
     resolution:
@@ -3375,6 +3385,11 @@ packages:
     resolution:
       { integrity: sha512-twQoecYPiVA5K/h6SxtORw/Bs3ar+mLUtoPSc7iMXzQzK8d7eJ/R09wmTwAjiamETn1cXYPGfNnu7DMoHgu12w== }
     hasBin: true
+
+  js-cookie@3.0.5:
+    resolution:
+      { integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw== }
+    engines: { node: ">=14" }
 
   js-tokens@4.0.0:
     resolution:
@@ -6455,6 +6470,8 @@ snapshots:
     dependencies:
       "@types/unist": 3.0.3
 
+  "@types/js-cookie@3.0.6": {}
+
   "@types/json5@0.0.29": {}
 
   "@types/mdast@4.0.4":
@@ -8061,6 +8078,8 @@ snapshots:
       "@pkgjs/parseargs": 0.11.0
 
   jiti@2.5.1: {}
+
+  js-cookie@3.0.5: {}
 
   js-tokens@4.0.0: {}
 

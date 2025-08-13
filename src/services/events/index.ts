@@ -3,19 +3,31 @@ import { fetcher } from "../instance";
 import { EventType, RegistrationForm } from "@/domains/Events";
 
 export const eventsService = {
+  /**
+   * API to get all events
+   */
   getEvents(): Promise<HttpResponse<EventType[]>> {
     return fetcher.get("public/events");
   },
 
+  /**
+   * API to get detail event by id event
+   */
   getEventById(id: string): Promise<HttpResponse<EventType>> {
     return fetcher.get(`public/events/${id}`);
   },
 
-  registEvent(payload: RegistrationForm): Promise<HttpResponse<{ order_no: string }>> {
-    return fetcher.post("public/events/registrations", payload);
+  /**
+   * API to get register event user
+   */
+  registerEvent(payload: RegistrationForm): Promise<HttpResponse<{ order_no: string }>> {
+    return fetcher.post("/events/registrations", payload);
   },
 
-  getMyEvents(page?: number, limit?: number): Promise<HttpResponse<EventType[]>> {
-    return fetcher.get(`public/events?page=${page}&limit=${limit}`); // TODO: my-events endpoint & use fetcherAuth
+  /**
+   * API to retrieve the list of events owned by the current user.
+   */
+  getMyEvents(page: number = 1, limit: number = 10): Promise<HttpResponse<EventType[]>> {
+    return fetcher.get(`/events/registrations?page=${page}&limit=${limit}`);
   },
 };
