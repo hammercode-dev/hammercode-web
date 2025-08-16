@@ -19,7 +19,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { Separator } from "@/components/ui/Separator";
-import ToolbarButton from "./ToolbarButton";
+import { ToolbarButton } from "@/components/common/TextEditor";
 
 interface ToolbarProps {
   editor: Editor;
