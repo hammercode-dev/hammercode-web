@@ -1,5 +1,6 @@
 "use client";
 
+import TextEditor from "@/components/common/TextEditor";
 import { useEvents } from "@/features/events/hooks/useEvent";
 import Link from "next/link";
 
@@ -8,6 +9,7 @@ const EventListPage = () => {
   return (
     <div>
       <h1>Event List</h1>
+      <TextEditor />
       {isLoading && <p>Fetching events...</p>}
       <ul>
         {events.map((ev) => (
