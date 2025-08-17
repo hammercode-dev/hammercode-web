@@ -14,7 +14,11 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Toolbar } from "@/components/common/TextEditor";
 
-const TextEditor = () => {
+interface TextEditorProps {
+  markdownOutput?: boolean;
+}
+
+const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
   const [markdownContent, setMarkdownContent] = useState("");
 
   const turndownService = useMemo(() => {
@@ -137,7 +141,7 @@ const TextEditor = () => {
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 p-6">
+    <div className="w-full space-y-6">
       <Card>
         <CardHeader className="p-1">
           <Toolbar
@@ -156,26 +160,29 @@ const TextEditor = () => {
           </div>
         </CardContent>
       </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl">Markdown Output</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="relative">
-            <pre className="bg-muted max-h-64 overflow-x-auto overflow-y-auto rounded-lg border p-4 text-sm">
-              <code className="text-muted-foreground">{markdownContent || "No content yet..."}</code>
-            </pre>
-            <Button
-              onClick={() => navigator.clipboard.writeText(markdownContent)}
-              variant="outline"
-              size="sm"
-              className="absolute top-2 right-2"
-            >
-              Copy
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+
+      {markdownOutput && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-xl">Markdown Output</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="relative">
+              <pre className="bg-muted max-h-64 overflow-x-auto overflow-y-auto rounded-lg border p-4 text-sm">
+                <code className="text-muted-foreground">{markdownContent || "No content yet..."}</code>
+              </pre>
+              <Button
+                onClick={() => navigator.clipboard.writeText(markdownContent)}
+                variant="outline"
+                size="sm"
+                className="absolute top-2 right-2"
+              >
+                Copy
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };

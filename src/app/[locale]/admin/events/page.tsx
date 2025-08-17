@@ -1,25 +1,9 @@
 "use client";
 
-import TextEditor from "@/components/common/TextEditor";
-import { useEvents } from "@/features/events/hooks/useEvent";
-import Link from "next/link";
+import { AdminEventsListPage } from "@/features/events/admin";
 
 const EventListPage = () => {
-  const { events, isLoading } = useEvents();
-  return (
-    <div>
-      <h1>Event List</h1>
-      <TextEditor />
-      {isLoading && <p>Fetching events...</p>}
-      <ul>
-        {events.map((ev) => (
-          <li key={ev.id}>
-            {ev.title} <Link href={`/admin/events/${ev.id}/edit`}>Edit</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <AdminEventsListPage />;
 };
 
 export default EventListPage;
