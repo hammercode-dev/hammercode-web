@@ -21,13 +21,32 @@ export const LINKS = [
   },
 ];
 
-export const USER_LINKS = [
-  // {
-  //   id: "my-blogs",
-  //   href: "/my-blogs",
-  // },
-  {
-    id: "my-events",
-    href: "/my-events",
-  },
-];
+export type UserRole = "admin" | "user";
+
+export interface LinkItem {
+  id: string;
+  href: string;
+}
+
+export const USER_LINKS: Record<UserRole, LinkItem[]> = {
+  admin: [
+    {
+      id: "dashboard",
+      href: "/admin/events",
+    },
+  ],
+  user: [
+    // {
+    //   id: "my-blogs",
+    //   href: "/my-blogs",
+    // },
+    {
+      id: "my-events",
+      href: "/my-events",
+    },
+  ],
+};
+
+export const getUserLinks = (role: string): LinkItem[] => {
+  return USER_LINKS[role as UserRole] || [];
+};

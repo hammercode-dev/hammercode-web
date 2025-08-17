@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/Button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/DropdownMenu";
 import { Link } from "@/lib/navigation";
 import { ChevronLeft, LogOut, User } from "lucide-react";
-import { USER_LINKS } from "./constant";
 import { useTranslations } from "next-intl";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import { useAuthService } from "@/features/auth/hooks/useAuth";
+import { getUserLinks } from "./constant";
 
 const DesktopUserMenu = () => {
   const t = useTranslations("Layout");
@@ -41,16 +41,12 @@ const DesktopUserMenu = () => {
             </div>
           </Link>
         </DropdownMenuItem>
-        {user?.role === "admin" && (
-          <DropdownMenuItem asChild>
-            <Link href="/admin/events">Dashboard</Link>
-          </DropdownMenuItem>
-        )}
-        {USER_LINKS.map(({ id, href }) => (
-          <DropdownMenuItem key={id} asChild>
-            <Link href={href}>{t(`navbar.user.${id}`)}</Link>
-          </DropdownMenuItem>
-        ))}
+        {user &&
+          getUserLinks(user.role).map(({ id, href }) => (
+            <DropdownMenuItem key={id} asChild>
+              <Link href={href}>{t(`navbar.user.${id}`)}</Link>
+            </DropdownMenuItem>
+          ))}
         <DropdownMenuItem onClick={logout}>
           <span className="text-destructive hover:text-destructive/80 flex cursor-pointer items-center gap-2">
             <LogOut size={16} />
@@ -84,13 +80,14 @@ const MobileUserMenu = () => {
               <p className="text-muted-foreground text-xs">{user?.email}</p>
             </div>
           </Link>
-          {USER_LINKS.map(({ id, href }) => (
-            <Link key={id} href={href}>
-              <Button variant="outline" size="sm" className="w-full cursor-pointer justify-start">
-                {t(`navbar.user.${id}`)}
-              </Button>
-            </Link>
-          ))}
+          {user &&
+            getUserLinks(user.role).map(({ id, href }) => (
+              <Link key={id} href={href}>
+                <Button variant="outline" size="sm" className="w-full cursor-pointer justify-start">
+                  {t(`navbar.user.${id}`)}
+                </Button>
+              </Link>
+            ))}
           <Button
             variant="outline"
             size="sm"

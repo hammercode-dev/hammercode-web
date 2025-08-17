@@ -11,6 +11,7 @@
       "sign-out": "Sign Out",
       "profile": "Profile",
       "user": {
+        "dashboard": "Dashboard",
         "my-blogs": "My Blogs",
         "my-events": "My Events"
       }
