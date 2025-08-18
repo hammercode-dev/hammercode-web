@@ -16,8 +16,8 @@ const MyEventCard: FC<{ data: EventType }> = ({ data }) => {
       <div className="grid gap-4 lg:grid-cols-4">
         <div className="bg-muted overflow-hidden rounded-lg">
           <Image
+            alt={String(id)}
             src={image ?? "/assets/images/events/fallbackImage.webp"}
-            alt={title}
             width={540}
             height={240}
             className="object-cover object-center"

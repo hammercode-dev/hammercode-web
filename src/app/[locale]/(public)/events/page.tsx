@@ -1,7 +1,7 @@
-import { EventListPage } from "@/features/events";
+import { PublicEventListPage } from "@/features/events/pages";
 
 const EventList = () => {
-  return <EventListPage />;
+  return <PublicEventListPage />;
 };
 
 export default EventList;

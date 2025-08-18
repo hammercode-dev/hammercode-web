@@ -1,15 +1,29 @@
 "use client";
+
+import React from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
-import Link from "next/link";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
-import EventCardV2 from "./components/EventCardV2";
 import { LoaderIcon } from "lucide-react";
-import { useEvents } from "./hooks/useEvent";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
+import { PaginationCustom } from "@/components/common/PaginationCustom";
+import { useMyEvents } from "../hooks/useMyEvent";
+import MyEventCard from "../components/MyEventCard";
 
-const EventListPage = () => {
-  const t = useTranslations("EventsPage");
-  const { events, isLoading } = useEvents();
+interface UserEventPageProps {
+  page?: number;
+  perPage?: number;
+}
+
+const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
+  const t = useTranslations("MyEventPage");
+  const { myEvents, isLoading } = useMyEvents(page, perPage);
+
+  const totalEvents = myEvents.length;
+  const totalPages = Math.ceil(totalEvents / perPage);
+  const startIndex = (page - 1) * perPage;
+  const endIndex = startIndex + perPage;
+
+  const events = myEvents.slice(startIndex, endIndex);
 
   if (isLoading) {
     return (
@@ -18,10 +32,9 @@ const EventListPage = () => {
       </div>
     );
   }
-
   return (
-    <section className="container mx-auto px-5 pt-24 pb-28">
-      <header className="w-full rounded-lg">
+    <section>
+      <header className="my-8">
         <div className="flex h-16 flex-wrap items-center justify-between gap-1">
           <div>
             <motion.h1
@@ -79,10 +92,9 @@ const EventListPage = () => {
         }}
         initial="hidden"
         animate="show"
-        className="pt-16 md:pt-8"
       >
-        <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
-          {events.map((event, index) => (
+        <div className="grid gap-6">
+          {events.map((event) => (
             <motion.div
               key={event?.id}
               variants={{
@@ -97,20 +109,16 @@ const EventListPage = () => {
                   },
                 },
               }}
-              whileHover={{ y: -5 }}
-              className={`${index === 0 ? "lg:col-span-2" : "col-span-1"}`}
+              whileHover={{ scale: 1.01 }}
             >
-              <Link href={`/events/${event?.id}`}>{event && <EventCardV2 data={event} />}</Link>
+              {event && <MyEventCard data={event} />}
             </motion.div>
           ))}
-          {/* {mockEvents.map((event) => (
-            <Link key={event.id} href={`/events/${event.id}`}>
-              <EventCardV2 data={event} />
-            </Link>
-          ))} */}
         </div>
+        <PaginationCustom currentPage={page} totalPages={totalPages} />
       </motion.div>
     </section>
   );
 };
-export default EventListPage;
+
+export default UserEventPage;

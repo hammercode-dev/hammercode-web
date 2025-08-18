@@ -1,5 +1,5 @@
-import ProfilePage from "@/features/user/profile";
+import { UserProfilePage } from "@/features/profile/pages";
 
 export default async function Profile() {
-  return <ProfilePage />;
+  return <UserProfilePage />;
 }

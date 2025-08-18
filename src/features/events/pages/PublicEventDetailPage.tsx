@@ -6,10 +6,10 @@ import { useTranslations } from "next-intl";
 import { useFormatPrice } from "@/lib/format";
 import { Skeleton } from "@/components/ui/Skeleton";
 import TitleContainer from "@/components/ui/TitleContainer";
-import EventInfo from "./components/EventInfo";
-import EventBreadcrumbs from "./components/EventBreadcrumb";
-import EventFormRegistration from "./components/EventFormRegistration";
-import { useEventById } from "./hooks/useEvent";
+import EventInfo from "../components/EventInfo";
+import EventBreadcrumbs from "../components/EventBreadcrumb";
+import EventFormRegistration from "../components/EventFormRegistration";
+import { useEventById } from "../hooks/useEvent";
 import { Separator } from "@/components/ui/Separator";
 
 interface EventDetailPageProp {

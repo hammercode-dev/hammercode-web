@@ -1,6 +1,6 @@
 "use client";
 
-import { AdminEventsListPage } from "@/features/events/admin";
+import { AdminEventsListPage } from "@/features/events/pages";
 
 const EventListPage = () => {
   return <AdminEventsListPage />;

@@ -1,4 +1,4 @@
-import MyEventPage from "@/features/user/my-events";
+import { UserEventPage } from "@/features/events/pages";
 
 interface MyEventsPageProps {
   searchParams: Promise<{
@@ -10,5 +10,5 @@ interface MyEventsPageProps {
 export default async function MyEventsPage({ searchParams }: MyEventsPageProps) {
   const { page, limit } = await searchParams;
 
-  return <MyEventPage page={Number(page)} perPage={Number(limit)} />;
+  return <UserEventPage page={Number(page) || 1} perPage={Number(limit) || 5} />;
 }

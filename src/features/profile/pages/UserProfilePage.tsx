@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 
-const ProfilePage = () => {
+const UserProfilePage = () => {
   // TODO: Implement profile page
   return (
     <section>
@@ -26,4 +26,5 @@ const ProfilePage = () => {
     </section>
   );
 };
-export default ProfilePage;
+
+export default UserProfilePage;
