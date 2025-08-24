@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
@@ -10,6 +10,7 @@ import MyEventCard from "../components/MyEventCard";
 import { EVENTS_TYPE } from "@/constants/event";
 import Loader from "@/components/common/Loader";
 import { UserEventType } from "@/domains/Events";
+import { NotFoundData } from "@/components/common/NotFoundData";
 
 interface UserEventPageProps {
   page?: number;
@@ -18,7 +19,8 @@ interface UserEventPageProps {
 
 const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
   const t = useTranslations("MyEventPage");
-  const { myEvents, isLoading } = useMyEvents(page, perPage);
+  const [typeActive, setTypeActive] = useState("all");
+  const { myEvents, isLoading } = useMyEvents(page, perPage, typeActive);
 
   const totalEvents = myEvents.length;
   const totalPages = Math.ceil(totalEvents / perPage);
@@ -55,12 +57,13 @@ const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
             transition={{ duration: 0.4, delay: 0.7 }}
             className="w-full sm:w-auto"
           >
-            <Select>
+            <Select onValueChange={setTypeActive} defaultValue="all">
               <SelectTrigger className="sm:w-[180px]">
-                <SelectValue placeholder="Category" />
+                <SelectValue placeholder="All Type Event" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
+                  <SelectItem value="all">All Type Event</SelectItem>
                   {EVENTS_TYPE.map((item) => (
                     <SelectItem key={item} value={item}>
                       {item}
@@ -74,6 +77,8 @@ const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
       </header>
       {isLoading ? (
         <Loader />
+      ) : events.length === 0 ? (
+        <NotFoundData />
       ) : (
         <motion.div
           variants={{

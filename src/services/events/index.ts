@@ -27,7 +27,13 @@ export const eventsService = {
   /**
    * API to retrieve the list of events owned by the current user.
    */
-  async getMyEvents(page: number = 1, limit: number = 10): Promise<HttpResponse<UserEventType[]>> {
-    return fetcher.get(`/events/registrations?page=${page}&limit=${limit}`);
+  async getMyEvents(page: number = 1, limit: number = 10, type?: string): Promise<HttpResponse<UserEventType[]>> {
+    return fetcher.get(`/events/registrations`, {
+      params: {
+        page,
+        limit,
+        type,
+      },
+    });
   },
 };
