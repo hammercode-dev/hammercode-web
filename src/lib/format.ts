@@ -21,3 +21,15 @@ export function useFormatPrice(price?: number) {
     minimumFractionDigits: 0,
   }).format(price as number);
 }
+
+export const useFormatDateEvent = (dateString: string): string => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("id-ID", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+};

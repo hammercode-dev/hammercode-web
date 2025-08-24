@@ -1,6 +1,6 @@
 import { HttpResponse } from "@/types/http";
 import { fetcher } from "../instance";
-import { EventType, RegistrationForm } from "@/domains/Events";
+import { EventType, RegistrationForm, UserEventType } from "@/domains/Events";
 
 export const eventsService = {
   /**
@@ -27,7 +27,7 @@ export const eventsService = {
   /**
    * API to retrieve the list of events owned by the current user.
    */
-  getMyEvents(page: number = 1, limit: number = 10): Promise<HttpResponse<EventType[]>> {
+  async getMyEvents(page: number = 1, limit: number = 10): Promise<HttpResponse<UserEventType[]>> {
     return fetcher.get(`/events/registrations?page=${page}&limit=${limit}`);
   },
 };

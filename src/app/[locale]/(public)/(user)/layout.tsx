@@ -19,7 +19,7 @@ export default function UserLayout({ children }: UserLayoutProps) {
     <ProtectedRoute>
       <section className="container mx-auto px-5 pt-24 pb-28">
         <div className="grid grid-cols-5 gap-8">
-          <aside className="fixed right-0 bottom-0 left-0 col-span-1 mt-8 flex w-full flex-col justify-between gap-4 self-start rounded-lg bg-white lg:sticky lg:top-24 lg:flex-col lg:justify-start lg:bg-transparent dark:bg-slate-950">
+          <aside className="mt-8 hidden w-full flex-col justify-between gap-4 self-start rounded-lg lg:sticky lg:top-24 lg:col-span-1 lg:flex lg:flex-col lg:justify-start lg:bg-transparent">
             <div className="flex items-center gap-4">
               <Avatar className="h-12 w-12">
                 <AvatarImage src="" alt="profile" />
@@ -43,7 +43,7 @@ export default function UserLayout({ children }: UserLayoutProps) {
             </nav>
           </aside>
 
-          <div className="col-span-4">{children}</div>
+          <div className="col-span-5 lg:col-span-4">{children}</div>
         </div>
       </section>
     </ProtectedRoute>
