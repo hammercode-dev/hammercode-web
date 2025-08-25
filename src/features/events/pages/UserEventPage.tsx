@@ -1,13 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
-import { LoaderIcon } from "lucide-react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { PaginationCustom } from "@/components/common/PaginationCustom";
 import { useMyEvents } from "../hooks/useMyEvent";
 import MyEventCard from "../components/MyEventCard";
+import { EVENTS_TYPE } from "@/constants/event";
+import Loader from "@/components/common/Loader";
+import { UserEventType } from "@/domains/Events";
+import { NotFoundData } from "@/components/common/NotFoundData";
 
 interface UserEventPageProps {
   page?: number;
@@ -16,22 +19,16 @@ interface UserEventPageProps {
 
 const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
   const t = useTranslations("MyEventPage");
-  const { myEvents, isLoading } = useMyEvents(page, perPage);
+  const [typeActive, setTypeActive] = useState("all");
+  const { myEvents, isLoading } = useMyEvents(page, perPage, typeActive);
 
   const totalEvents = myEvents.length;
   const totalPages = Math.ceil(totalEvents / perPage);
   const startIndex = (page - 1) * perPage;
   const endIndex = startIndex + perPage;
 
-  const events = myEvents.slice(startIndex, endIndex);
+  const events: UserEventType[] = myEvents.slice(startIndex, endIndex);
 
-  if (isLoading) {
-    return (
-      <div className="flex h-[75vh] items-center justify-center">
-        <LoaderIcon className="size-12 animate-spin" />
-      </div>
-    );
-  }
   return (
     <section>
       <header className="my-8">
@@ -60,63 +57,71 @@ const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
             transition={{ duration: 0.4, delay: 0.7 }}
             className="w-full sm:w-auto"
           >
-            <Select>
+            <Select onValueChange={setTypeActive} defaultValue="all">
               <SelectTrigger className="sm:w-[180px]">
-                <SelectValue placeholder="Category" />
+                <SelectValue placeholder="All Type Event" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="apple">Workshop</SelectItem>
-                  <SelectItem value="banana">Tech Talk</SelectItem>
-                  <SelectItem value="blueberry">Learning</SelectItem>
-                  <SelectItem value="grapes">Ngobar</SelectItem>
+                  <SelectItem value="all">All Type Event</SelectItem>
+                  {EVENTS_TYPE.map((item) => (
+                    <SelectItem key={item} value={item}>
+                      {item}
+                    </SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
           </motion.div>
         </div>
       </header>
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 20 },
-          show: {
-            opacity: 1,
-            y: 0,
-            transition: {
-              duration: 0.7,
-              staggerChildren: 0.4,
-              delayChildren: 0.2,
-              ease: "easeOut",
+      {isLoading ? (
+        <Loader />
+      ) : events.length === 0 ? (
+        <NotFoundData />
+      ) : (
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            show: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.7,
+                staggerChildren: 0.4,
+                delayChildren: 0.2,
+                ease: "easeOut",
+              },
             },
-          },
-        }}
-        initial="hidden"
-        animate="show"
-      >
-        <div className="grid gap-6">
-          {events.map((event) => (
-            <motion.div
-              key={event?.id}
-              variants={{
-                hidden: { y: 20, opacity: 0 },
-                show: {
-                  y: 0,
-                  opacity: 1,
-                  transition: {
-                    type: "spring",
-                    stiffness: 50,
-                    damping: 20,
+          }}
+          initial="hidden"
+          animate="show"
+        >
+          <div className="grid gap-6">
+            {events.map((event: UserEventType) => (
+              <motion.div
+                key={event?.id}
+                variants={{
+                  hidden: { y: 20, opacity: 0 },
+                  show: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 50,
+                      damping: 20,
+                    },
                   },
-                },
-              }}
-              whileHover={{ scale: 1.01 }}
-            >
-              {event && <MyEventCard data={event} />}
-            </motion.div>
-          ))}
-        </div>
-        <PaginationCustom currentPage={page} totalPages={totalPages} />
-      </motion.div>
+                }}
+                whileHover={{ scale: 1.01 }}
+              >
+                {event && <MyEventCard data={event} />}
+              </motion.div>
+            ))}
+          </div>
+          <PaginationCustom currentPage={page} totalPages={totalPages} />
+        </motion.div>
+      )}
     </section>
   );
 };

@@ -5,8 +5,9 @@ interface PaginatedResponse {
   total_pages?: number;
 }
 
-export interface HttpResponse<T> extends PaginatedResponse {
+export interface HttpResponse<T> {
   code: number;
   message: string;
   data: T;
+  pagination?: PaginatedResponse;
 }

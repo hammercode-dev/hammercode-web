@@ -41,6 +41,9 @@ importers:
       "@radix-ui/react-tooltip":
         specifier: ^1.2.7
         version: 1.2.7(@types/react-dom@19.1.5(@types/react@19.1.5))(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      "@tanstack/react-query":
+        specifier: ^5.85.5
+        version: 5.85.5(react@19.1.0)
       "@tanstack/react-table":
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1667,6 +1670,16 @@ packages:
       { integrity: sha512-0wDLwCVF5V3x3b1SGXPCDcdsbDHMBe+lkFzBRaHeLvNi+nrrnZ1lA18u+OTWO8iSWU2GxUOCvlXtDuqftc1oiA== }
     peerDependencies:
       tailwindcss: ">=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1"
+
+  "@tanstack/query-core@5.85.5":
+    resolution:
+      { integrity: sha512-KO0WTob4JEApv69iYp1eGvfMSUkgw//IpMnq+//cORBzXf0smyRwPLrUvEe5qtAEGjwZTXrjxg+oJNP/C00t6w== }
+
+  "@tanstack/react-query@5.85.5":
+    resolution:
+      { integrity: sha512-/X4EFNcnPiSs8wM2v+b6DqS5mmGeuJQvxBglmDxl6ZQb5V26ouD2SJYAcC3VjbNwqhY2zjxVD15rDA5nGbMn3A== }
+    peerDependencies:
+      react: ^18 || ^19
 
   "@tanstack/react-table@8.21.3":
     resolution:
@@ -6782,6 +6795,13 @@ snapshots:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.11
+
+  "@tanstack/query-core@5.85.5": {}
+
+  "@tanstack/react-query@5.85.5(react@19.1.0)":
+    dependencies:
+      "@tanstack/query-core": 5.85.5
+      react: 19.1.0
 
   "@tanstack/react-table@8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)":
     dependencies:

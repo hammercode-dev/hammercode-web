@@ -15,6 +15,10 @@ const badgeVariants = cva(
         soon: "border-transparent bg-green-500 text-white hover:bg-green-600",
         closed: "border-transparent bg-red-500 text-white hover:bg-red-600",
         open: "border-transparent bg-blue-500 text-white hover:bg-blue-600",
+        // for payment status
+        PENDING: "border-transparent bg-yellow-500 text-white hover:bg-yellow-600",
+        SUCCESS: "border-transparent bg-green-500 text-white hover:bg-green-600",
+        FAILED: "border-transparent bg-red-500 text-white hover:bg-red-600",
       },
     },
     defaultVariants: {
