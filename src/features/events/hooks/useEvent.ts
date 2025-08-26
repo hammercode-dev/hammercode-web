@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { eventsService } from "@/services/events";
-import { EventType } from "@/domains/Events";
+import { EventType, UserEventType } from "@/domains/Events";
 
 export const useEventById = (eventId: string) => {
   const [event, setEvent] = useState<EventType>({} as EventType);
@@ -50,7 +50,7 @@ export const useEvents = () => {
 };
 
 export const useMyEvents = (page: number = 1, limit: number = 10) => {
-  const [myEvents, setMyEvents] = useState<EventType[]>([]);
+  const [myEvents, setMyEvents] = useState<UserEventType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
