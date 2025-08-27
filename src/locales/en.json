@@ -235,7 +235,7 @@
   },
   "Profile": {
     "validation": {
-      "username-required": "Nama Panggilan wajib diisi",
+      "username-required": "Username is required",
       "fullname-required": "Fullname is required",
       "date-of-birth-required": "Date of birth is required",
       "gender-required": "Please select a gender",
@@ -244,6 +244,46 @@
       "github-invalid-url": "Please enter a valid GitHub URL",
       "linkedin-invalid-url": "Please enter a valid LinkedIn URL",
       "personal-web-invalid-url": "Please enter a valid personal website URL"
+    },
+    "toast": {
+      "update-success": "Profile updated successfully!"
+    },
+    "form": {
+      "title": {
+        "account": "Account Information",
+        "information": "Additional Information"
+      },
+      "tab": {
+        "account": "Account",
+        "information": "Information"
+      },
+      "placeholder": {
+        "username": "Enter your username",
+        "fullname": "Enter your full name",
+        "date-of-birth": "Pick a date",
+        "gender": "Select gender",
+        "phone-number": "Enter your phone number",
+        "address": "Enter your address",
+        "github": "Enter your GitHub account",
+        "linkedin": "Enter your LinkedIn account",
+        "personal-web": "Enter your personal website"
+      },
+      "label": {
+        "username": "Username",
+        "fullname": "Full Name",
+        "date-of-birth": "Date of Birth",
+        "gender": "Gender",
+        "phone-number": "Phone Number",
+        "address": "Address",
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "personal-web": "Personal Website"
+      },
+      "save-button": "Save Profile"
+    },
+    "gender": {
+      "male": "Male",
+      "female": "Female"
     }
   }
 }

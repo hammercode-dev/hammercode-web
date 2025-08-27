@@ -235,7 +235,7 @@
   },
   "Profile": {
     "validation": {
-      "username-required": "Nama Panggilan wajib diisi",
+      "username-required": "Nama pengguna wajib diisi",
       "fullname-required": "Nama lengkap wajib diisi",
       "date-of-birth-required": "Tanggal lahir wajib diisi",
       "gender-required": "Silakan pilih jenis kelamin",
@@ -244,6 +244,46 @@
       "github-invalid-url": "Silakan masukkan URL GitHub yang valid",
       "linkedin-invalid-url": "Silakan masukkan URL LinkedIn yang valid",
       "personal-web-invalid-url": "Silakan masukkan URL website pribadi yang valid"
+    },
+    "toast": {
+      "update-success": "Profil berhasil diperbarui!"
+    },
+    "form": {
+      "title": {
+        "account": "Informasi Akun",
+        "information": "Informasi Tambahan"
+      },
+      "tab": {
+        "account": "Akun",
+        "information": "Informasi"
+      },
+      "placeholder": {
+        "username": "Masukkan nama pengguna",
+        "fullname": "Masukkan nama lengkap",
+        "date-of-birth": "Pilih tanggal",
+        "gender": "Pilih jenis kelamin",
+        "phone-number": "Masukkan nomor telepon",
+        "address": "Masukkan alamat",
+        "github": "Masukkan akun GitHub",
+        "linkedin": "Masukkan akun LinkedIn",
+        "personal-web": "Masukkan website pribadi"
+      },
+      "label": {
+        "username": "Nama Pengguna",
+        "fullname": "Nama Lengkap",
+        "date-of-birth": "Tanggal Lahir",
+        "gender": "Jenis Kelamin",
+        "phone-number": "Nomor Telepon",
+        "address": "Alamat",
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "personal-web": "Website Pribadi"
+      },
+      "save-button": "Simpan Profil"
+    },
+    "gender": {
+      "male": "Laki-laki",
+      "female": "Perempuan"
     }
   }
 }

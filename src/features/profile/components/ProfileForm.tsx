@@ -21,7 +21,7 @@ interface ProfileFormProps {
 }
 
 const ProfileForm = ({ activeTab }: ProfileFormProps) => {
-  const t = useTranslations();
+  const t = useTranslations("Profile");
   const profileFormSchema = createProfileFormSchema(t);
   const { data, isLoading } = useGetProfile();
   const { mutate } = useUpdateProfile();
@@ -33,6 +33,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
       fullname: "",
       date_of_birth: "",
       phone_number: "",
+      gender: "",
       address: "",
       github: "",
       linkedin: "",
@@ -47,6 +48,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
         fullname: data.fullname || "",
         date_of_birth: data.date_of_birth || "",
         phone_number: data.phone_number || "",
+        gender: data.gender || "",
         address: data.address || "",
         github: data.github || "",
         linkedin: data.linkedin || "",
@@ -56,8 +58,6 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
   }, [data]);
 
   const onSubmit = (data: ProfileFormType) => {
-    // ! TODO handle query mutation
-    console.log("Profile data:", data);
     mutate(data);
   };
 
@@ -74,9 +74,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>{t("form.label.username")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your username" {...field} />
+                  <Input placeholder={t("form.placeholder.username")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -88,9 +88,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
             name="fullname"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
+                <FormLabel>{t("form.label.fullname")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your full name" {...field} />
+                  <Input placeholder={t("form.placeholder.fullname")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -102,7 +102,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
             name="date_of_birth"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Date of Birth</FormLabel>
+                <FormLabel>{t("form.label.date-of-birth")}</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -110,7 +110,11 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
                         variant="outline"
                         className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
                       >
-                        {field.value ? format(new Date(field.value), "PPP") : <span>Pick a date</span>}
+                        {field.value ? (
+                          format(new Date(field.value), "PPP")
+                        ) : (
+                          <span>{t("form.placeholder.date-of-birth")}</span>
+                        )}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </FormControl>
@@ -139,15 +143,15 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
             name="gender"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Gender</FormLabel>
+                <FormLabel>{t("form.label.gender")}</FormLabel>
                 <FormControl>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select gender" />
+                      <SelectValue placeholder={t("form.placeholder.gender")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Male">Male</SelectItem>
-                      <SelectItem value="Female">Female</SelectItem>
+                      <SelectItem value="Male">{t("gender.male")}</SelectItem>
+                      <SelectItem value="Female">{t("gender.female")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -161,9 +165,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
             name="phone_number"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel>{t("form.label.phone-number")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your phone number" {...field} />
+                  <Input placeholder={t("form.placeholder.phone-number")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -175,9 +179,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Address</FormLabel>
+                <FormLabel>{t("form.label.address")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your address" {...field} />
+                  <Input placeholder={t("form.placeholder.address")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -194,9 +198,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
           name="github"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>GitHub</FormLabel>
+              <FormLabel>{t("form.label.github")}</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your github account" {...field} />
+                <Input placeholder={t("form.placeholder.github")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -208,9 +212,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
           name="linkedin"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>LinkedIn</FormLabel>
+              <FormLabel>{t("form.label.linkedin")}</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your linkedin account" {...field} />
+                <Input placeholder={t("form.placeholder.linkedin")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -222,9 +226,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
           name="personal_web"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Personal Website</FormLabel>
+              <FormLabel>{t("form.label.personal-web")}</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your personal website" {...field} />
+                <Input placeholder={t("form.placeholder.personal-web")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -239,7 +243,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {renderForm()}
         <Button type="submit" className="bg-hmc-base-darkblue dark:bg-hmc-base-lightblue w-full text-white sm:w-auto">
-          Save Profile
+          {t("form.save-button")}
         </Button>
       </form>
     </Form>
