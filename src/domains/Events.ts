@@ -12,7 +12,7 @@ export const eventSchema = z.object({
   location: z.string(),
   duration: z.string(),
   capacity: z.number(),
-  status: z.enum(["open", "soon", "closed", "comming soon"]),
+  status: z.enum(["open", "soon", "closed"]),
   tags: z
     .array(
       z.object({
