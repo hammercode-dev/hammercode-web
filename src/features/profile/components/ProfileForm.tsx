@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover
 import { Calendar } from "@/components/ui/Calendar";
 import { createProfileFormSchema, ProfileFormType } from "@/domains/Profile";
 import { cn } from "@/lib/utils";
-import { useGetProfile } from "../hooks";
+import { useGetProfile, useUpdateProfile } from "../hooks";
 import Loader from "@/components/common/Loader";
 import { useEffect } from "react";
 
@@ -24,6 +24,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
   const t = useTranslations();
   const profileFormSchema = createProfileFormSchema(t);
   const { data, isLoading } = useGetProfile();
+  const { mutate } = useUpdateProfile();
 
   const form = useForm<ProfileFormType>({
     resolver: zodResolver(profileFormSchema),
@@ -57,9 +58,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
   const onSubmit = (data: ProfileFormType) => {
     // ! TODO handle query mutation
     console.log("Profile data:", data);
+    mutate(data);
   };
 
-  console.log("dataaa", data);
   if (isLoading) {
     return <Loader />;
   }
