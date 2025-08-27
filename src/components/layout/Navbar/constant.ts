@@ -44,6 +44,10 @@ export const USER_LINKS: Record<UserRole, LinkItem[]> = {
       id: "my-events",
       href: "/my-events",
     },
+    {
+      id: "profile",
+      href: "/profile",
+    },
   ],
 };
 
