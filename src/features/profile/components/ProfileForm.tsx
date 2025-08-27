@@ -6,7 +6,7 @@ import { CalendarIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
 import { Calendar } from "@/components/ui/Calendar";
@@ -43,7 +43,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
 
   useEffect(() => {
     if (data) {
-      form.reset({
+      const resetData = {
         username: data.username || "",
         fullname: data.fullname || "",
         date_of_birth: data.date_of_birth || "",
@@ -53,7 +53,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
         github: data.github || "",
         linkedin: data.linkedin || "",
         personal_web: data.personal_web || "",
-      });
+      };
+
+      form.reset(resetData);
     }
   }, [data]);
 
@@ -141,23 +143,27 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
           <FormField
             control={form.control}
             name="gender"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("form.label.gender")}</FormLabel>
-                <FormControl>
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <SelectTrigger>
-                      <SelectValue placeholder={t("form.placeholder.gender")} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Male">{t("gender.male")}</SelectItem>
-                      <SelectItem value="Female">{t("gender.female")}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>{t("form.label.gender")}</FormLabel>
+                  <FormControl>
+                    <Select defaultValue={data?.gender || ""} onValueChange={field.onChange}>
+                      <SelectTrigger>
+                        <SelectValue placeholder={t("form.placeholder.gender")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="Male">{t("gender.male")}</SelectItem>
+                          <SelectItem value="Female">{t("gender.female")}</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
           />
 
           <FormField
