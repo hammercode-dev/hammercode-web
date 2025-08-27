@@ -3,23 +3,32 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/Form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
 import { Calendar } from "@/components/ui/Calendar";
-import { profileFormSchema, ProfileFormType } from "@/domains/Profile";
+import { createProfileFormSchema, ProfileFormType } from "@/domains/Profile";
 import { cn } from "@/lib/utils";
+import { useGetProfile } from "../hooks";
+import Loader from "@/components/common/Loader";
+import { useEffect } from "react";
 
 interface ProfileFormProps {
   activeTab: "account" | "information";
 }
 
 const ProfileForm = ({ activeTab }: ProfileFormProps) => {
+  const t = useTranslations();
+  const profileFormSchema = createProfileFormSchema(t);
+  const { data, isLoading } = useGetProfile();
+
   const form = useForm<ProfileFormType>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
+      username: "",
       fullname: "",
       date_of_birth: "",
       phone_number: "",
@@ -30,15 +39,49 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
     },
   });
 
+  useEffect(() => {
+    if (data) {
+      form.reset({
+        username: data.username || "",
+        fullname: data.fullname || "",
+        date_of_birth: data.date_of_birth || "",
+        phone_number: data.phone_number || "",
+        address: data.address || "",
+        github: data.github || "",
+        linkedin: data.linkedin || "",
+        personal_web: data.personal_web || "",
+      });
+    }
+  }, [data]);
+
   const onSubmit = (data: ProfileFormType) => {
     // ! TODO handle query mutation
     console.log("Profile data:", data);
   };
 
+  console.log("dataaa", data);
+  if (isLoading) {
+    return <Loader />;
+  }
+
   const renderForm = () => {
     if (activeTab === "account") {
       return (
         <>
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your username" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="fullname"

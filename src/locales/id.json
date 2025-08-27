@@ -232,5 +232,18 @@
     "title": "Blog Saya",
     "description": "Daftar postingan dan artikel blog",
     "not-found": "Tidak ada blog yang ditemukan."
+  },
+  "Profile": {
+    "validation": {
+      "username-required": "Nama Panggilan wajib diisi",
+      "fullname-required": "Nama lengkap wajib diisi",
+      "date-of-birth-required": "Tanggal lahir wajib diisi",
+      "gender-required": "Silakan pilih jenis kelamin",
+      "phone-number-required": "Nomor telepon wajib diisi",
+      "address-required": "Alamat wajib diisi",
+      "github-invalid-url": "Silakan masukkan URL GitHub yang valid",
+      "linkedin-invalid-url": "Silakan masukkan URL LinkedIn yang valid",
+      "personal-web-invalid-url": "Silakan masukkan URL website pribadi yang valid"
+    }
   }
 }

@@ -232,5 +232,18 @@
     "title": "My Blogs",
     "description": "List of post and blog article",
     "not-found": "No blogs found."
+  },
+  "Profile": {
+    "validation": {
+      "username-required": "Nama Panggilan wajib diisi",
+      "fullname-required": "Fullname is required",
+      "date-of-birth-required": "Date of birth is required",
+      "gender-required": "Please select a gender",
+      "phone-number-required": "Phone number is required",
+      "address-required": "Address is required",
+      "github-invalid-url": "Please enter a valid GitHub URL",
+      "linkedin-invalid-url": "Please enter a valid LinkedIn URL",
+      "personal-web-invalid-url": "Please enter a valid personal website URL"
+    }
   }
 }
