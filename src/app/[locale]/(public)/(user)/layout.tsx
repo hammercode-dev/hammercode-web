@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/Separator";
 import { Link } from "@/lib/navigation";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import ProtectedRoute from "@/components/layout/ProtectedRoute";
+import { usePathname } from "@/lib/navigation";
 
 interface UserLayoutProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ interface UserLayoutProps {
 
 export default function UserLayout({ children }: UserLayoutProps) {
   const { user } = useAuthUser();
+  const pathname = usePathname();
 
   return (
     <ProtectedRoute>
@@ -33,11 +35,24 @@ export default function UserLayout({ children }: UserLayoutProps) {
 
             <Separator />
 
+            {/* TODO: Refactor to use constant list for better maintainability
+                Should create a navigationItems array with { href, label, icon, isActive } 
+                instead of hardcoding each link with pathname checks */}
             <nav className="flex flex-col gap-3 text-sm">
-              <Link href="/my-events" className="flex items-center gap-2 text-gray-800 transition hover:text-blue-600">
+              <Link
+                href="/my-events"
+                className={`flex items-center gap-2 transition hover:text-blue-600 ${
+                  pathname.includes("/my-events") ? "text-hmc-base-blue" : "text-foreground"
+                }`}
+              >
                 <Calendar1 size={16} /> My Events
               </Link>
-              <Link href="/profile" className="flex items-center gap-2 text-gray-800 transition hover:text-blue-600">
+              <Link
+                href="/profile"
+                className={`flex items-center gap-2 transition hover:text-blue-600 ${
+                  pathname.includes("/profile") ? "text-hmc-base-blue" : "text-foreground"
+                }`}
+              >
                 <User size={16} /> Profil
               </Link>
             </nav>
