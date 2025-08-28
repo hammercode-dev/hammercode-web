@@ -7,7 +7,6 @@ export const homeService = {
    */
   async getAllTestimonial(): Promise<{ status: number; message: string; data: TestimonialType[] }> {
     const res = await axios.get("/api/testimonial");
-    console.log("resss", res);
     return res.data;
   },
 };

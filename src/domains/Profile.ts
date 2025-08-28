@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const UserSchema = z.object({
+export const profileResSchema = z.object({
   id: z.number(),
   username: z.string(),
   email: z.string(),
@@ -14,21 +14,23 @@ export const UserSchema = z.object({
   github: z.string(),
   linkedin: z.string(),
   personal_web: z.string(),
-  created_at: z.string(),
-  updated_at: z.string(),
+  created_at: z.date(),
+  updated_at: z.date(),
 });
 
-export type UserType = z.infer<typeof UserSchema>;
+export type ProfileResType = z.infer<typeof profileResSchema>;
 
-export const profileFormSchema = z.object({
-  fullname: z.string().min(1, "Fullname is required"),
-  date_of_birth: z.string().min(1, "Date of birth is required"),
-  gender: z.enum(["Male", "Female"], { required_error: "Please select a gender" }),
-  phone_number: z.string().min(1, "Phone number is required"),
-  address: z.string().min(1, "Address is required"),
-  github: z.string().url("Please enter a valid GitHub URL").optional().or(z.literal("")),
-  linkedin: z.string().url("Please enter a valid LinkedIn URL").optional().or(z.literal("")),
-  personal_web: z.string().url("Please enter a valid personal website URL").optional().or(z.literal("")),
-});
+export const createProfileFormSchema = (t: (key: string) => string) =>
+  z.object({
+    username: z.string().min(1, t("validation.username-required")),
+    fullname: z.string().min(1, t("validation.fullname-required")),
+    date_of_birth: z.string().min(1, t("validation.date-of-birth-required")),
+    gender: z.string().min(1, t("validation.gender-required")),
+    phone_number: z.string().min(1, t("validation.phone-number-required")),
+    address: z.string().min(1, t("validation.address-required")),
+    github: z.string().url(t("validation.github-invalid-url")).optional().or(z.literal("")),
+    linkedin: z.string().url(t("validation.linkedin-invalid-url")).optional().or(z.literal("")),
+    personal_web: z.string().url(t("validation.personal-web-invalid-url")).optional().or(z.literal("")),
+  });
 
-export type ProfileFormType = z.infer<typeof profileFormSchema>;
+export type ProfileFormType = z.infer<ReturnType<typeof createProfileFormSchema>>;
