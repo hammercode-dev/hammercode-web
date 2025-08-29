@@ -214,3 +214,33 @@ export async function getBlogsByCategory(category: string): Promise<BlogPost[]> 
   const allBlogs = await getAllBlogs();
   return allBlogs.filter((blog) => blog.metadata.category?.toLowerCase() === category.toLowerCase());
 }
+
+export const convertContentToMarkdown = async (text: string): Promise<{ content: React.ReactElement }> => {
+  try {
+    const { content } = await compileMDX({
+      source: text,
+      options: {
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [
+            [
+              rehypePrettyCode,
+              {
+                theme: "github-dark",
+                keepBackground: false,
+              },
+            ],
+          ],
+        },
+        parseFrontmatter: true,
+      },
+    });
+
+    return {
+      content,
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

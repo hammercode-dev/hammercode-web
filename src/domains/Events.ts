@@ -4,6 +4,7 @@ export const eventSchema = z.object({
   id: z.number(),
   title: z.string(),
   description: z.string(),
+  // content: z.string().optional(),
   slug: z.string().optional(),
   author: z.string(),
   image: z.string(),
@@ -12,6 +13,7 @@ export const eventSchema = z.object({
   location: z.string(),
   duration: z.string(),
   capacity: z.number(),
+  date_event: z.string(),
   status: z.enum(["open", "soon", "closed"]),
   tags: z
     .array(
