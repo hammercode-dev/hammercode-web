@@ -35,9 +35,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
       phone_number: "",
       gender: "",
       address: "",
-      github: "",
-      linkedin: "",
-      personal_web: "",
+      github_url: "",
+      linkedin_url: "",
+      personal_web_url: "",
     },
   });
 
@@ -50,9 +50,9 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
         phone_number: data.phone_number || "",
         gender: data.gender || "",
         address: data.address || "",
-        github: data.github || "",
-        linkedin: data.linkedin || "",
-        personal_web: data.personal_web || "",
+        github_url: data.github_url || "",
+        linkedin_url: data.linkedin_url || "",
+        personal_web_url: data.personal_web_url || "",
       };
 
       form.reset(resetData);
@@ -201,7 +201,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
       <>
         <FormField
           control={form.control}
-          name="github"
+          name="github_url"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("form.label.github")}</FormLabel>
@@ -215,7 +215,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
 
         <FormField
           control={form.control}
-          name="linkedin"
+          name="linkedin_url"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("form.label.linkedin")}</FormLabel>
@@ -229,7 +229,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
 
         <FormField
           control={form.control}
-          name="personal_web"
+          name="personal_web_url"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("form.label.personal-web")}</FormLabel>

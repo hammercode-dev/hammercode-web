@@ -11,9 +11,9 @@ export const profileResSchema = z.object({
   gender: z.string(),
   phone_number: z.string(),
   address: z.string(),
-  github: z.string(),
-  linkedin: z.string(),
-  personal_web: z.string(),
+  github_url: z.string(),
+  linkedin_url: z.string(),
+  personal_web_url: z.string(),
   created_at: z.date(),
   updated_at: z.date(),
 });
@@ -28,9 +28,9 @@ export const createProfileFormSchema = (t: (key: string) => string) =>
     gender: z.string().min(1, t("validation.gender-required")),
     phone_number: z.string().min(1, t("validation.phone-number-required")),
     address: z.string().min(1, t("validation.address-required")),
-    github: z.string().url(t("validation.github-invalid-url")).optional().or(z.literal("")),
-    linkedin: z.string().url(t("validation.linkedin-invalid-url")).optional().or(z.literal("")),
-    personal_web: z.string().url(t("validation.personal-web-invalid-url")).optional().or(z.literal("")),
+    github_url: z.string().url(t("validation.github-invalid-url")).optional().or(z.literal("")),
+    linkedin_url: z.string().url(t("validation.linkedin-invalid-url")).optional().or(z.literal("")),
+    personal_web_url: z.string().url(t("validation.personal-web-invalid-url")).optional().or(z.literal("")),
   });
 
 export type ProfileFormType = z.infer<ReturnType<typeof createProfileFormSchema>>;
