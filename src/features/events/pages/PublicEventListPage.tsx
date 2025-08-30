@@ -9,7 +9,7 @@ import { useEvents } from "../hooks/useEvent";
 
 const EventListPage = () => {
   const t = useTranslations("EventsPage");
-  const { events, isLoading } = useEvents();
+  const { data: events, isLoading } = useEvents();
 
   if (isLoading) {
     return (
@@ -82,7 +82,7 @@ const EventListPage = () => {
         className="pt-16 md:pt-8"
       >
         <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
-          {events.map((event, index) => (
+          {events?.map((event, index) => (
             <motion.div
               key={event?.id}
               variants={{
