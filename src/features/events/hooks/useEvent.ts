@@ -1,73 +1,33 @@
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import { useQuery } from "@tanstack/react-query";
 import { eventsService } from "@/services/events";
-import { EventType, UserEventType } from "@/domains/Events";
 
 export const useEventById = (eventId: string) => {
-  const [event, setEvent] = useState<EventType>({} as EventType);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    const getEvent = async () => {
-      setIsLoading(true);
-      try {
-        const res = await eventsService.getEventById(eventId);
-        setEvent(res.data);
-      } catch (err) {
-        toast.error(err instanceof Error ? err.message : "Something went wrong.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getEvent();
-  }, [eventId, toast]);
-
-  return { event, isLoading };
+  return useQuery({
+    queryKey: ["getEventById", eventId],
+    queryFn: async () => {
+      const response = await eventsService.getEventById(eventId);
+      return response.data;
+    },
+    enabled: !!eventId,
+  });
 };
 
 export const useEvents = () => {
-  const [events, setEvents] = useState<EventType[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      setIsLoading(true);
-      try {
-        const res = await eventsService.getEvents();
-        setEvents(res.data);
-      } catch (err) {
-        toast.error(err instanceof Error ? err.message : "Something went wrong.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getEvents();
-  }, [toast]);
-
-  return { events, isLoading };
+  return useQuery({
+    queryKey: ["events"],
+    queryFn: async () => {
+      const response = await eventsService.getEvents();
+      return response.data;
+    },
+  });
 };
 
 export const useMyEvents = (page: number = 1, limit: number = 10) => {
-  const [myEvents, setMyEvents] = useState<UserEventType[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      setIsLoading(true);
-      try {
-        const res = await eventsService.getMyEvents(page, limit);
-        setMyEvents(res.data);
-      } catch (err) {
-        toast.error(err instanceof Error ? err.message : "Something went wrong.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getEvents();
-  }, [toast]);
-
-  return { myEvents, isLoading };
+  return useQuery({
+    queryKey: ["myEvents", page, limit],
+    queryFn: async () => {
+      const response = await eventsService.getMyEvents(page, limit);
+      return response.data;
+    },
+  });
 };
