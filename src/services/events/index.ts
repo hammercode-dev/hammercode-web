@@ -36,4 +36,23 @@ export const eventsService = {
       },
     });
   },
+
+  /**
+   * API to retrieve the list of events table for admin.
+   */
+  async getListEventsAdmin(
+    page: number = 1,
+    limit: number = 10,
+    type?: string,
+    search?: string
+  ): Promise<HttpResponse<EventType[]>> {
+    return fetcher.get(`/admin/events`, {
+      params: {
+        page,
+        limit,
+        type,
+        title: search,
+      },
+    });
+  },
 };

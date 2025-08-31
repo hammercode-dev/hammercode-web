@@ -4,30 +4,23 @@ import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
-import { PaginationCustom } from "@/components/common/PaginationCustom";
+import { TablePagination } from "@/components/common/TableData/TablePagination";
 import { useMyEvents } from "../hooks/useMyEvent";
 import MyEventCard from "../components/MyEventCard";
 import { EVENTS_TYPE } from "@/constants/event";
 import Loader from "@/components/common/Loader";
 import { UserEventType } from "@/domains/Events";
 import { NotFoundData } from "@/components/common/NotFoundData";
+import { useQueryParams } from "@/hooks";
 
-interface UserEventPageProps {
-  page?: number;
-  perPage?: number;
-}
-
-const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
+const UserEventPage = () => {
   const t = useTranslations("MyEventPage");
+  const { getNumberParam } = useQueryParams();
+  const page = getNumberParam("page", 1);
+  const limit = getNumberParam("limit", 5);
+
   const [typeActive, setTypeActive] = useState("all");
-  const { myEvents, isLoading } = useMyEvents(page, perPage, typeActive);
-
-  const totalEvents = myEvents.length;
-  const totalPages = Math.ceil(totalEvents / perPage);
-  const startIndex = (page - 1) * perPage;
-  const endIndex = startIndex + perPage;
-
-  const events: UserEventType[] = myEvents.slice(startIndex, endIndex);
+  const { myEvents, isLoading, paginationMyEvents } = useMyEvents(page, limit, typeActive);
 
   return (
     <section>
@@ -77,7 +70,7 @@ const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
       </header>
       {isLoading ? (
         <Loader />
-      ) : events.length === 0 ? (
+      ) : myEvents.length === 0 ? (
         <NotFoundData />
       ) : (
         <motion.div
@@ -98,7 +91,7 @@ const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
           animate="show"
         >
           <div className="grid gap-6">
-            {events.map((event: UserEventType) => (
+            {myEvents.map((event: UserEventType) => (
               <motion.div
                 key={event?.id}
                 variants={{
@@ -119,7 +112,15 @@ const UserEventPage = ({ page = 1, perPage = 10 }: UserEventPageProps) => {
               </motion.div>
             ))}
           </div>
-          <PaginationCustom currentPage={page} totalPages={totalPages} />
+          {(paginationMyEvents?.total_pages || 0) > 1 && (
+            <div className="mt-8 flex justify-center">
+              <TablePagination
+                currentPage={paginationMyEvents?.page}
+                totalPages={paginationMyEvents?.total_pages}
+                itemsPerPage={limit}
+              />
+            </div>
+          )}
         </motion.div>
       )}
     </section>

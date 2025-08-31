@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useReactTable, getCoreRowModel, flexRender, ColumnDef } from "@tanstack/react-table";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/Table";
 import { TablePagination } from "./TablePagination";
 import { TableToolbar } from "./TableToolbar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
+import { usePagination, useDebounced, useQueryParams } from "@/hooks";
 
 interface TableDataProps<T> {
   data: T[];
@@ -14,6 +16,9 @@ interface TableDataProps<T> {
   itemsPerPage?: number;
   className?: string;
   rightAction?: React.ReactNode;
+  currentPage?: number;
+  totalPages?: number;
+  onSearchChange?: (search: string) => void;
 }
 
 function TableData<T>({
@@ -24,29 +29,28 @@ function TableData<T>({
   itemsPerPage = 5,
   className,
   rightAction,
+  currentPage = 1,
+  totalPages = 1,
+  onSearchChange,
 }: TableDataProps<T>) {
-  const [globalFilter, setGlobalFilter] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const { getParam, setParams } = useQueryParams();
+  const [searchValue, setSearchValue] = useState(getParam("search", ""));
+  const debouncedSearchValue = useDebounced(searchValue, 500);
+  const { handleItemsPerPageChange } = usePagination({ currentPage, totalPages, itemsPerPage });
 
-  const filteredData = useMemo(() => {
-    if (!searchable || !globalFilter) return data;
+  useEffect(() => {
+    setParams({
+      search: debouncedSearchValue || null,
+      page: debouncedSearchValue ? 1 : currentPage,
+    });
 
-    return data.filter((item: T) =>
-      Object.values(item as Record<string, unknown>).some((value) =>
-        value?.toString().toLowerCase().includes(globalFilter.toLowerCase())
-      )
-    );
-  }, [data, globalFilter, searchable]);
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  const paginatedData = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    return filteredData.slice(startIndex, startIndex + itemsPerPage);
-  }, [filteredData, currentPage, itemsPerPage]);
+    if (onSearchChange) {
+      onSearchChange(debouncedSearchValue);
+    }
+  }, [debouncedSearchValue, onSearchChange, currentPage]);
 
   const table = useReactTable({
-    data: paginatedData,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
@@ -57,10 +61,9 @@ function TableData<T>({
       <TableToolbar
         searchable={searchable}
         searchPlaceholder={searchPlaceholder}
-        searchValue={globalFilter}
+        searchValue={searchValue}
         onSearchChange={(value) => {
-          setGlobalFilter(value);
-          setCurrentPage(1);
+          setSearchValue(value);
         }}
         rightAction={rightAction}
       />
@@ -100,11 +103,33 @@ function TableData<T>({
 
       {totalPages > 1 && (
         <div className="flex items-center justify-between">
-          <div className="text-muted-foreground text-sm">
-            {currentPage} of {totalPages} pages
+          <div className="flex items-center gap-4">
+            <div className="text-muted-foreground text-sm">
+              {currentPage} of {totalPages} pages
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-muted-foreground text-sm">Items per page:</span>
+              <Select
+                value={itemsPerPage.toString()}
+                onValueChange={(value) => {
+                  const newItemsPerPage = parseInt(value, 10);
+                  handleItemsPerPageChange(newItemsPerPage);
+                }}
+              >
+                <SelectTrigger className="w-16">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">1</SelectItem>
+                  <SelectItem value="2">2</SelectItem>
+                  <SelectItem value="5">5</SelectItem>
+                  <SelectItem value="10">10</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
-          <TablePagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+          <TablePagination currentPage={currentPage} totalPages={totalPages} itemsPerPage={itemsPerPage} />
         </div>
       )}
     </div>

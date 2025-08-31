@@ -31,3 +31,13 @@ export const useMyEvents = (page: number = 1, limit: number = 10) => {
     },
   });
 };
+
+export const useEventsAdmin = (page: number, limit: number, search?: string) => {
+  return useQuery({
+    queryKey: ["eventsAdmin", page, limit, search],
+    queryFn: async () => {
+      const response = await eventsService.getListEventsAdmin(page, limit, undefined, search);
+      return response;
+    },
+  });
+};
