@@ -3,12 +3,11 @@
 import TableData from "@/components/common/TableData";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "@/lib/navigation";
-import { ColumnDef } from "@tanstack/react-table";
 import { Plus } from "lucide-react";
 import { useEventsAdmin } from "../hooks/useEvent";
-import { EventType } from "@/domains/Events";
 import { useQueryParams } from "@/hooks";
 import Loader from "@/components/common/Loader";
+import { columnsEventListAdmin } from "../components/ColumnsEventListAdmin";
 
 const AdminEventsListPage = () => {
   const router = useRouter();
@@ -18,41 +17,7 @@ const AdminEventsListPage = () => {
   const searchQuery = getParam("search", "");
 
   const { data: eventsResponse, isLoading } = useEventsAdmin(currentPage, itemsPerPage, searchQuery);
-  console.log(eventsResponse);
   const totalPages = eventsResponse?.pagination?.total_pages || 1;
-
-  const columns: ColumnDef<EventType>[] = [
-    {
-      accessorKey: "title",
-      header: "Event Title",
-    },
-    {
-      accessorKey: "date_event",
-      header: "Date",
-    },
-    {
-      accessorKey: "location",
-      header: "Location",
-    },
-    {
-      accessorKey: "status",
-      header: "Status",
-    },
-    {
-      id: "actions",
-      header: "Actions",
-      cell: ({ row }) => (
-        <div className="flex gap-2">
-          <Button size="sm" variant="outline" onClick={() => console.log("Edit event:", row.original.id)}>
-            Edit
-          </Button>
-          <Button size="sm" variant="outline" onClick={() => console.log("View event:", row.original.id)}>
-            View
-          </Button>
-        </div>
-      ),
-    },
-  ];
 
   const createEventButton = (
     <Button
@@ -76,7 +41,7 @@ const AdminEventsListPage = () => {
       ) : (
         <TableData
           data={eventsResponse?.data || []}
-          columns={columns}
+          columns={columnsEventListAdmin}
           searchable
           searchPlaceholder="Search events"
           rightAction={createEventButton}
