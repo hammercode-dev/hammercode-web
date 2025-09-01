@@ -125,7 +125,7 @@ const ProfileForm = ({ activeTab }: ProfileFormProps) => {
                     <Calendar
                       mode="single"
                       selected={field.value ? new Date(field.value) : undefined}
-                      onSelect={(date) => field.onChange(date ? format(date, "yyyy-MM-dd") : "")}
+                      onSelect={(date) => field.onChange(date ? date.toISOString() : "")}
                       disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
                       classNames={{
                         button_previous: "text-foreground hover:bg-accent p-2 rounded-lg hover:text-accent-foreground",
