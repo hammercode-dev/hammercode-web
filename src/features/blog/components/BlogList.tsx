@@ -1,7 +1,7 @@
 import React from "react";
 import BlogCard from "./BlogCard";
 import { BlogPost } from "@/lib/mdx";
-import { PaginationCustom } from "@/components/common/PaginationCustom";
+// import { PaginationCustom } from "@/components/common/PaginationCustom";
 import { Skeleton } from "@/components/ui/Skeleton";
 
 interface BlogListProps {
@@ -10,7 +10,7 @@ interface BlogListProps {
   totalPages: number;
 }
 
-const BlogList = ({ blogs, currentPage, totalPages }: BlogListProps) => {
+const BlogList = ({ blogs }: BlogListProps) => {
   return (
     <React.Suspense
       fallback={
@@ -26,7 +26,7 @@ const BlogList = ({ blogs, currentPage, totalPages }: BlogListProps) => {
         ))}
       </div>
 
-      <PaginationCustom currentPage={currentPage} totalPages={totalPages} />
+      {/* <PaginationCustom currentPage={currentPage} totalPages={totalPages} /> */}
     </React.Suspense>
   );
 };

@@ -3,7 +3,7 @@ import { Clock, Pin } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/Card";
 import { UserEventType } from "@/domains/Events";
-import { useFormatDateEvent } from "@/lib/format";
+import { formatDateEvent } from "@/lib/format";
 
 const MyEventCard = ({ data }: { data: UserEventType }) => {
   const { order_no, status } = data;
@@ -38,7 +38,7 @@ const MyEventCard = ({ data }: { data: UserEventType }) => {
           <CardFooter className="mt-auto flex flex-col items-start gap-2 px-4 pt-3 pb-4">
             <div className="flex items-center gap-2">
               <Clock size={15} className="text-gray-500" />
-              <p className="text-sm">{useFormatDateEvent(data.event_detail.date as string) || "-"}</p>
+              <p className="text-sm">{formatDateEvent(data.event_detail.date as string) || "-"}</p>
             </div>
             <div className="flex items-center gap-2">
               <Pin size={15} className="text-gray-500" />

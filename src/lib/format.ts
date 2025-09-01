@@ -22,7 +22,7 @@ export function useFormatPrice(price?: number) {
   }).format(price as number);
 }
 
-export const useFormatDateEvent = (dateString: string): string => {
+export const formatDateEvent = (dateString: string): string => {
   const date = new Date(dateString);
   return new Intl.DateTimeFormat("id-ID", {
     weekday: "long",

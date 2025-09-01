@@ -11,24 +11,25 @@ import {
 } from "@/components/ui/Pagination";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { usePagination } from "@/components/hooks/UsePagination";
+import { usePagination } from "@/hooks";
 
 interface TablePaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+  itemsPerPage: number;
+  currentPage?: number;
+  totalPages?: number;
   className?: string;
 }
 
 export const TablePagination: React.FC<TablePaginationProps> = ({
-  currentPage,
-  totalPages,
-  onPageChange,
+  itemsPerPage,
+  currentPage = 1,
+  totalPages = 1,
   className,
 }) => {
-  const { hasNextPage, hasPrevPage, nextPage, prevPage, pages } = usePagination({
+  const { hasNextPage, hasPrevPage, nextPage, prevPage, pages, handlePageChange } = usePagination({
     currentPage,
     totalPages,
+    itemsPerPage,
   });
 
   if (totalPages <= 1) {
@@ -41,7 +42,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              onClick={() => hasPrevPage && onPageChange(prevPage!)}
+              onClick={() => hasPrevPage && handlePageChange(prevPage!)}
               className={cn(
                 "bg-secondary text-secondary-foreground cursor-pointer",
                 !hasPrevPage && "cursor-not-allowed opacity-50"
@@ -53,7 +54,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           {pages.map((page, index) => {
             if (page === "ellipsis") {
               return (
-                <PaginationItem key={index}>
+                <PaginationItem key={`ellipsis-${index}`}>
                   <PaginationEllipsis />
                 </PaginationItem>
               );
@@ -62,9 +63,9 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
             const isActive = page === currentPage;
 
             return (
-              <PaginationItem key={page}>
+              <PaginationItem key={`page-${page}`}>
                 <PaginationLink
-                  onClick={() => onPageChange(page as number)}
+                  onClick={() => handlePageChange(page as number)}
                   isActive={isActive}
                   className={cn("cursor-pointer", {
                     [buttonVariants({
@@ -82,7 +83,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
 
           <PaginationItem>
             <PaginationNext
-              onClick={() => hasNextPage && onPageChange(nextPage!)}
+              onClick={() => hasNextPage && handlePageChange(nextPage!)}
               className={cn(
                 "bg-secondary text-secondary-foreground cursor-pointer",
                 !hasNextPage && "cursor-not-allowed opacity-50"
