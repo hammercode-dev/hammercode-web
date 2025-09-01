@@ -21,7 +21,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         classNames: {
           success: "!bg-green-500 !text-white",
           error: "!bg-destructive !text-white",
-          title: "!text-popover-foreground !font-semibold",
+          title: "!text-white !font-semibold",
           description: "!text-popover-foreground",
         },
       }}
