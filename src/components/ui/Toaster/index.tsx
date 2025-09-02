@@ -17,14 +17,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-border": "var(--border)",
         } as React.CSSProperties
       }
-      toastOptions={{
-        classNames: {
-          success: "!bg-green-500 !text-white",
-          error: "!bg-destructive !text-white",
-          title: "!text-popover-foreground !font-semibold",
-          description: "!text-popover-foreground",
-        },
-      }}
+      richColors
       {...props}
     />
   );
