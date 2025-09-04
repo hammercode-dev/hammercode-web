@@ -7,8 +7,8 @@ import Underline from "@tiptap/extension-underline";
 import Typography from "@tiptap/extension-typography";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
-import { useState, useCallback, useMemo } from "react";
-import TurndownService from "turndown";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { markdownToHtml, htmlToMarkdown } from "./utils";
 
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
@@ -16,25 +16,14 @@ import { Toolbar } from "@/components/common/TextEditor";
 
 interface TextEditorProps {
   markdownOutput?: boolean;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
+const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps) => {
   const [markdownContent, setMarkdownContent] = useState("");
 
-  const turndownService = useMemo(() => {
-    const service = new TurndownService({
-      headingStyle: "atx",
-      codeBlockStyle: "fenced",
-    });
-
-    // Custom rule for underline tags
-    service.addRule("underline", {
-      filter: "u",
-      replacement: (content) => `<u>${content}</u>`,
-    });
-
-    return service;
-  }, []);
+  const htmlContent = useMemo(() => markdownToHtml(value || ""), [value]);
 
   const editor = useEditor({
     extensions: [
@@ -55,20 +44,24 @@ const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
         allowBase64: true,
       }),
     ],
-    content: "",
+    content: htmlContent,
     immediatelyRender: false,
     onCreate: ({ editor }) => {
       const html = editor.getHTML();
-      setMarkdownContent(turndownService.turndown(html));
+      setMarkdownContent(htmlToMarkdown(html));
     },
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      setMarkdownContent(turndownService.turndown(html));
+      const markdown = htmlToMarkdown(html);
+      setMarkdownContent(markdown);
+      onChange?.(html);
+      console.log("markdown: ", markdown);
+      console.log("html: ", html);
     },
     editorProps: {
       attributes: {
         class:
-          "prose dark:prose-invert max-w-none mx-auto focus:outline-none min-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-muted prose-pre:border prose-pre:text-foreground",
+          "prose dark:prose-invert max-w-none mx-auto focus:outline-none max-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:bg-muted prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-muted prose-pre:border prose-pre:text-foreground prose-pre:p-3",
       },
     },
   });
@@ -131,6 +124,12 @@ const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
 
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   }, [editor]);
+
+  useEffect(() => {
+    if (editor && htmlContent !== undefined && editor.getHTML() !== htmlContent) {
+      editor.commands.setContent(htmlContent);
+    }
+  }, [editor, htmlContent]);
 
   if (!editor) {
     return (
