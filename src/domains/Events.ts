@@ -79,3 +79,26 @@ export const userEventSchema = z.object({
 });
 
 export type UserEventType = z.infer<typeof userEventSchema>;
+
+export const createEventFormSchema = (t: (key: string) => string) =>
+  z.object({
+    title: z.string().min(1, t("validation.title-required")),
+    description: z.string().min(1, t("validation.description-required")),
+    file_name: z.string().optional(),
+    slug: z.string().min(1, t("validation.slug-required")),
+    is_online: z.boolean(),
+    date: z.string().min(1, t("validation.date-required")),
+    type: z.string().min(1, t("validation.type-required")),
+    location: z.string().min(1, t("validation.location-required")),
+    duration: z.string().min(1, t("validation.duration-required")),
+    status: z.string().min(1, t("validation.status-required")),
+    capacity: z.number().min(1, t("validation.capacity-min")),
+    price: z.number().min(0, t("validation.price-min")),
+    registration_link: z.string().url(t("validation.registration-url")),
+    tags: z.array(z.string()),
+    speakers: z.array(z.string()),
+    reservation_start_date: z.string().min(1, t("validation.reservation-start-required")),
+    reservation_end_date: z.string().min(1, t("validation.reservation-end-required")),
+  });
+
+export type EventFormType = z.infer<ReturnType<typeof createEventFormSchema>>;

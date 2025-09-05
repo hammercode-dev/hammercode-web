@@ -112,6 +112,14 @@ export const mockEvents: TechEvent[] = [
   },
 ];
 
+export const eventTypes = [
+  { value: "Tech Talk", label: "Tech Talk" },
+  { value: "Workshop", label: "Workshop" },
+  { value: "Seminar", label: "Seminar" },
+  { value: "Conference", label: "Conference" },
+  { value: "Bootcamp", label: "Bootcamp" },
+];
+
 export const eventsInfo: EventInfoType[] = [
   {
     id: 1,

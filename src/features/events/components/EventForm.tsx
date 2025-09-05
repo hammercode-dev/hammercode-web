@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon, Save, X } from "lucide-react";
-import { z } from "zod";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Card, CardContent } from "@/components/ui/Card";
@@ -15,31 +15,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/Switch";
 import TextEditor from "@/components/common/TextEditor/TextEditor";
 import { cn, generateSlug } from "@/lib/utils";
-
+import { createEventFormSchema, EventFormType } from "@/domains/Events";
+import { eventTypes } from "../constants";
 import { useState, useEffect } from "react";
 import Badge from "@/components/ui/Badge";
-
-const eventFormSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string().min(1, "Description is required"),
-  file_name: z.string().optional(),
-  slug: z.string().min(1, "Slug is required"),
-  is_online: z.boolean(),
-  date: z.string().min(1, "Event date is required"),
-  type: z.string().min(1, "Event type is required"),
-  location: z.string().min(1, "Location is required"),
-  duration: z.string().min(1, "Duration is required"),
-  status: z.string().min(1, "Status is required"),
-  capacity: z.number().min(1, "Capacity must be at least 1"),
-  price: z.number().min(0, "Price must be 0 or greater"),
-  registration_link: z.string().url("Must be a valid URL"),
-  tags: z.array(z.string()),
-  speakers: z.array(z.string()),
-  reservation_start_date: z.string().min(1, "Reservation start date is required"),
-  reservation_end_date: z.string().min(1, "Reservation end date is required"),
-});
-
-type EventFormType = z.infer<typeof eventFormSchema>;
 
 interface EventFormProps {
   onSubmit: (data: EventFormType) => void;
@@ -49,6 +28,8 @@ interface EventFormProps {
 }
 
 const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }: EventFormProps) => {
+  const t = useTranslations("EventForm");
+  const eventFormSchema = createEventFormSchema(t);
   const [tagInput, setTagInput] = useState("");
   const [speakerInput, setSpeakerInput] = useState("");
   const [isSlugEdited, setIsSlugEdited] = useState(false);
@@ -133,9 +114,9 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Event Title</FormLabel>
+                    <FormLabel aria-required>{t("labels.title")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter event title" {...field} />
+                      <Input placeholder={t("placeholders.title")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -147,10 +128,10 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="slug"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel aria-required>Slug</FormLabel>
+                    <FormLabel aria-required>{t("labels.slug")}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter event slug"
+                        placeholder={t("placeholders.slug")}
                         {...field}
                         onChange={(e) => {
                           setIsSlugEdited(true);
@@ -169,7 +150,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel aria-required>Description</FormLabel>
+                  <FormLabel aria-required>{t("labels.description")}</FormLabel>
                   <FormControl>
                     <TextEditor value={field.value} onChange={field.onChange} />
                   </FormControl>
@@ -184,19 +165,19 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel aria-required>Event Type</FormLabel>
+                    <FormLabel aria-required>{t("labels.type")}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select event type" />
+                          <SelectValue placeholder={t("placeholders.type")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Tech Talk">Tech Talk</SelectItem>
-                        <SelectItem value="Workshop">Workshop</SelectItem>
-                        <SelectItem value="Seminar">Seminar</SelectItem>
-                        <SelectItem value="Conference">Conference</SelectItem>
-                        <SelectItem value="Bootcamp">Bootcamp</SelectItem>
+                        {eventTypes.map((type) => (
+                          <SelectItem key={type.value} value={type.value}>
+                            {type.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -209,18 +190,18 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel aria-required>Status</FormLabel>
+                    <FormLabel aria-required>{t("labels.status")}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select status" />
+                          <SelectValue placeholder={t("placeholders.status")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="coming soon">Coming Soon</SelectItem>
-                        <SelectItem value="open">Open</SelectItem>
-                        <SelectItem value="closed">Closed</SelectItem>
-                        <SelectItem value="cancelled">Cancelled</SelectItem>
+                        <SelectItem value="coming soon">{t("options.status.coming-soon")}</SelectItem>
+                        <SelectItem value="open">{t("options.status.open")}</SelectItem>
+                        <SelectItem value="closed">{t("options.status.closed")}</SelectItem>
+                        <SelectItem value="cancelled">{t("options.status.cancelled")}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -234,9 +215,9 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="location"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel aria-required>Location</FormLabel>
+                  <FormLabel aria-required>{t("labels.location")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter event location" {...field} />
+                    <Input placeholder={t("placeholders.location")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -248,7 +229,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="date"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel aria-required>Event Date</FormLabel>
+                  <FormLabel aria-required>{t("labels.date")}</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -256,7 +237,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                           variant="outline"
                           className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
                         >
-                          {field.value ? format(new Date(field.value), "PPP") : <span>Pick a date</span>}
+                          {field.value ? format(new Date(field.value), "PPP") : <span>{t("placeholders.date")}</span>}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
                       </FormControl>
@@ -281,7 +262,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="reservation_start_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel aria-required>Reservation Start Date</FormLabel>
+                    <FormLabel aria-required>{t("labels.reservation-start")}</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -289,7 +270,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                             variant="outline"
                             className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
                           >
-                            {field.value ? format(new Date(field.value), "PPP") : <span>Pick a date</span>}
+                            {field.value ? format(new Date(field.value), "PPP") : <span>{t("placeholders.date")}</span>}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                         </FormControl>
@@ -313,7 +294,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="reservation_end_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel aria-required>Reservation End Date</FormLabel>
+                    <FormLabel aria-required>{t("labels.reservation-end")}</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -321,7 +302,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                             variant="outline"
                             className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
                           >
-                            {field.value ? format(new Date(field.value), "PPP") : <span>Pick a date</span>}
+                            {field.value ? format(new Date(field.value), "PPP") : <span>{t("placeholders.date")}</span>}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                         </FormControl>
@@ -347,9 +328,9 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="duration"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel aria-required>Duration</FormLabel>
+                    <FormLabel aria-required>{t("labels.duration")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g. 2 hours" {...field} />
+                      <Input placeholder={t("placeholders.duration")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -361,11 +342,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="capacity"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel aria-required>Capacity</FormLabel>
+                    <FormLabel aria-required>{t("labels.capacity")}</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
-                        placeholder="Enter capacity"
+                        placeholder={t("placeholders.capacity")}
                         {...field}
                         onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
                       />
@@ -380,11 +361,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel aria-required>Price</FormLabel>
+                    <FormLabel aria-required>{t("labels.price")}</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
-                        placeholder="Enter price"
+                        placeholder={t("placeholders.price")}
                         {...field}
                         onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
                       />
@@ -400,9 +381,9 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="registration_link"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel aria-required>Registration Link</FormLabel>
+                  <FormLabel aria-required>{t("labels.registration-link")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="https://example.com/register" {...field} />
+                    <Input placeholder={t("placeholders.registration-link")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -414,11 +395,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="tags"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tags</FormLabel>
+                  <FormLabel>{t("labels.tags")}</FormLabel>
                   <div className="space-y-2">
                     <div className="flex gap-2">
                       <Input
-                        placeholder="Add a tag"
+                        placeholder={t("placeholders.tags")}
                         value={tagInput}
                         onChange={(e) => setTagInput(e.target.value)}
                         onKeyDown={(e) => {
@@ -429,7 +410,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                         }}
                       />
                       <Button type="button" onClick={addTag} variant="outline">
-                        Add
+                        {t("buttons.add")}
                       </Button>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -451,11 +432,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="speakers"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Speakers</FormLabel>
+                  <FormLabel>{t("labels.speakers")}</FormLabel>
                   <div className="space-y-2">
                     <div className="flex gap-2">
                       <Input
-                        placeholder="Add a speaker"
+                        placeholder={t("placeholders.speakers")}
                         value={speakerInput}
                         onChange={(e) => setSpeakerInput(e.target.value)}
                         onKeyDown={(e) => {
@@ -466,7 +447,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                         }}
                       />
                       <Button type="button" onClick={addSpeaker} variant="outline">
-                        Add
+                        {t("buttons.add")}
                       </Button>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -489,8 +470,8 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                   <div className="space-y-0.5">
-                    <FormLabel className="text-base">Online Event</FormLabel>
-                    <div className="text-muted-foreground text-sm">Is this an online event?</div>
+                    <FormLabel className="text-base">{t("labels.online-event")}</FormLabel>
+                    <div className="text-muted-foreground text-sm">{t("labels.online-description")}</div>
                   </div>
                   <FormControl>
                     <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -504,15 +485,15 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 <Save className="mr-2 h-4 w-4" />
                 {isLoading
                   ? mode === "create"
-                    ? "Creating..."
-                    : "Updating..."
+                    ? t("buttons.creating")
+                    : t("buttons.updating")
                   : mode === "create"
-                    ? "Create Event"
-                    : "Update Event"}
+                    ? t("buttons.create")
+                    : t("buttons.update")}
               </Button>
 
               <Button type="button" variant="outline">
-                Cancel
+                {t("buttons.cancel")}
               </Button>
             </div>
           </form>

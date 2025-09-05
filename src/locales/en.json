@@ -286,5 +286,71 @@
       "male": "Male",
       "female": "Female"
     }
+  },
+  "EventForm": {
+    "validation": {
+      "title-required": "Title is required",
+      "description-required": "Description is required",
+      "slug-required": "Slug is required",
+      "date-required": "Event date is required",
+      "type-required": "Event type is required",
+      "location-required": "Location is required",
+      "duration-required": "Duration is required",
+      "status-required": "Status is required",
+      "capacity-min": "Capacity must be at least 1",
+      "price-min": "Price must be 0 or greater",
+      "registration-url": "Must be a valid URL",
+      "reservation-start-required": "Reservation start date is required",
+      "reservation-end-required": "Reservation end date is required"
+    },
+    "labels": {
+      "title": "Event Title",
+      "description": "Description",
+      "slug": "Slug",
+      "type": "Event Type",
+      "status": "Status",
+      "location": "Location",
+      "date": "Event Date",
+      "reservation-start": "Reservation Start Date",
+      "reservation-end": "Reservation End Date",
+      "duration": "Duration",
+      "capacity": "Capacity",
+      "price": "Price",
+      "registration-link": "Registration Link",
+      "tags": "Tags",
+      "speakers": "Speakers",
+      "online-event": "Online Event",
+      "online-description": "Is this an online event?"
+    },
+    "placeholders": {
+      "title": "Enter event title",
+      "slug": "Enter event slug",
+      "type": "Select event type",
+      "status": "Select status",
+      "location": "Enter event location",
+      "date": "Pick a date",
+      "duration": "e.g. 2 hours",
+      "capacity": "Enter capacity",
+      "price": "Enter price",
+      "registration-link": "https://example.com/register",
+      "tags": "Add a tag",
+      "speakers": "Add a speaker"
+    },
+    "options": {
+      "status": {
+        "coming-soon": "Coming Soon",
+        "open": "Open",
+        "closed": "Closed",
+        "cancelled": "Cancelled"
+      }
+    },
+    "buttons": {
+      "add": "Add",
+      "create": "Create Event",
+      "update": "Update Event",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "updating": "Updating..."
+    }
   }
 }
