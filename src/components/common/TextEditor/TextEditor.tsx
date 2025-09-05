@@ -7,12 +7,14 @@ import Underline from "@tiptap/extension-underline";
 import Typography from "@tiptap/extension-typography";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { markdownToHtml, htmlToMarkdown } from "./utils";
 
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Toolbar } from "@/components/common/TextEditor";
+import Loader from "../Loader";
 
 interface TextEditorProps {
   markdownOutput?: boolean;
@@ -30,6 +32,7 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
       StarterKit,
       Underline,
       Typography,
+      HorizontalRule,
       Placeholder.configure({
         placeholder: "Start typing your content here... Use the toolbar above to format your text.",
       }),
@@ -61,7 +64,7 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
     editorProps: {
       attributes: {
         class:
-          "prose dark:prose-invert max-w-none mx-auto focus:outline-none max-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:bg-muted prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-muted prose-pre:border prose-pre:text-foreground prose-pre:p-3",
+          "prose prose-md dark:prose-invert max-w-none mx-auto focus:outline-none max-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:bg-muted prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-muted prose-pre:border prose-pre:text-foreground prose-pre:p-3 prose-p:my-1 prose-h1:my-2 prose-h2:my-2 prose-h3:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0 prose-hr:my-3",
       },
     },
   });
@@ -132,11 +135,7 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
   }, [editor, htmlContent]);
 
   if (!editor) {
-    return (
-      <div className="flex h-64 items-center justify-center">
-        <div className="border-primary h-8 w-8 animate-spin rounded-full border-b-2"></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

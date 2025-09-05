@@ -27,7 +27,7 @@ importers:
         specifier: ^2.1.15
         version: 2.1.15(@types/react-dom@19.1.5(@types/react@19.1.5))(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       "@radix-ui/react-label":
-        specifier: ^2.1.6
+        specifier: ^2.1.7
         version: 2.1.7(@types/react-dom@19.1.5(@types/react@19.1.5))(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       "@radix-ui/react-popover":
         specifier: ^1.1.15
@@ -56,6 +56,9 @@ importers:
       "@tanstack/react-table":
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      "@tiptap/extension-horizontal-rule":
+        specifier: ^3.4.1
+        version: 3.4.1(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0)
       "@tiptap/extension-image":
         specifier: ^3.2.0
         version: 3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))
@@ -1946,12 +1949,12 @@ packages:
     peerDependencies:
       "@tiptap/core": ^3.2.0
 
-  "@tiptap/extension-horizontal-rule@3.2.0":
+  "@tiptap/extension-horizontal-rule@3.4.1":
     resolution:
-      { integrity: sha512-ttMzFO/WoRVpqfhDAZyIg1nBxgkDOXy1thE6xpfSQAEi0m7zbVEkp4OkATgt0meM69YNxJaEyzQjGztybMBgBw== }
+      { integrity: sha512-rZDci6ZER5e41qr6z8ZC8L7Ir8AaPwRfY534jH/FVuKJeg6T7TEIxUQoYFp2QZQMhr1Hb81MfmLO0RUpoIitMg== }
     peerDependencies:
-      "@tiptap/core": ^3.2.0
-      "@tiptap/pm": ^3.2.0
+      "@tiptap/core": ^3.4.1
+      "@tiptap/pm": ^3.4.1
 
   "@tiptap/extension-image@3.2.0":
     resolution:
@@ -7193,7 +7196,7 @@ snapshots:
     dependencies:
       "@tiptap/core": 3.2.0(@tiptap/pm@3.2.0)
 
-  "@tiptap/extension-horizontal-rule@3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0)":
+  "@tiptap/extension-horizontal-rule@3.4.1(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0)":
     dependencies:
       "@tiptap/core": 3.2.0(@tiptap/pm@3.2.0)
       "@tiptap/pm": 3.2.0
@@ -7307,7 +7310,7 @@ snapshots:
       "@tiptap/extension-gapcursor": 3.2.0(@tiptap/extensions@3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0))
       "@tiptap/extension-hard-break": 3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))
       "@tiptap/extension-heading": 3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))
-      "@tiptap/extension-horizontal-rule": 3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0)
+      "@tiptap/extension-horizontal-rule": 3.4.1(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0)
       "@tiptap/extension-italic": 3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))
       "@tiptap/extension-link": 3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0)
       "@tiptap/extension-list": 3.2.0(@tiptap/core@3.2.0(@tiptap/pm@3.2.0))(@tiptap/pm@3.2.0)

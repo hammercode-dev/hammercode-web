@@ -36,14 +36,24 @@ const MDXContent: FC<MDXContentProps> = ({
 
   if (!mdxSource) {
     return (
-      <div className={cn("prose prose-sm dark:prose-invert max-w-none", className)}>
+      <div
+        className={cn(
+          "prose prose-md dark:prose-invert prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:text-foreground prose-pre:p-3 prose-p:my-1 prose-h1:my-2 prose-h2:my-2 prose-h3:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0 prose-hr:my-6 mx-auto max-w-none p-3",
+          className
+        )}
+      >
         <p>{fallbackText || content}</p>
       </div>
     );
   }
 
   return (
-    <div className={cn("prose prose-sm dark:prose-invert max-w-none", className)}>
+    <div
+      className={cn(
+        "prose prose-md dark:prose-invert prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:text-foreground prose-pre:p-3 prose-p:my-1 prose-h1:my-2 prose-h2:my-2 prose-h3:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0 prose-hr:my-6 mx-auto max-w-none p-3",
+        className
+      )}
+    >
       <MDXRemote {...mdxSource} />
     </div>
   );

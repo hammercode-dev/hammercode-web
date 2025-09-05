@@ -17,6 +17,7 @@ import {
   Redo,
   Download,
   ExternalLink,
+  Minus,
 } from "lucide-react";
 import { Separator } from "@/components/ui/Separator";
 import { ToolbarButton } from "@/components/common/TextEditor";
@@ -160,6 +161,10 @@ const Toolbar = ({
           title="Code Block"
         >
           <Code2 className="h-4 w-4" />
+        </ToolbarButton>
+
+        <ToolbarButton onClick={() => editor.chain().focus().setHorizontalRule().run()} title="Horizontal Rule">
+          <Minus className="h-4 w-4" />
         </ToolbarButton>
       </div>
 

@@ -123,8 +123,8 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
   };
 
   return (
-    <Card className="py-4">
-      <CardContent>
+    <Card className="py-6">
+      <CardContent className="py-0">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -133,7 +133,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Event Title *</FormLabel>
+                    <FormLabel>Event Title</FormLabel>
                     <FormControl>
                       <Input placeholder="Enter event title" {...field} />
                     </FormControl>
@@ -147,7 +147,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="slug"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Slug *</FormLabel>
+                    <FormLabel aria-required>Slug</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter event slug"
@@ -169,7 +169,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description *</FormLabel>
+                  <FormLabel aria-required>Description</FormLabel>
                   <FormControl>
                     <TextEditor value={field.value} onChange={field.onChange} />
                   </FormControl>
@@ -184,7 +184,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Event Type *</FormLabel>
+                    <FormLabel aria-required>Event Type</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -209,7 +209,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status *</FormLabel>
+                    <FormLabel aria-required>Status</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -234,7 +234,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="location"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Location *</FormLabel>
+                  <FormLabel aria-required>Location</FormLabel>
                   <FormControl>
                     <Input placeholder="Enter event location" {...field} />
                   </FormControl>
@@ -248,7 +248,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="date"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Event Date *</FormLabel>
+                  <FormLabel aria-required>Event Date</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -281,7 +281,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="reservation_start_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Reservation Start Date *</FormLabel>
+                    <FormLabel aria-required>Reservation Start Date</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -313,7 +313,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="reservation_end_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Reservation End Date *</FormLabel>
+                    <FormLabel aria-required>Reservation End Date</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -347,7 +347,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="duration"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Duration *</FormLabel>
+                    <FormLabel aria-required>Duration</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g. 2 hours" {...field} />
                     </FormControl>
@@ -361,7 +361,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="capacity"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Capacity *</FormLabel>
+                    <FormLabel aria-required>Capacity</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
@@ -380,7 +380,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price *</FormLabel>
+                    <FormLabel aria-required>Price</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
@@ -400,7 +400,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               name="registration_link"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Registration Link *</FormLabel>
+                  <FormLabel aria-required>Registration Link</FormLabel>
                   <FormControl>
                     <Input placeholder="https://example.com/register" {...field} />
                   </FormControl>
