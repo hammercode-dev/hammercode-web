@@ -2,14 +2,6 @@ import { marked } from "marked";
 import TurndownService from "turndown";
 import DOMPurify from "dompurify";
 
-// Configure marked for clean HTML output compatible with Tiptap
-const markedOptions = {
-  breaks: true,
-  gfm: true,
-  headerIds: false,
-  mangle: false,
-};
-
 // Configure Turndown for consistent markdown output
 const turndownService = new TurndownService();
 
@@ -33,7 +25,7 @@ export const markdownToHtml = (markdown: string): string => {
   }
 
   try {
-    const html = marked.parse(markdown, markedOptions) as string;
+    const html = marked.parse(markdown) as string;
 
     // Sanitize HTML with DOMPurify
     const sanitizedHtml = DOMPurify.sanitize(html as string);
