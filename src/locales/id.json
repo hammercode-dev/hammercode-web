@@ -336,14 +336,6 @@
       "tags": "Tambahkan tag",
       "speakers": "Tambahkan pembicara"
     },
-    "options": {
-      "status": {
-        "coming-soon": "Segera Hadir",
-        "open": "Terbuka",
-        "closed": "Tutup",
-        "cancelled": "Dibatalkan"
-      }
-    },
     "buttons": {
       "add": "Tambah",
       "create": "Buat Acara",

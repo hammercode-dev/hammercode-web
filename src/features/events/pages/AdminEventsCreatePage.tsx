@@ -1,11 +1,11 @@
 "use client";
 
+import { EventFormType } from "@/domains/Events";
 import EventForm from "../components/EventForm";
 
 const AdminEventsCreatePage = () => {
-  const handleSubmit = () => {
-    // console.log("Event data:", data);
-    // Handle form submission here
+  const handleSubmit = (data: EventFormType) => {
+    console.log(data);
   };
 
   return (

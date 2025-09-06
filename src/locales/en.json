@@ -336,14 +336,6 @@
       "tags": "Add a tag",
       "speakers": "Add a speaker"
     },
-    "options": {
-      "status": {
-        "coming-soon": "Coming Soon",
-        "open": "Open",
-        "closed": "Closed",
-        "cancelled": "Cancelled"
-      }
-    },
     "buttons": {
       "add": "Add",
       "create": "Create Event",

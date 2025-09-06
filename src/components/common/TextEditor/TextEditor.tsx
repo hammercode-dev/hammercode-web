@@ -8,13 +8,33 @@ import Typography from "@tiptap/extension-typography";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { createLowlight } from "lowlight";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import css from "highlight.js/lib/languages/css";
+import html from "highlight.js/lib/languages/xml";
+import python from "highlight.js/lib/languages/python";
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { markdownToHtml, htmlToMarkdown } from "./utils";
+import "highlight.js/styles/github-dark.css";
 
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Toolbar } from "@/components/common/TextEditor";
 import Loader from "../Loader";
+
+const lowlight = createLowlight();
+
+lowlight.register("js", js);
+lowlight.register("javascript", js);
+lowlight.register("ts", ts);
+lowlight.register("typescript", ts);
+lowlight.register("css", css);
+lowlight.register("html", html);
+lowlight.register("xml", html);
+lowlight.register("python", python);
+lowlight.register("py", python);
 
 interface TextEditorProps {
   markdownOutput?: boolean;
@@ -29,7 +49,12 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        codeBlock: false,
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
       Underline,
       Typography,
       HorizontalRule,
@@ -57,14 +82,12 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
       const html = editor.getHTML();
       const markdown = htmlToMarkdown(html);
       setMarkdownContent(markdown);
-      onChange?.(html);
-      console.log("markdown: ", markdown);
-      console.log("html: ", html);
+      onChange?.(htmlToMarkdown(html));
     },
     editorProps: {
       attributes: {
         class:
-          "prose prose-md dark:prose-invert max-w-none mx-auto focus:outline-none max-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:bg-muted prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-muted prose-pre:border prose-pre:text-foreground prose-pre:p-3 prose-p:my-1 prose-h1:my-2 prose-h2:my-2 prose-h3:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0 prose-hr:my-3",
+          "prose prose-md dark:prose-invert max-w-none mx-auto focus:outline-none max-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:p-3 prose-p:my-1 prose-h1:my-2 prose-h2:my-2 prose-h3:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0 prose-hr:my-3",
       },
     },
   });
@@ -98,18 +121,6 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
     input.click();
   }, [editor]);
 
-  const downloadMarkdown = useCallback(() => {
-    const blob = new Blob([markdownContent], { type: "text/markdown" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "document.md";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, [markdownContent]);
-
   const addLink = useCallback(() => {
     if (!editor) return;
 
@@ -129,8 +140,13 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
   }, [editor]);
 
   useEffect(() => {
-    if (editor && htmlContent !== undefined && editor.getHTML() !== htmlContent) {
-      editor.commands.setContent(htmlContent);
+    if (editor && htmlContent !== undefined) {
+      const currentMarkdown = htmlToMarkdown(editor.getHTML());
+      const incomingMarkdown = htmlToMarkdown(htmlContent);
+
+      if (currentMarkdown !== incomingMarkdown && !editor.isFocused) {
+        editor.commands.setContent(htmlContent);
+      }
     }
   }, [editor, htmlContent]);
 
@@ -147,7 +163,7 @@ const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps
             onAddImage={addImage}
             onAddImageFromFile={addImageFromFile}
             onAddLink={addLink}
-            onDownloadMarkdown={downloadMarkdown}
+            // onDownloadMarkdown={downloadMarkdown}
             isDownloadDisabled={!markdownContent}
           />
         </CardHeader>

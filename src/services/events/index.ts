@@ -55,4 +55,8 @@ export const eventsService = {
       },
     });
   },
+
+  // async createEventAdmin(payload): Promise<any> {
+  //   return fetcher.get(`/admin/events`, payload);
+  // },
 };

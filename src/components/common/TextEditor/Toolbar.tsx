@@ -15,7 +15,6 @@ import {
   Code2,
   Undo,
   Redo,
-  Download,
   ExternalLink,
   Minus,
 } from "lucide-react";
@@ -27,7 +26,7 @@ interface ToolbarProps {
   onAddImage: () => void;
   onAddImageFromFile: () => void;
   onAddLink: () => void;
-  onDownloadMarkdown: () => void;
+  // onDownloadMarkdown: () => void;
   isDownloadDisabled: boolean;
 }
 
@@ -36,8 +35,8 @@ const Toolbar = ({
   onAddImage,
   onAddImageFromFile,
   onAddLink,
-  onDownloadMarkdown,
-  isDownloadDisabled,
+  // onDownloadMarkdown,
+  // isDownloadDisabled,
 }: ToolbarProps) => {
   return (
     <div className="flex flex-wrap items-center gap-1 rounded-lg p-1">
@@ -191,12 +190,11 @@ const Toolbar = ({
 
       <Separator orientation="vertical" className="h-6" />
 
-      {/* Export */}
-      <div className="flex items-center gap-1">
+      {/* <div className="flex items-center gap-1">
         <ToolbarButton onClick={onDownloadMarkdown} title="Download as Markdown" disabled={isDownloadDisabled}>
           <Download className="h-4 w-4" />
         </ToolbarButton>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -120,6 +120,13 @@ export const eventTypes = [
   { value: "Bootcamp", label: "Bootcamp" },
 ];
 
+export const eventStatuses = [
+  { value: "coming soon", label: "Coming Soon" },
+  { value: "open", label: "Open" },
+  { value: "closed", label: "Closed" },
+  { value: "cancelled", label: "Cancelled" },
+];
+
 export const eventsInfo: EventInfoType[] = [
   {
     id: 1,

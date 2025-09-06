@@ -16,7 +16,7 @@ import { Switch } from "@/components/ui/Switch";
 import TextEditor from "@/components/common/TextEditor/TextEditor";
 import { cn, generateSlug } from "@/lib/utils";
 import { createEventFormSchema, EventFormType } from "@/domains/Events";
-import { eventTypes } from "../constants";
+import { eventTypes, eventStatuses } from "../constants";
 import { useState, useEffect } from "react";
 import Badge from "@/components/ui/Badge";
 
@@ -198,10 +198,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="coming soon">{t("options.status.coming-soon")}</SelectItem>
-                        <SelectItem value="open">{t("options.status.open")}</SelectItem>
-                        <SelectItem value="closed">{t("options.status.closed")}</SelectItem>
-                        <SelectItem value="cancelled">{t("options.status.cancelled")}</SelectItem>
+                        {eventStatuses.map((status) => (
+                          <SelectItem key={status.value} value={status.value}>
+                            {status.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
