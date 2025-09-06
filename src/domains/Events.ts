@@ -4,7 +4,6 @@ export const eventSchema = z.object({
   id: z.number(),
   title: z.string(),
   description: z.string(),
-  // content: z.string().optional(),
   slug: z.string().optional(),
   author: z.string(),
   image: z.string(),
@@ -84,11 +83,11 @@ export const createEventFormSchema = (t: (key: string) => string) =>
   z.object({
     title: z.string().min(1, t("validation.title-required")),
     description: z.string().min(1, t("validation.description-required")),
-    file_name: z.string().optional(),
+    // file_name: z.string().optional(),
     slug: z.string().min(1, t("validation.slug-required")),
-    is_online: z.boolean(),
     date: z.string().min(1, t("validation.date-required")),
     type: z.string().min(1, t("validation.type-required")),
+    session_type: z.string().min(1, t("validation.session-type-required")),
     location: z.string().min(1, t("validation.location-required")),
     duration: z.string().min(1, t("validation.duration-required")),
     status: z.string().min(1, t("validation.status-required")),
@@ -99,6 +98,14 @@ export const createEventFormSchema = (t: (key: string) => string) =>
     speakers: z.array(z.string()),
     reservation_start_date: z.string().min(1, t("validation.reservation-start-required")),
     reservation_end_date: z.string().min(1, t("validation.reservation-end-required")),
+    image: z.union([
+      z.instanceof(File).refine((file) => ["image/png", "image/jpeg", "image/jpg", "image/webp"].includes(file.type), {
+        message: t("validation.image-type"),
+      }),
+      z.string().min(1, t("validation.image-required")),
+    ]),
   });
 
 export type EventFormType = z.infer<ReturnType<typeof createEventFormSchema>>;
+
+export type CreateEventPayload = Omit<EventFormType, "image"> & { file_name: string };

@@ -8,12 +8,25 @@ export const uploadsService = {
    * @param type - The type of the image
    * @param category - The category for the image
    */
-  uploadImage(image: File, type: string, category: string): Promise<HttpResponse<{ file_name: string }>> {
+  uploadImage(image: string | File, category: string): Promise<HttpResponse<{ file_name: string }>> {
     const data = new FormData();
     data.append("image", image);
-    data.append("type", type);
     data.append("category", category);
     return fetcher.post("/images", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+  },
+  /**
+   * API to Uploads an image file to the server
+   * @param image - The image file to upload
+   * @param type - The type of the image
+   * @param category - The category for the image
+   */
+  uploadImageAdmin(image: string | File, category: string): Promise<HttpResponse<{ file_name: string }>> {
+    const data = new FormData();
+    data.append("image", image);
+    data.append("category", category);
+    return fetcher.post("/admin/images", data, {
       headers: { "Content-Type": "multipart/form-data" },
     });
   },

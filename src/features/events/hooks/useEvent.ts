@@ -1,5 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { eventsService } from "@/services/events";
+import { uploadsService } from "@/services/uploads";
+import { EventFormType, CreateEventPayload } from "@/domains/Events";
+import { toast } from "sonner";
+import { useRouter } from "@/lib/navigation";
 
 export const useEventById = (eventId: string) => {
   return useQuery({
@@ -40,4 +44,38 @@ export const useEventsAdmin = (page: number, limit: number, search?: string) => 
       return response;
     },
   });
+};
+
+export const useCreateEvent = (t: (key: string) => string) => {
+  const router = useRouter();
+
+  const submitMutation = useMutation({
+    mutationKey: ["createEvent"],
+    mutationFn: (payload: CreateEventPayload) => eventsService.createEventAdmin(payload),
+    onSuccess: () => {
+      toast.success(t("EventForm.create-success"));
+      router.push("/admin/events");
+    },
+  });
+
+  const createMutation = useMutation({
+    mutationFn: (payload: EventFormType) => uploadsService.uploadImageAdmin(payload.image, "events"),
+    onSuccess: (data, variables) => {
+      const filename = data.data.file_name;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { image, ...rest } = variables;
+      submitMutation.mutate({
+        ...rest,
+        file_name: filename,
+      });
+    },
+  });
+
+  const isLoading = createMutation.isPending || submitMutation.isPending;
+
+  return {
+    createMutation,
+    submitMutation,
+    isLoading,
+  };
 };

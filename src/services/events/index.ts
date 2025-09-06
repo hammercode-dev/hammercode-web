@@ -1,6 +1,6 @@
 import { HttpResponse } from "@/types/http";
 import { fetcher } from "../instance";
-import { EventType, RegistrationForm, UserEventType } from "@/domains/Events";
+import { CreateEventPayload, EventType, RegistrationForm, UserEventType } from "@/domains/Events";
 
 export const eventsService = {
   /**
@@ -56,7 +56,7 @@ export const eventsService = {
     });
   },
 
-  // async createEventAdmin(payload): Promise<any> {
-  //   return fetcher.get(`/admin/events`, payload);
-  // },
+  async createEventAdmin(payload: CreateEventPayload): Promise<HttpResponse<null>> {
+    return fetcher.post(`/admin/events`, payload);
+  },
 };

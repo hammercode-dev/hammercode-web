@@ -31,7 +31,7 @@ export const useRegistEvent = (data: EventType) => {
         console.log("image proof payment", image_proof_payment);
         const {
           data: { file_name: uploadedImageFileName },
-        } = await uploadsService.uploadImage(image_proof_payment as File, "payment", "event");
+        } = await uploadsService.uploadImage(image_proof_payment as File, "event");
 
         setNameImage(uploadedImageFileName);
         registPayload = {

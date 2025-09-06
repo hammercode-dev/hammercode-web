@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { CalendarIcon, Save, X } from "lucide-react";
+import { CalendarIcon, Save, X, Upload } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -12,11 +12,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
 import { Calendar } from "@/components/ui/Calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
-import { Switch } from "@/components/ui/Switch";
 import TextEditor from "@/components/common/TextEditor/TextEditor";
 import { cn, generateSlug } from "@/lib/utils";
 import { createEventFormSchema, EventFormType } from "@/domains/Events";
-import { eventTypes, eventStatuses } from "../constants";
+import { eventTypes, eventStatuses, sessionTypes } from "../constants";
 import { useState, useEffect } from "react";
 import Badge from "@/components/ui/Badge";
 
@@ -39,14 +38,13 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
     defaultValues: initialData || {
       title: "",
       description: "",
-      file_name: "",
       slug: "",
-      is_online: false,
       date: "",
       type: "",
+      session_type: "",
       location: "",
       duration: "",
-      status: "coming soon",
+      status: "soon",
       capacity: 0,
       price: 0,
       registration_link: "",
@@ -54,6 +52,7 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
       speakers: [],
       reservation_start_date: "",
       reservation_end_date: "",
+      image: "",
     },
   });
 
@@ -99,7 +98,6 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
   };
 
   const handleSubmit = (data: EventFormType) => {
-    console.log("dataaaa", data);
     onSubmit(data);
   };
 
@@ -159,7 +157,32 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
               )}
             />
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel aria-required>{t("labels.image")}</FormLabel>
+                  <FormControl>
+                    <div className="flex items-center gap-4">
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          field.onChange(file);
+                        }}
+                        className="file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:mr-4 file:rounded-md file:border-0 file:px-4 file:py-2 file:text-sm file:font-medium"
+                      />
+                      <Upload className="text-muted-foreground h-4 w-4" />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <FormField
                 control={form.control}
                 name="type"
@@ -176,6 +199,31 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                         {eventTypes.map((type) => (
                           <SelectItem key={type.value} value={type.value}>
                             {type.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="session_type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel aria-required>{t("labels.session-type")}</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder={t("placeholders.session-type")} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {sessionTypes.map((sessionType) => (
+                          <SelectItem key={sessionType.value} value={sessionType.value}>
+                            {sessionType.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -461,22 +509,6 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                     </div>
                   </div>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="is_online"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
-                    <FormLabel className="text-base">{t("labels.online-event")}</FormLabel>
-                    <div className="text-muted-foreground text-sm">{t("labels.online-description")}</div>
-                  </div>
-                  <FormControl>
-                    <Switch checked={field.value} onCheckedChange={field.onChange} />
-                  </FormControl>
                 </FormItem>
               )}
             />

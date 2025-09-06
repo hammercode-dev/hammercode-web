@@ -301,8 +301,12 @@
       "price-min": "Harga minimal 0 atau gratis",
       "registration-url": "Harus berupa URL yang valid",
       "reservation-start-required": "Tanggal mulai pendaftaran wajib diisi",
-      "reservation-end-required": "Tanggal berakhir pendaftaran wajib diisi"
+      "reservation-end-required": "Tanggal berakhir pendaftaran wajib diisi",
+      "session-type-required": "Jenis sesi wajib dipilih",
+      "image-type": "Pilih file gambar yang valid (PNG, JPEG, JPG, WEBP)",
+      "image-required": "Gambar wajib diunggah"
     },
+    "create-success": "Event berhasil dibuat!",
     "labels": {
       "title": "Judul Acara",
       "description": "Deskripsi",
@@ -319,8 +323,8 @@
       "registration-link": "Link Pendaftaran",
       "tags": "Tag",
       "speakers": "Pembicara",
-      "online-event": "Acara Online",
-      "online-description": "Apakah ini acara online?"
+      "session-type": "Jenis Sesi",
+      "image": "Gambar Acara"
     },
     "placeholders": {
       "title": "Masukkan judul acara",
@@ -334,7 +338,8 @@
       "price": "Masukkan harga",
       "registration-link": "https://contoh.com/daftar",
       "tags": "Tambahkan tag",
-      "speakers": "Tambahkan pembicara"
+      "speakers": "Tambahkan pembicara",
+      "session-type": "Pilih jenis sesi"
     },
     "buttons": {
       "add": "Tambah",

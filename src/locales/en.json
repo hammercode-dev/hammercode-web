@@ -301,8 +301,12 @@
       "price-min": "Price must be 0 or greater",
       "registration-url": "Must be a valid URL",
       "reservation-start-required": "Reservation start date is required",
-      "reservation-end-required": "Reservation end date is required"
+      "reservation-end-required": "Reservation end date is required",
+      "session-type-required": "Session type is required",
+      "image-type": "Please select a valid image file (PNG, JPEG, JPG, WEBP)",
+      "image-required": "Image is required"
     },
+    "create-success": "Event created successfully!",
     "labels": {
       "title": "Event Title",
       "description": "Description",
@@ -319,8 +323,8 @@
       "registration-link": "Registration Link",
       "tags": "Tags",
       "speakers": "Speakers",
-      "online-event": "Online Event",
-      "online-description": "Is this an online event?"
+      "session-type": "Session Type",
+      "image": "Event Image"
     },
     "placeholders": {
       "title": "Enter event title",
@@ -334,7 +338,8 @@
       "price": "Enter price",
       "registration-link": "https://example.com/register",
       "tags": "Add a tag",
-      "speakers": "Add a speaker"
+      "speakers": "Add a speaker",
+      "session-type": "Select session type"
     },
     "buttons": {
       "add": "Add",
