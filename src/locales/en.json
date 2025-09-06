@@ -307,6 +307,13 @@
       "image-required": "Image is required"
     },
     "create-success": "Event created successfully!",
+    "create-success-title": "Success!",
+    "create-success-description": "You can now view it in your event list or continue managing other events",
+    "create-error-title": "Error",
+    "create-error-description": "Failed to create event. Please try again.",
+    "upload-error-title": "Upload Error",
+    "upload-error-description": "Failed to upload image. Please try again.",
+    "back-to-list": "Back to List",
     "labels": {
       "title": "Event Title",
       "description": "Description",

@@ -10,6 +10,8 @@ import { AuthJwtPayload } from "@/types";
 import { jwtDecode } from "jwt-decode";
 import { ThemeProvider } from "@/components/provider/ThemeProvider";
 import TanstackProvider from "@/components/provider/TanstackProvider";
+import { DialogProvider } from "@/contexts/dialogContext";
+import DialogGlobal from "@/components/common/DialogGlobal";
 const sora = Sora({ subsets: ["latin"] });
 
 type Props = {
@@ -58,14 +60,17 @@ export default async function LocaleRootLayout(props: Readonly<Props>) {
     <html lang={locale} suppressHydrationWarning>
       <body className={`${sora.className}`}>
         <NextIntlClientProvider messages={messages}>
-          <TanstackProvider>
-            <AuthProvider payload={payload}>
-              <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-                {children}
-              </ThemeProvider>
-            </AuthProvider>
-          </TanstackProvider>
-          <Toaster />
+          <DialogProvider>
+            <TanstackProvider>
+              <AuthProvider payload={payload}>
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                  {children}
+                </ThemeProvider>
+              </AuthProvider>
+            </TanstackProvider>
+            <Toaster />
+            <DialogGlobal />
+          </DialogProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -307,6 +307,13 @@
       "image-required": "Gambar wajib diunggah"
     },
     "create-success": "Event berhasil dibuat!",
+    "create-success-title": "Berhasil!",
+    "create-success-description": "Anda sekarang dapat melihatnya di daftar event atau melanjutkan mengelola event lainnya",
+    "create-error-title": "Error",
+    "create-error-description": "Gagal membuat event. Silakan coba lagi.",
+    "upload-error-title": "Error Upload",
+    "upload-error-description": "Gagal mengupload gambar. Silakan coba lagi.",
+    "back-to-list": "Kembali ke Daftar",
     "labels": {
       "title": "Judul Acara",
       "description": "Deskripsi",

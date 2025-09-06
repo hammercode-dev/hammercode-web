@@ -16,8 +16,9 @@ import TextEditor from "@/components/common/TextEditor/TextEditor";
 import { cn, generateSlug } from "@/lib/utils";
 import { createEventFormSchema, EventFormType } from "@/domains/Events";
 import { eventTypes, eventStatuses, sessionTypes } from "../constants";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Badge from "@/components/ui/Badge";
+import { useRouter } from "@/lib/navigation";
 
 interface EventFormProps {
   onSubmit: (data: EventFormType) => void;
@@ -28,6 +29,7 @@ interface EventFormProps {
 
 const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }: EventFormProps) => {
   const t = useTranslations("EventForm");
+  const router = useRouter();
   const eventFormSchema = createEventFormSchema(t);
   const [tagInput, setTagInput] = useState("");
   const [speakerInput, setSpeakerInput] = useState("");
@@ -525,7 +527,13 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                     : t("buttons.update")}
               </Button>
 
-              <Button type="button" variant="outline">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  router.back();
+                }}
+              >
                 {t("buttons.cancel")}
               </Button>
             </div>
