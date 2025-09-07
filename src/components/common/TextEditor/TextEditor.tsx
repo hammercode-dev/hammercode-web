@@ -7,40 +7,57 @@ import Underline from "@tiptap/extension-underline";
 import Typography from "@tiptap/extension-typography";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
-import { useState, useCallback, useMemo } from "react";
-import TurndownService from "turndown";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { createLowlight } from "lowlight";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import css from "highlight.js/lib/languages/css";
+import html from "highlight.js/lib/languages/xml";
+import python from "highlight.js/lib/languages/python";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { markdownToHtml, htmlToMarkdown } from "./utils";
+import "highlight.js/styles/github-dark.css";
 
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Toolbar } from "@/components/common/TextEditor";
+import Loader from "../Loader";
+
+const lowlight = createLowlight();
+
+lowlight.register("js", js);
+lowlight.register("javascript", js);
+lowlight.register("ts", ts);
+lowlight.register("typescript", ts);
+lowlight.register("css", css);
+lowlight.register("html", html);
+lowlight.register("xml", html);
+lowlight.register("python", python);
+lowlight.register("py", python);
 
 interface TextEditorProps {
   markdownOutput?: boolean;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
+const TextEditor = ({ markdownOutput = false, value, onChange }: TextEditorProps) => {
   const [markdownContent, setMarkdownContent] = useState("");
 
-  const turndownService = useMemo(() => {
-    const service = new TurndownService({
-      headingStyle: "atx",
-      codeBlockStyle: "fenced",
-    });
-
-    // Custom rule for underline tags
-    service.addRule("underline", {
-      filter: "u",
-      replacement: (content) => `<u>${content}</u>`,
-    });
-
-    return service;
-  }, []);
+  const htmlContent = useMemo(() => markdownToHtml(value || ""), [value]);
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        codeBlock: false,
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
       Underline,
       Typography,
+      HorizontalRule,
       Placeholder.configure({
         placeholder: "Start typing your content here... Use the toolbar above to format your text.",
       }),
@@ -55,20 +72,22 @@ const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
         allowBase64: true,
       }),
     ],
-    content: "",
+    content: htmlContent,
     immediatelyRender: false,
     onCreate: ({ editor }) => {
       const html = editor.getHTML();
-      setMarkdownContent(turndownService.turndown(html));
+      setMarkdownContent(htmlToMarkdown(html));
     },
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      setMarkdownContent(turndownService.turndown(html));
+      const markdown = htmlToMarkdown(html);
+      setMarkdownContent(markdown);
+      onChange?.(htmlToMarkdown(html));
     },
     editorProps: {
       attributes: {
         class:
-          "prose dark:prose-invert max-w-none mx-auto focus:outline-none min-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-muted prose-pre:border prose-pre:text-foreground",
+          "prose prose-md dark:prose-invert max-w-none mx-auto focus:outline-none max-h-[300px] p-3 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:before:content-none prose-blockquote:not-italic prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:border prose-pre:p-3 prose-p:my-1 prose-h1:my-2 prose-h2:my-2 prose-h3:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0 prose-hr:my-3",
       },
     },
   });
@@ -102,18 +121,6 @@ const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
     input.click();
   }, [editor]);
 
-  const downloadMarkdown = useCallback(() => {
-    const blob = new Blob([markdownContent], { type: "text/markdown" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "document.md";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, [markdownContent]);
-
   const addLink = useCallback(() => {
     if (!editor) return;
 
@@ -132,12 +139,19 @@ const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   }, [editor]);
 
+  useEffect(() => {
+    if (editor && htmlContent !== undefined) {
+      const currentMarkdown = htmlToMarkdown(editor.getHTML());
+      const incomingMarkdown = htmlToMarkdown(htmlContent);
+
+      if (currentMarkdown !== incomingMarkdown && !editor.isFocused) {
+        editor.commands.setContent(htmlContent);
+      }
+    }
+  }, [editor, htmlContent]);
+
   if (!editor) {
-    return (
-      <div className="flex h-64 items-center justify-center">
-        <div className="border-primary h-8 w-8 animate-spin rounded-full border-b-2"></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
@@ -149,7 +163,7 @@ const TextEditor = ({ markdownOutput = false }: TextEditorProps) => {
             onAddImage={addImage}
             onAddImageFromFile={addImageFromFile}
             onAddLink={addLink}
-            onDownloadMarkdown={downloadMarkdown}
+            // onDownloadMarkdown={downloadMarkdown}
             isDownloadDisabled={!markdownContent}
           />
         </CardHeader>

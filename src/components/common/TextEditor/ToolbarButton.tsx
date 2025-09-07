@@ -11,6 +11,7 @@ interface ToolbarButtonProps {
 
 const ToolbarButton = ({ onClick, isActive, disabled, children, title, variant = "outline" }: ToolbarButtonProps) => (
   <Button
+    type="button"
     onClick={onClick}
     disabled={disabled}
     title={title}

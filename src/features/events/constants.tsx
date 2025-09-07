@@ -112,6 +112,25 @@ export const mockEvents: TechEvent[] = [
   },
 ];
 
+export const eventTypes = [
+  { value: "Tech Talk", label: "Tech Talk" },
+  { value: "Conference", label: "Conference" },
+  { value: "Ngobar", label: "Ngobar" },
+];
+
+export const eventStatuses = [
+  { value: "soon", label: "Soon" },
+  { value: "open", label: "Open" },
+  { value: "closed", label: "Closed" },
+  // { value: "cancelled", label: "Cancelled" },
+];
+
+export const sessionTypes = [
+  { value: "online", label: "Online" },
+  { value: "offline", label: "Offline" },
+  { value: "hybrid", label: "Hybrid" },
+];
+
 export const eventsInfo: EventInfoType[] = [
   {
     id: 1,

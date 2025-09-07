@@ -286,5 +286,75 @@
       "male": "Laki-laki",
       "female": "Perempuan"
     }
+  },
+  "EventForm": {
+    "validation": {
+      "title-required": "Judul wajib diisi",
+      "description-required": "Deskripsi wajib diisi",
+      "slug-required": "Slug wajib diisi",
+      "date-required": "Tanggal acara wajib diisi",
+      "type-required": "Jenis acara wajib diisi",
+      "location-required": "Lokasi wajib diisi",
+      "duration-required": "Durasi wajib diisi",
+      "status-required": "Status wajib diisi",
+      "capacity-min": "Kapasitas minimal 1 orang",
+      "price-min": "Harga minimal 0 atau gratis",
+      "registration-url": "Harus berupa URL yang valid",
+      "reservation-start-required": "Tanggal mulai pendaftaran wajib diisi",
+      "reservation-end-required": "Tanggal berakhir pendaftaran wajib diisi",
+      "session-type-required": "Jenis sesi wajib dipilih",
+      "image-type": "Pilih file gambar yang valid (PNG, JPEG, JPG, WEBP)",
+      "image-required": "Gambar wajib diunggah"
+    },
+    "create-success": "Event berhasil dibuat!",
+    "create-success-title": "Berhasil!",
+    "create-success-description": "Anda sekarang dapat melihatnya di daftar event atau melanjutkan mengelola event lainnya",
+    "create-error-title": "Error",
+    "create-error-description": "Gagal membuat event. Silakan coba lagi.",
+    "upload-error-title": "Error Upload",
+    "upload-error-description": "Gagal mengupload gambar. Silakan coba lagi.",
+    "back-to-list": "Kembali ke Daftar",
+    "labels": {
+      "title": "Judul Acara",
+      "description": "Deskripsi",
+      "slug": "Slug",
+      "type": "Jenis Acara",
+      "status": "Status",
+      "location": "Lokasi",
+      "date": "Tanggal Acara",
+      "reservation-start": "Tanggal Mulai Pendaftaran",
+      "reservation-end": "Tanggal Berakhir Pendaftaran",
+      "duration": "Durasi",
+      "capacity": "Kapasitas",
+      "price": "Harga",
+      "registration-link": "Link Pendaftaran",
+      "tags": "Tag",
+      "speakers": "Pembicara",
+      "session-type": "Jenis Sesi",
+      "image": "Gambar Acara"
+    },
+    "placeholders": {
+      "title": "Masukkan judul acara",
+      "slug": "Masukkan slug acara",
+      "type": "Pilih jenis acara",
+      "status": "Pilih status",
+      "location": "Masukkan lokasi acara",
+      "date": "Pilih tanggal",
+      "duration": "contoh: 2 jam",
+      "capacity": "Masukkan kapasitas",
+      "price": "Masukkan harga",
+      "registration-link": "https://contoh.com/daftar",
+      "tags": "Tambahkan tag",
+      "speakers": "Tambahkan pembicara",
+      "session-type": "Pilih jenis sesi"
+    },
+    "buttons": {
+      "add": "Tambah",
+      "create": "Buat Acara",
+      "update": "Perbarui Acara",
+      "cancel": "Batal",
+      "creating": "Membuat...",
+      "updating": "Memperbarui..."
+    }
   }
 }
