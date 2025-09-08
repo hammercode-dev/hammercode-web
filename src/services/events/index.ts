@@ -1,6 +1,12 @@
 import { HttpResponse } from "@/types/http";
 import { fetcher } from "../instance";
-import { CreateEventPayload, EventType, RegistrationForm, UserEventType } from "@/domains/Events";
+import {
+  AdminEventResponseType,
+  CreateEventPayload,
+  EventType,
+  RegistrationForm,
+  UserEventType,
+} from "@/domains/Events";
 
 export const eventsService = {
   /**
@@ -56,7 +62,24 @@ export const eventsService = {
     });
   },
 
+  /**
+   * API to create event for admin.
+   */
   async createEventAdmin(payload: CreateEventPayload): Promise<HttpResponse<null>> {
     return fetcher.post(`/admin/events`, payload);
+  },
+
+  /**
+   * API to get detail event for admin.
+   */
+  async getDetailEventAdmin(id: string): Promise<HttpResponse<AdminEventResponseType>> {
+    return fetcher.get(`/api/v1/admin/events/${id}`);
+  },
+
+  /**
+   * API to update event for admin.
+   */
+  async updateEventAdmin(id: string, payload: CreateEventPayload): Promise<HttpResponse<null>> {
+    return fetcher.put(`/admin/events/${id}`, payload);
   },
 };
