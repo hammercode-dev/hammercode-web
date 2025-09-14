@@ -116,3 +116,10 @@ export const useCreateEvent = (t: (key: string) => string) => {
     isLoading,
   };
 };
+
+export const useGetDetailEventAdmin = (id: string) => {
+  return useQuery({
+    queryKey: ["getDetailEventAdmin", id],
+    queryFn: async () => eventsService.getDetailEventAdmin(id),
+  });
+};

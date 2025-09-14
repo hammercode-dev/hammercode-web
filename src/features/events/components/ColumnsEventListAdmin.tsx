@@ -6,6 +6,8 @@ import { formatDateEvent } from "@/lib/format";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit2, SquareChartGantt } from "lucide-react";
 
+import { Link } from "@/lib/navigation";
+
 export const columnsEventListAdmin: ColumnDef<EventType>[] = [
   {
     accessorKey: "title",
@@ -38,9 +40,11 @@ export const columnsEventListAdmin: ColumnDef<EventType>[] = [
           size="icon"
           variant="outline"
           className="cursor-poiner h-8 w-8 cursor-pointer border-blue-500 bg-blue-500 text-white hover:bg-blue-600 hover:text-white"
-          onClick={() => console.log("Edit event:", row.original.id)}
+          asChild
         >
-          <Edit2 className="h-4 w-4" />
+          <Link href={`/admin/events/${row.original.id}/edit`}>
+            <Edit2 className="h-4 w-4" />
+          </Link>
         </Button>
         <Button
           size="icon"

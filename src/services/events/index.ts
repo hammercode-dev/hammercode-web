@@ -73,7 +73,7 @@ export const eventsService = {
    * API to get detail event for admin.
    */
   async getDetailEventAdmin(id: string): Promise<HttpResponse<AdminEventResponseType>> {
-    return fetcher.get(`/api/v1/admin/events/${id}`);
+    return fetcher.get(`/admin/events/${id}`);
   },
 
   /**

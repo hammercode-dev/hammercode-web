@@ -1,7 +1,14 @@
+"use client";
+
 import { EventFormType } from "@/domains/Events";
 import EventForm from "../components/EventForm";
+import { useGetDetailEventAdmin } from "../hooks/useEvent";
 
-const AdminEventUpdatePage = () => {
+const AdminEventUpdatePage = ({ eventId }: { eventId: string }) => {
+  console.log("eventsss id", eventId);
+  const { data } = useGetDetailEventAdmin(eventId);
+
+  console.log("dataaa", data);
   const handleSubmit = (data: EventFormType) => {
     // createMutation.mutate(data);
     console.log(data);
