@@ -2,16 +2,18 @@
 
 import { EventFormType } from "@/domains/Events";
 import EventForm from "../components/EventForm";
-import { useGetDetailEventAdmin } from "../hooks/useEvent";
+import { useGetDetailEventAdmin, useUpdateEvent } from "../hooks/useEvent";
 import Loader from "@/components/common/Loader";
+import { useTranslations } from "next-intl";
 
 const AdminEventUpdatePage = ({ eventId }: { eventId: string }) => {
   console.log("eventsss id", eventId);
+  const t = useTranslations();
   const { data, isLoading } = useGetDetailEventAdmin(eventId);
+  const { updateEvent, isLoading: loadingUpdate } = useUpdateEvent(t, eventId);
 
-  console.log("dataaa", data);
   const handleSubmit = (data: EventFormType) => {
-    // createMutation.mutate(data);
+    updateEvent(data);
     console.log(data);
   };
 
@@ -25,7 +27,7 @@ const AdminEventUpdatePage = ({ eventId }: { eventId: string }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <EventForm onSubmit={handleSubmit} mode="edit" isLoading={false} initialData={data?.data} />
+        <EventForm onSubmit={handleSubmit} mode="edit" isLoading={loadingUpdate} initialData={data?.data} />
       )}
     </section>
   );

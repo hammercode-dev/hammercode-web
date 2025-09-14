@@ -125,7 +125,7 @@ export const createEventFormSchema = (t: (key: string) => string) =>
 
 export type EventFormType = z.infer<ReturnType<typeof createEventFormSchema>>;
 
-export type CreateEventPayload = Omit<EventFormType, "image"> & { file_name: string };
+export type CreateEventPayload = Omit<EventFormType, "image"> & { file_name?: string };
 
 export type AdminEventResponseType = Omit<EventFormType, "image"> & {
   id: number;
