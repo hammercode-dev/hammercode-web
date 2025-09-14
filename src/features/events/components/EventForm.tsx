@@ -161,8 +161,21 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
             />
 
             {initialData?.file_name && (
-              <div>
-                <Image src={initialData.file_name} alt="image cover" width={200} height={200} />
+              <div className="relative h-82 w-full overflow-hidden rounded-md border">
+                <Image
+                  src={initialData.file_name}
+                  alt="Background blur"
+                  width={400}
+                  height={160}
+                  className="absolute inset-0 h-82 w-full object-cover blur-sm"
+                />
+                <Image
+                  src={initialData.file_name}
+                  alt="Current event image"
+                  width={200}
+                  height={200}
+                  className="relative z-10 mx-auto max-h-82 w-full object-contain"
+                />
               </div>
             )}
 
