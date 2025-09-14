@@ -22,9 +22,9 @@ export const uploadsService = {
    * @param type - The type of the image
    * @param category - The category for the image
    */
-  uploadImageAdmin(image: string | File, category: string): Promise<HttpResponse<{ file_name: string }>> {
+  uploadImageAdmin(image: string | File | undefined, category: string): Promise<HttpResponse<{ file_name: string }>> {
     const data = new FormData();
-    data.append("image", image);
+    data.append("image", image as File);
     data.append("category", category);
     return fetcher.post("/admin/images", data, {
       headers: { "Content-Type": "multipart/form-data" },

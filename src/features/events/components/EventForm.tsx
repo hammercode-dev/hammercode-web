@@ -19,6 +19,7 @@ import { eventTypes, eventStatuses, sessionTypes } from "../constants";
 import React, { useState, useEffect } from "react";
 import Badge from "@/components/ui/Badge";
 import { useRouter } from "@/lib/navigation";
+import Image from "next/image";
 
 interface EventFormProps {
   onSubmit: (data: EventFormType) => void;
@@ -158,6 +159,12 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                 </FormItem>
               )}
             />
+
+            {initialData?.file_name && (
+              <div>
+                <Image src={initialData.file_name} alt="image cover" width={200} height={200} />
+              </div>
+            )}
 
             <FormField
               control={form.control}

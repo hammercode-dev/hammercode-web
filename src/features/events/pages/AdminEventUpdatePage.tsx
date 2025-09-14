@@ -3,10 +3,11 @@
 import { EventFormType } from "@/domains/Events";
 import EventForm from "../components/EventForm";
 import { useGetDetailEventAdmin } from "../hooks/useEvent";
+import Loader from "@/components/common/Loader";
 
 const AdminEventUpdatePage = ({ eventId }: { eventId: string }) => {
   console.log("eventsss id", eventId);
-  const { data } = useGetDetailEventAdmin(eventId);
+  const { data, isLoading } = useGetDetailEventAdmin(eventId);
 
   console.log("dataaa", data);
   const handleSubmit = (data: EventFormType) => {
@@ -21,7 +22,11 @@ const AdminEventUpdatePage = ({ eventId }: { eventId: string }) => {
         <p className="text-muted-foreground">Edit event details quickly and easily.</p>
       </div>
 
-      <EventForm onSubmit={handleSubmit} mode="edit" isLoading={false} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <EventForm onSubmit={handleSubmit} mode="edit" isLoading={false} initialData={data?.data} />
+      )}
     </section>
   );
 };

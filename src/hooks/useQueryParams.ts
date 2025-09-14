@@ -1,5 +1,5 @@
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "@/lib/navigation";
+import { useRouter } from "next/navigation";
 
 /**
  * Custom hook for managing URL query parameters with nextjs
