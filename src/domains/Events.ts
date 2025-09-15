@@ -80,32 +80,55 @@ export const userEventSchema = z.object({
 export type UserEventType = z.infer<typeof userEventSchema>;
 
 export const createEventFormSchema = (t: (key: string) => string) =>
-  z.object({
-    title: z.string().min(1, t("validation.title-required")),
-    description: z.string().min(1, t("validation.description-required")),
-    // file_name: z.string().optional(),
-    slug: z.string().min(1, t("validation.slug-required")),
-    date: z.string().min(1, t("validation.date-required")),
-    type: z.string().min(1, t("validation.type-required")),
-    session_type: z.string().min(1, t("validation.session-type-required")),
-    location: z.string().min(1, t("validation.location-required")),
-    duration: z.string().min(1, t("validation.duration-required")),
-    status: z.string().min(1, t("validation.status-required")),
-    capacity: z.number().min(1, t("validation.capacity-min")),
-    price: z.number().min(0, t("validation.price-min")),
-    registration_link: z.string().url(t("validation.registration-url")),
-    tags: z.array(z.string()),
-    speakers: z.array(z.string()),
-    reservation_start_date: z.string().min(1, t("validation.reservation-start-required")),
-    reservation_end_date: z.string().min(1, t("validation.reservation-end-required")),
-    image: z.union([
-      z.instanceof(File).refine((file) => ["image/png", "image/jpeg", "image/jpg", "image/webp"].includes(file.type), {
-        message: t("validation.image-type"),
-      }),
-      z.string().min(1, t("validation.image-required")),
-    ]),
-  });
+  z
+    .object({
+      title: z.string().min(1, t("validation.title-required")),
+      description: z.string().min(1, t("validation.description-required")),
+      file_name: z.string().optional(),
+      slug: z.string().min(1, t("validation.slug-required")),
+      date: z.string().min(1, t("validation.date-required")),
+      type: z.string().min(1, t("validation.type-required")),
+      session_type: z.string().min(1, t("validation.session-type-required")),
+      location: z.string().min(1, t("validation.location-required")),
+      duration: z.string().min(1, t("validation.duration-required")),
+      status: z.string().min(1, t("validation.status-required")),
+      capacity: z.number().min(1, t("validation.capacity-min")),
+      price: z.number().min(0, t("validation.price-min")),
+      registration_link: z.string().url(t("validation.registration-url")),
+      tags: z.array(z.string()),
+      speakers: z.array(z.string()),
+      reservation_start_date: z.string().min(1, t("validation.reservation-start-required")),
+      reservation_end_date: z.string().min(1, t("validation.reservation-end-required")),
+      image: z
+        .union([
+          z
+            .instanceof(File)
+            .refine((file) => ["image/png", "image/jpeg", "image/jpg", "image/webp"].includes(file.type), {
+              message: t("validation.image-type"),
+            }),
+          z.string().optional(),
+        ])
+        .optional(),
+    })
+    .refine(
+      (data) => {
+        if (data.file_name) {
+          return true;
+        }
+        return data.image instanceof File || (typeof data.image === "string" && data.image.length > 0);
+      },
+      {
+        message: t("validation.image-required"),
+        path: ["image"],
+      }
+    );
 
 export type EventFormType = z.infer<ReturnType<typeof createEventFormSchema>>;
 
-export type CreateEventPayload = Omit<EventFormType, "image"> & { file_name: string };
+export type CreateEventPayload = Omit<EventFormType, "image"> & { file_name?: string };
+
+export type AdminEventResponseType = Omit<EventFormType, "image"> & {
+  id: number;
+  author: string;
+  file_name: string;
+};
