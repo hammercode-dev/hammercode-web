@@ -8,13 +8,13 @@ import { EventType } from "@/domains/Events";
 import { useFormatDate } from "@/lib/format";
 
 const EventCardV2: FC<{ data: EventType }> = ({ data }) => {
-  const { title, date, image, status, duration, location } = data;
+  const { title, date, image_event, status, duration, location } = data;
 
   return (
     <Card className="flex size-full flex-col rounded-lg border shadow-md">
       <div className="bg-muted overflow-hidden rounded-t-lg">
         <Image
-          src={image ?? "/assets/images/events/fallbackImage.webp"}
+          src={image_event ?? "/assets/images/events/fallbackImage.webp"}
           alt={title}
           width={540}
           height={240}

@@ -6,7 +6,7 @@ export const eventSchema = z.object({
   description: z.string(),
   slug: z.string().optional(),
   author: z.string(),
-  image: z.string(),
+  image_event: z.string(),
   date: z.string().optional(),
   type: z.string(),
   location: z.string(),

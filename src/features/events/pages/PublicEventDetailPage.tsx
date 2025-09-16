@@ -28,12 +28,12 @@ const EventDetailPage: FC<EventDetailPageProp> = ({ eventId }) => {
           <div className="w-full rounded-lg">
             {!isLoading ? (
               <Image
-                src={event?.image ?? "/assets/images/events/fallbackImage.webp"}
+                src={event?.image_event ?? "/assets/images/events/fallbackImage.webp"}
                 alt="Banner"
                 width={1000}
                 height={500}
                 priority
-                className="rounded-lg"
+                className="rounded-lg border shadow-md"
               />
             ) : (
               <Skeleton className="h-24 w-full rounded-lg sm:h-96" />
