@@ -12,7 +12,8 @@
     "check-format": "prettier --check .",
     "prepare": "husky",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test --config=tests/setup/playwright.config.ts"
   },
   "husky": {
     "hooks": {
