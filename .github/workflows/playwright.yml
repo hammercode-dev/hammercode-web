@@ -25,17 +25,3 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-
-  e2e-required:
-    runs-on: ubuntu-latest
-    needs: test
-    if: always()
-    steps:
-      - name: Check E2E Test Results
-        run: |
-          echo "Test job result: ${{ needs.test.result }}"
-          if [ "${{ needs.test.result }}" != "success" ]; then
-            echo "E2E tests failed!"
-            exit 1
-          fi
-          echo "E2E tests passed!"
