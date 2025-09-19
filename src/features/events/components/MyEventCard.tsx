@@ -15,12 +15,12 @@ const MyEventCard = ({ data }: { data: UserEventType }) => {
           <div
             className="absolute inset-0 scale-110 bg-cover bg-center blur-xs"
             style={{
-              backgroundImage: `url(${data.event_detail.image ?? "/assets/images/events/fallbackImage.webp"})`,
+              backgroundImage: `url(${data.event_detail.image_event ?? "/assets/images/events/fallbackImage.webp"})`,
             }}
           />
           <Image
             alt={`Event ${order_no}`}
-            src={data.event_detail.image ?? "/assets/images/events/fallbackImage.webp"}
+            src={data.event_detail.image_event ?? "/assets/images/events/fallbackImage.webp"}
             width={540}
             height={240}
             className="relative z-10 object-cover object-center"

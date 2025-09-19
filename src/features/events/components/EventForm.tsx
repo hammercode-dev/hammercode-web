@@ -318,7 +318,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                         mode="single"
                         selected={field.value ? new Date(field.value) : undefined}
                         onSelect={(date) => field.onChange(date ? date.toISOString() : "")}
-                        disabled={(date) => date < new Date()}
+                        disabled={(date) => {
+                          const yesterday = new Date();
+                          yesterday.setDate(yesterday.getDate() - 1);
+                          return date < yesterday;
+                        }}
                       />
                     </PopoverContent>
                   </Popover>
@@ -351,7 +355,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                           mode="single"
                           selected={field.value ? new Date(field.value) : undefined}
                           onSelect={(date) => field.onChange(date ? date.toISOString() : "")}
-                          disabled={(date) => date < new Date()}
+                          disabled={(date) => {
+                            const yesterday = new Date();
+                            yesterday.setDate(yesterday.getDate() - 1);
+                            return date < yesterday;
+                          }}
                         />
                       </PopoverContent>
                     </Popover>
@@ -383,7 +391,11 @@ const EventForm = ({ onSubmit, isLoading = false, initialData, mode = "create" }
                           mode="single"
                           selected={field.value ? new Date(field.value) : undefined}
                           onSelect={(date) => field.onChange(date ? date.toISOString() : "")}
-                          disabled={(date) => date < new Date()}
+                          disabled={(date) => {
+                            const yesterday = new Date();
+                            yesterday.setDate(yesterday.getDate() - 1);
+                            return date < yesterday;
+                          }}
                         />
                       </PopoverContent>
                     </Popover>
