@@ -1,7 +1,8 @@
 "use client";
 
 import { Input } from "@/components/ui/Input";
-import { Search } from "lucide-react";
+import { useQueryParams } from "@/hooks";
+import { Search, X } from "lucide-react";
 
 interface TableToolbarProps {
   searchable?: boolean;
@@ -18,6 +19,13 @@ export const TableToolbar = ({
   onSearchChange,
   rightAction,
 }: TableToolbarProps) => {
+  const { setParam } = useQueryParams();
+
+  const clearSearch = () => {
+    setParam("search", "");
+    onSearchChange?.("");
+  };
+
   return (
     <div className="flex items-center justify-between gap-4">
       {/* Search Section */}
@@ -30,6 +38,7 @@ export const TableToolbar = ({
               value={searchValue}
               onChange={(e) => onSearchChange?.(e.target.value)}
               className="pl-10"
+              suffix={searchValue && <X className="w-5 cursor-pointer" onClick={clearSearch} />}
             />
           </div>
         )}
