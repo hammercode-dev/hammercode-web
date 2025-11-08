@@ -66,6 +66,7 @@ export interface UserEventResponse {
   user_id: string;
   image_proof_payment: string;
   payment_url: string;
+  transaction_no: string;
   payment_date: string | null;
   status: "PENDING" | "SUCCESS" | "FAILED";
   created_at: string;

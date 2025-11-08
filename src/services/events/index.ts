@@ -1,6 +1,12 @@
 import { HttpResponse } from "@/types/http";
 import { fetcher } from "../instance";
-import { AdminEventResponseType, CreateEventPayload, EventType, RegistrationForm } from "@/domains/Events";
+import {
+  AdminEventResponseType,
+  CheckPaymentResponse,
+  CreateEventPayload,
+  EventType,
+  RegistrationForm,
+} from "@/domains/Events";
 import { UserEventResponse } from "@/features/events/types/userEvent";
 
 export const eventsService = {
@@ -76,5 +82,9 @@ export const eventsService = {
    */
   async updateEventAdmin(id: string, payload: CreateEventPayload): Promise<HttpResponse<null>> {
     return fetcher.put(`/admin/events/${id}`, payload);
+  },
+
+  async checkPaymentStatus(transaction_no: string): Promise<HttpResponse<CheckPaymentResponse>> {
+    return fetcher.get(`/transactions/${transaction_no}/status`);
   },
 };

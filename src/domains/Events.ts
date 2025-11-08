@@ -132,3 +132,10 @@ export type AdminEventResponseType = Omit<EventFormType, "image"> & {
   author: string;
   file_name: string;
 };
+
+export type CheckPaymentResponse = {
+  transaction_no: string;
+  status: string;
+  paid_at: Date;
+  payment_method: string;
+};

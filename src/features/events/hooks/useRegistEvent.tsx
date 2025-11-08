@@ -4,9 +4,13 @@ import { toast } from "sonner";
 import { uploadsService } from "@/services/uploads";
 import { eventsService } from "@/services/events";
 import { EventType, RegistrationForm } from "@/domains/Events";
+import { useMutation } from "@tanstack/react-query";
+import { useDialog } from "@/contexts";
+import EventCheckStatusModal from "../components/EventCheckStatusModal";
 
-export const useRegistEvent = (data: EventType) => {
+export const useRegistEvent = (data?: EventType) => {
   const t = useTranslations("EventsPage");
+  const { openDialog } = useDialog();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [nameImage, setNameImage] = useState<string | null>("");
   // const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
@@ -63,5 +67,17 @@ export const useRegistEvent = (data: EventType) => {
     }
   };
 
-  return { registEvent, isLoading };
+  const { mutate: checkPaymentStatus } = useMutation({
+    mutationKey: ["checkPaymentStatus"],
+    mutationFn: async ({ transaction_no }: { transaction_no: string }) =>
+      eventsService.checkPaymentStatus(transaction_no),
+    onSuccess: (data) => {
+      openDialog({
+        content: <EventCheckStatusModal status={data?.data?.status} transaction_no={data?.data?.transaction_no} />,
+        size: "sm",
+      });
+    },
+  });
+
+  return { registEvent, isLoading, checkPaymentStatus };
 };

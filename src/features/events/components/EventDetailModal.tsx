@@ -13,6 +13,8 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { Check, X, UserCheck, CreditCard, CheckCircle2, Calendar, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/Button";
+import { useRegistEvent } from "../hooks/useRegistEvent";
 
 interface EventDetailModalProps {
   event: UserEventResponse;
@@ -20,6 +22,7 @@ interface EventDetailModalProps {
 
 export const EventDetailModal = ({ event }: EventDetailModalProps) => {
   const { event_detail, user_detail } = event;
+  const { checkPaymentStatus } = useRegistEvent();
 
   const getActiveStep = () => {
     if (event.status === "SUCCESS") return 3;
@@ -155,7 +158,7 @@ export const EventDetailModal = ({ event }: EventDetailModalProps) => {
         </Stepper>
 
         {event.status === "PENDING" && event.payment_url && (
-          <div className="mt-4 flex items-center justify-center rounded-md border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
+          <div className="mt-4 flex flex-col items-center justify-center gap-4 rounded-md border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
             <a
               href={event.payment_url}
               target="_blank"
@@ -164,6 +167,14 @@ export const EventDetailModal = ({ event }: EventDetailModalProps) => {
             >
               Click here to complete your payment →
             </a>
+            <Button
+              className="cursor-pointer"
+              onClick={() => {
+                checkPaymentStatus({ transaction_no: event.transaction_no });
+              }}
+            >
+              Check Payment
+            </Button>
           </div>
         )}
       </div>
