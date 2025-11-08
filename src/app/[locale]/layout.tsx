@@ -16,7 +16,7 @@ const sora = Sora({ subsets: ["latin"] });
 
 type Props = {
   params: Promise<{
-    locale: "en" | "id";
+    locale: string;
   }>;
   children: React.ReactNode;
 };

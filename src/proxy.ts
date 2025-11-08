@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 const locales = ["en", "id"] as const;
 type Locale = (typeof locales)[number];
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const headerLocale = request.headers.get("x-next-intl-locale");
 
   const defaultLocale: Locale = locales.includes(headerLocale as Locale) ? (headerLocale as Locale) : "id";

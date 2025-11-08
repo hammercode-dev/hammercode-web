@@ -4,14 +4,12 @@ import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
-import { TablePagination } from "@/components/common/TableData/TablePagination";
 import { useMyEvents } from "../hooks/useMyEvent";
-import MyEventCard from "../components/MyEventCard";
 import { EVENTS_TYPE } from "@/constants/event";
 import Loader from "@/components/common/Loader";
-import { UserEventType } from "@/domains/Events";
-import { NotFoundData } from "@/components/common/NotFoundData";
 import { useQueryParams } from "@/hooks";
+import TableData from "@/components/common/TableData";
+import { columnsUserEventList } from "../components/ColumnsUserEventList";
 
 const UserEventPage = () => {
   const t = useTranslations("MyEventPage");
@@ -70,57 +68,16 @@ const UserEventPage = () => {
       </header>
       {isLoading ? (
         <Loader />
-      ) : myEvents.length === 0 ? (
-        <NotFoundData />
       ) : (
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            show: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.7,
-                staggerChildren: 0.4,
-                delayChildren: 0.2,
-                ease: "easeOut",
-              },
-            },
-          }}
-          initial="hidden"
-          animate="show"
-        >
-          <div className="grid gap-6">
-            {myEvents.map((event: UserEventType) => (
-              <motion.div
-                key={event?.id}
-                variants={{
-                  hidden: { y: 20, opacity: 0 },
-                  show: {
-                    y: 0,
-                    opacity: 1,
-                    transition: {
-                      type: "spring",
-                      stiffness: 50,
-                      damping: 20,
-                    },
-                  },
-                }}
-                whileHover={{ scale: 1.01 }}
-              >
-                {event && <MyEventCard data={event} />}
-              </motion.div>
-            ))}
-          </div>
-          {(paginationMyEvents?.total_pages || 0) > 1 && (
-            <div className="mt-8 flex justify-center">
-              <TablePagination
-                currentPage={paginationMyEvents?.page}
-                totalPages={paginationMyEvents?.total_pages}
-                itemsPerPage={limit}
-              />
-            </div>
-          )}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <TableData
+            data={myEvents}
+            columns={columnsUserEventList}
+            searchable={false}
+            itemsPerPage={limit}
+            currentPage={paginationMyEvents?.page}
+            totalPages={paginationMyEvents?.total_pages}
+          />
         </motion.div>
       )}
     </section>
