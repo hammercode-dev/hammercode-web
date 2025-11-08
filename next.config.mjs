@@ -27,17 +27,8 @@ const nextConfig = {
         port: "8000",
       },
     ],
-    // // Disable private IP check for development (allows localhost)
-    // dangerouslyAllowSVG: true,
-    // unoptimized: process.env.NODE_ENV === "development",
   },
   trailingSlash: true,
-  // Disable hostname resolution to private IPs check in development
-  // experimental: {
-  //   allowedHostsForFetch: process.env.NODE_ENV === "development"
-  //     ? ["localhost", "127.0.0.1", "::1"]
-  //     : undefined,
-  // },
 };
 
 export default withNextIntl(nextConfig);

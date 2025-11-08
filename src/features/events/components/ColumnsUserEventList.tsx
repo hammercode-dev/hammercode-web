@@ -1,13 +1,14 @@
 "use client";
 import Badge from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { UserEventType } from "@/domains/Events";
 import { formatDateEvent } from "@/lib/format";
 import { ColumnDef } from "@tanstack/react-table";
 import { Eye } from "lucide-react";
-import { Link } from "@/lib/navigation";
+import { useDialog } from "@/contexts/dialogContext";
+import { EventDetailModal } from "./EventDetailModal";
+import { UserEventResponse } from "../types/userEvent";
 
-export const columnsUserEventList: ColumnDef<UserEventType>[] = [
+export const columnsUserEventList: ColumnDef<UserEventResponse>[] = [
   {
     accessorKey: "order_no",
     header: "Order No",
@@ -18,7 +19,7 @@ export const columnsUserEventList: ColumnDef<UserEventType>[] = [
     cell: ({ row }) => <p>{row.original.event_detail.title}</p>,
   },
   {
-    accessorKey: "event_detail.date_event",
+    accessorKey: "event_detail.date",
     header: "Event Date",
     cell: ({ row }) => <p>{row.original.event_detail.date ? formatDateEvent(row.original.event_detail.date) : "-"}</p>,
   },
@@ -48,19 +49,27 @@ export const columnsUserEventList: ColumnDef<UserEventType>[] = [
   {
     id: "actions",
     header: "Actions",
-    cell: ({ row }) => (
-      <div className="flex gap-2">
-        <Button
-          size="icon"
-          variant="outline"
-          className="h-8 w-8 cursor-pointer border-blue-500 bg-blue-500 text-white hover:bg-blue-600 hover:text-white"
-          asChild
-        >
-          <Link href={`/events/${row.original.event_id}`}>
-            <Eye className="h-4 w-4" />
-          </Link>
-        </Button>
-      </div>
-    ),
+    cell: ({ row }) => <ViewEventButton event={row.original} />,
   },
 ];
+
+function ViewEventButton({ event }: { event: UserEventResponse }) {
+  const { openDialog } = useDialog();
+
+  const handleViewDetails = () => {
+    openDialog({
+      title: "Event Details",
+      content: <EventDetailModal event={event} />,
+      size: "xl",
+      className: "h-[80%]",
+    });
+  };
+
+  return (
+    <div className="flex gap-2">
+      <Button size="icon" variant="outline" className="h-8 w-8 cursor-pointer" onClick={handleViewDetails}>
+        <Eye className="h-4 w-4" />
+      </Button>
+    </div>
+  );
+}
