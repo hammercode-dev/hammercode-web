@@ -29,11 +29,6 @@ export const columnsUserEventList: ColumnDef<UserEventResponse>[] = [
     cell: ({ row }) => <p className="capitalize">{row.original.event_detail.type}</p>,
   },
   {
-    accessorKey: "payment_date",
-    header: "Payment Date",
-    cell: ({ row }) => <p>{row.original.payment_date ? formatDateEvent(row.original.payment_date) : "-"}</p>,
-  },
-  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
