@@ -68,7 +68,7 @@ export interface UserEventResponse {
   payment_url: string;
   transaction_no: string;
   payment_date: string | null;
-  status: "PENDING" | "SUCCESS" | "FAILED";
+  status: "PENDING" | "SUCCESS" | "FAILED" | "EXPIRED";
   created_at: string;
   event_detail: EventDetailForUser;
   user_detail: UserDetail;

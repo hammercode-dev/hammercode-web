@@ -4,13 +4,14 @@ import { toast } from "sonner";
 import { uploadsService } from "@/services/uploads";
 import { eventsService } from "@/services/events";
 import { EventType, RegistrationForm } from "@/domains/Events";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDialog } from "@/contexts";
 import EventCheckStatusModal from "../components/EventCheckStatusModal";
 
 export const useRegistEvent = (data?: EventType) => {
   const t = useTranslations("EventsPage");
-  const { openDialog } = useDialog();
+  const { openDialog, closeDialog } = useDialog();
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [nameImage, setNameImage] = useState<string | null>("");
   // const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
@@ -67,17 +68,45 @@ export const useRegistEvent = (data?: EventType) => {
     }
   };
 
-  const { mutate: checkPaymentStatus } = useMutation({
+  const { mutate: checkPaymentStatus, isPending: isCheckingPayment } = useMutation({
     mutationKey: ["checkPaymentStatus"],
     mutationFn: async ({ transaction_no }: { transaction_no: string }) =>
       eventsService.checkPaymentStatus(transaction_no),
-    onSuccess: (data) => {
+    onSuccess: (data, variables) => {
+      const paymentStatus = data?.data?.status;
+
       openDialog({
-        content: <EventCheckStatusModal status={data?.data?.status} transaction_no={data?.data?.transaction_no} />,
+        content: (
+          <EventCheckStatusModal
+            status={paymentStatus}
+            transaction_no={data?.data?.transaction_no}
+            onRefresh={() => {
+              closeDialog();
+              setTimeout(() => {
+                checkPaymentStatus({ transaction_no: variables.transaction_no });
+              }, 300);
+            }}
+          />
+        ),
         size: "sm",
+      });
+
+      queryClient.invalidateQueries({ queryKey: ["getListMyEvents"] });
+
+      if (paymentStatus?.toUpperCase() === "SUCCESS") {
+        setTimeout(() => {
+          toast.success("Payment verified!", {
+            description: "Your event registration is now confirmed.",
+          });
+        }, 3500);
+      }
+    },
+    onError: () => {
+      toast.error("Failed to check payment status", {
+        description: "Please try again later or contact support if the problem persists.",
       });
     },
   });
 
-  return { registEvent, isLoading, checkPaymentStatus };
+  return { registEvent, isLoading, checkPaymentStatus, isCheckingPayment };
 };

@@ -11,7 +11,7 @@ import {
   StepperDescription,
 } from "@/components/ui/Stepper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
-import { Check, X, UserCheck, CreditCard, CheckCircle2, Calendar, User } from "lucide-react";
+import { Check, X, UserCheck, CreditCard, CheckCircle2, Calendar, User, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { useRegistEvent } from "../hooks/useRegistEvent";
@@ -22,11 +22,12 @@ interface EventDetailModalProps {
 
 export const EventDetailModal = ({ event }: EventDetailModalProps) => {
   const { event_detail, user_detail } = event;
-  const { checkPaymentStatus } = useRegistEvent();
+  const { checkPaymentStatus, isCheckingPayment } = useRegistEvent();
 
   const getActiveStep = () => {
     if (event.status === "SUCCESS") return 3;
     if (event.status === "FAILED") return 3;
+    if (event.status === "EXPIRED") return 3;
     if (event.status === "PENDING") return 2;
     return 1;
   };
@@ -116,14 +117,18 @@ export const EventDetailModal = ({ event }: EventDetailModalProps) => {
                       event.status === "SUCCESS"
                         ? "text-white data-[state=completed]:bg-green-500"
                         : event.status === "FAILED"
-                          ? "bg-red-500 text-white"
-                          : "bg-black text-white"
+                          ? "!bg-red-500 text-white"
+                          : event.status === "EXPIRED"
+                            ? "!bg-red-500 text-white"
+                            : "bg-black text-white"
                     }`}
                   >
                     {event.status === "SUCCESS" ? (
                       <Check className="h-5 w-5" />
                     ) : event.status === "FAILED" ? (
                       <X className="h-5 w-5" />
+                    ) : event.status === "EXPIRED" ? (
+                      <AlertCircle className="h-5 w-5" />
                     ) : (
                       <CheckCircle2 className="h-5 w-5" />
                     )}
@@ -135,7 +140,9 @@ export const EventDetailModal = ({ event }: EventDetailModalProps) => {
                         ? "Payment Success"
                         : event.status === "FAILED"
                           ? "Payment Failed"
-                          : "On Pending"}
+                          : event.status === "EXPIRED"
+                            ? "Payment Expired"
+                            : "On Pending"}
                     </span>
                   </div>
                 </StepperTrigger>
@@ -146,10 +153,18 @@ export const EventDetailModal = ({ event }: EventDetailModalProps) => {
                         ? "bg-green-500/10 text-green-500"
                         : event.status === "FAILED"
                           ? "bg-red-500/10 text-red-500"
-                          : "bg-gray-500/10 text-gray-500 dark:text-gray-400"
+                          : event.status === "EXPIRED"
+                            ? "bg-red-500/10 text-red-500"
+                            : "bg-gray-500/10 text-gray-500 dark:text-gray-400"
                     }`}
                   >
-                    {event.status === "SUCCESS" ? "Completed" : event.status === "FAILED" ? "Failed" : "Pending"}
+                    {event.status === "SUCCESS"
+                      ? "Completed"
+                      : event.status === "FAILED"
+                        ? "Failed"
+                        : event.status === "EXPIRED"
+                          ? "Expired"
+                          : "Pending"}
                   </span>
                 </StepperDescription>
               </div>
@@ -159,21 +174,32 @@ export const EventDetailModal = ({ event }: EventDetailModalProps) => {
 
         {event.status === "PENDING" && event.payment_url && (
           <div className="mt-4 flex flex-col items-center justify-center gap-4 rounded-md border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
-            <a
-              href={event.payment_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
-            >
-              Click here to complete your payment →
-            </a>
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-sm font-medium text-blue-900 dark:text-blue-100">Complete Your Payment</p>
+              <a
+                href={event.payment_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
+              >
+                Click here to open payment page →
+              </a>
+            </div>
             <Button
-              className="cursor-pointer"
+              className="w-full cursor-pointer"
               onClick={() => {
                 checkPaymentStatus({ transaction_no: event.transaction_no });
               }}
+              disabled={isCheckingPayment}
             >
-              Check Payment
+              {isCheckingPayment ? (
+                <>
+                  <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  Checking...
+                </>
+              ) : (
+                "Check Payment Status"
+              )}
             </Button>
           </div>
         )}

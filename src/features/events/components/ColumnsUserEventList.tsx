@@ -33,7 +33,8 @@ export const columnsUserEventList: ColumnDef<UserEventResponse>[] = [
     header: "Status",
     cell: ({ row }) => {
       const status = row.original.status;
-      const variant = status === "SUCCESS" ? "open" : status === "PENDING" ? "soon" : "closed";
+      const variant =
+        status === "SUCCESS" ? "open" : status === "PENDING" ? "soon" : status === "EXPIRED" ? "closed" : "closed";
       return (
         <div>
           <Badge variant={variant}>{status}</Badge>
