@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { useDialog } from "@/contexts";
 import { Check, CreditCard, HelpCircle, X, AlertCircle, RefreshCcw } from "lucide-react";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +23,7 @@ type StatusConfig = {
 };
 
 const statusConfigMap: Record<string, StatusConfig> = {
-  SUCCESS: {
+  PAID: {
     icon: <Check className="h-16 w-16" />,
     title: "Payment Successful!",
     description: "Your payment has been confirmed. You're all set for the event!",
@@ -77,28 +77,11 @@ const EventCheckStatusModal = ({ status = "", transaction_no = "", onRefresh }: 
       action: "close",
     } as StatusConfig);
 
-  useEffect(() => {
-    if (config.autoClose && status.toUpperCase() === "SUCCESS") {
-      const timer = setTimeout(() => {
-        closeDialog();
-        onRefresh?.();
-      }, config.autoClose);
-
-      return () => clearTimeout(timer);
-    }
-  }, [config.autoClose, status, closeDialog, onRefresh]);
-
   const handleAction = () => {
     if (config.action === "refresh" && onRefresh) {
-      closeDialog();
-      setTimeout(() => {
-        onRefresh();
-      }, 300);
+      onRefresh();
     } else {
       closeDialog();
-      if (status.toUpperCase() === "SUCCESS") {
-        onRefresh?.();
-      }
     }
   };
 
@@ -155,24 +138,13 @@ const EventCheckStatusModal = ({ status = "", transaction_no = "", onRefresh }: 
           </Button>
         )}
         <Button
-          variant={status.toUpperCase() === "SUCCESS" ? "default" : "outline"}
-          className={cn("flex-1", status.toUpperCase() === "SUCCESS" && "bg-green-600 hover:bg-green-700")}
-          onClick={handleAction}
+          variant={status.toUpperCase() === "PAID" ? "default" : "outline"}
+          className={cn("flex-1", status.toUpperCase() === "PAID" && "bg-green-600 hover:bg-green-700")}
+          onClick={() => closeDialog()}
         >
-          {status.toUpperCase() === "SUCCESS" ? "Great!" : "Close"}
+          {status.toUpperCase() === "PAID" ? "Great!" : "Close"}
         </Button>
       </motion.div>
-
-      {status.toUpperCase() === "SUCCESS" && config.autoClose && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-          className="text-muted-foreground text-xs"
-        >
-          This dialog will close automatically in 3 seconds...
-        </motion.p>
-      )}
     </div>
   );
 };
