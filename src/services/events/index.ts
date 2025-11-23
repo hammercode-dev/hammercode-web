@@ -5,7 +5,7 @@ import {
   CheckPaymentResponse,
   CreateEventPayload,
   EventType,
-  RegistrationForm,
+  // RegistrationForm,
 } from "@/domains/Events";
 import { UserEventResponse } from "@/features/events/types/userEvent";
 
@@ -27,9 +27,9 @@ export const eventsService = {
   /**
    * API to get register event user
    */
-  registerEvent(payload: RegistrationForm): Promise<HttpResponse<{ order_no: string }>> {
-    return fetcher.post("/events/registrations", payload);
-  },
+  // registerEvent(payload: RegistrationForm): Promise<HttpResponse<{ order_no: string }>> {
+  //   return fetcher.post("/events/registrations", payload);
+  // },
 
   /**
    * API to retrieve the list of events owned by the current user.
@@ -86,5 +86,10 @@ export const eventsService = {
 
   async checkPaymentStatus(transaction_no: string): Promise<HttpResponse<CheckPaymentResponse>> {
     return fetcher.get(`/transactions/${transaction_no}/status`);
+  },
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async registerEvent(event_id: number): Promise<HttpResponse<any>> {
+    return fetcher.post(`/transactions`, { event_id });
   },
 };

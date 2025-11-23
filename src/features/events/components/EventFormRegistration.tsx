@@ -12,14 +12,16 @@ import { Button } from "@/components/ui/Button";
 import { useEffect, useState } from "react";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import { useRouter } from "@/lib/navigation";
+import { useParams } from "next/navigation";
 
 const EventFormRegistration = ({ data }: { data: EventType }) => {
   const t = useTranslations("EventsPage");
   const router = useRouter();
+  const params = useParams();
   const { isAuthenticated, user } = useAuthUser();
 
   const [formActive, setFormActive] = useState(false);
-  const { registEvent, isLoading } = useRegistEvent(data);
+  const { registerEvent, isPendingRegister } = useRegistEvent();
 
   const form = useForm<RegistrationForm>({
     resolver: zodResolver(registrationSchema),
@@ -30,12 +32,12 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
     },
   });
 
-  const onSubmit: SubmitHandler<RegistrationForm> = (formData) => {
+  const onSubmit: SubmitHandler<RegistrationForm> = () => {
     if (!data) {
       return;
     }
 
-    registEvent(formData);
+    registerEvent({ event_id: Number(params?.id) });
   };
 
   useEffect(() => {
@@ -128,8 +130,8 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                   size="sm"
                   className="w-full"
                   type="submit"
-                  loading={isLoading}
-                  disabled={isLoading}
+                  loading={isPendingRegister}
+                  disabled={isPendingRegister}
                   onClick={form.handleSubmit(onSubmit)}
                 >
                   Submit

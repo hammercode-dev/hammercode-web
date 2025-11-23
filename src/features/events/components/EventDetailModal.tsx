@@ -182,7 +182,7 @@ export const EventDetailModal = ({ event }: EventDetailModalProps) => {
                 rel="noopener noreferrer"
                 className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
               >
-                Click here to open payment page →
+                Payment Page →
               </a>
             </div>
             <Button
