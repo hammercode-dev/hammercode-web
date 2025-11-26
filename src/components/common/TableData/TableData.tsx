@@ -18,7 +18,6 @@ interface TableDataProps<T> {
   rightAction?: React.ReactNode;
   currentPage?: number;
   totalPages?: number;
-  onSearchChange?: (search: string) => void;
 }
 
 function TableData<T>({
@@ -31,23 +30,28 @@ function TableData<T>({
   rightAction,
   currentPage = 1,
   totalPages = 1,
-  onSearchChange,
 }: TableDataProps<T>) {
-  const { getParam, setParams } = useQueryParams();
+  const { getParam, getNumberParam, setParams } = useQueryParams();
   const [searchValue, setSearchValue] = useState(getParam("search", ""));
   const debouncedSearchValue = useDebounced(searchValue, 500);
   const { handleItemsPerPageChange } = usePagination({ currentPage, totalPages, itemsPerPage });
 
-  useEffect(() => {
-    setParams({
-      search: debouncedSearchValue || null,
-      page: debouncedSearchValue ? 1 : currentPage,
-    });
+  const currentSearch = getParam("search", "");
+  const currentPageParam = getNumberParam("page", 1);
 
-    if (onSearchChange) {
-      onSearchChange(debouncedSearchValue);
+  useEffect(() => {
+    const nextSearch = debouncedSearchValue || null;
+    const nextPage = currentPageParam || 1;
+
+    if (currentSearch === (nextSearch ?? "") && currentPageParam === nextPage) {
+      return;
     }
-  }, [debouncedSearchValue, onSearchChange, currentPage]);
+
+    setParams({
+      search: nextSearch,
+      page: nextPage === currentPageParam ? null : nextPage,
+    });
+  }, [debouncedSearchValue, currentPageParam, currentSearch]);
 
   const table = useReactTable({
     data,

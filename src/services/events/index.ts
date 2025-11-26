@@ -8,6 +8,7 @@ import {
   // RegistrationForm,
 } from "@/domains/Events";
 import { UserEventResponse } from "@/features/events/types/userEvent";
+import { PaymentDetailResponse } from "@/features/events/types";
 
 export const eventsService = {
   /**
@@ -91,5 +92,9 @@ export const eventsService = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async registerEvent(event_id: number): Promise<HttpResponse<any>> {
     return fetcher.post(`/transactions`, { event_id });
+  },
+
+  async getPaymentDetail(order_no: string): Promise<HttpResponse<PaymentDetailResponse>> {
+    return fetcher.get(`/orders/${order_no}`);
   },
 };
