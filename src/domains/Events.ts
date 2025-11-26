@@ -47,17 +47,17 @@ export type EventType = z.infer<typeof eventSchema>;
 export const registrationSchema = z.object({
   name: z.string().optional(),
   email: z.string().optional(),
-  phone_number: z
-    .string({ required_error: "Phone number is required" })
-    .min(10, "Phone number must be at least 10 digits"),
-  image_proof_payment: z.union([
-    z
-      .instanceof(File)
-      .refine((file) => ["image/png", "image/jpeg", "image/jpg", "image/svg+xml", "image/gif"].includes(file.type), {
-        message: "Invalid image file type",
-      }),
-    z.string().min(1, "Image proof payment is required"),
-  ]),
+  // phone_number: z
+  //   .string({ required_error: "Phone number is required" })
+  //   .min(10, "Phone number must be at least 10 digits"),
+  // image_proof_payment: z.union([
+  //   z
+  //     .instanceof(File)
+  //     .refine((file) => ["image/png", "image/jpeg", "image/jpg", "image/svg+xml", "image/gif"].includes(file.type), {
+  //       message: "Invalid image file type",
+  //     }),
+  //   z.string().min(1, "Image proof payment is required"),
+  // ]),
 });
 
 export type RegistrationForm = z.infer<typeof registrationSchema>;

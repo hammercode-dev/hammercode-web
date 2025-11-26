@@ -28,7 +28,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
     defaultValues: {
       name: "",
       email: "",
-      phone_number: "",
+      // phone_number: "",
     },
   });
 
@@ -45,7 +45,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
       form.reset({
         name: user.username || "",
         email: user.email || "",
-        phone_number: "",
+        // phone_number: "",
       });
     }
   }, [user, form]);
@@ -71,7 +71,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       <FormItem>
                         <FormLabel>{t("EventRegistration.name.label")}</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder={t("EventRegistration.name.placeholder")} />
+                          <Input {...field} placeholder={t("EventRegistration.name.placeholder")} readOnly />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -84,13 +84,13 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       <FormItem>
                         <FormLabel>{t("EventRegistration.email.label")}</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder={t("EventRegistration.email.placeholder")} />
+                          <Input {...field} placeholder={t("EventRegistration.email.placeholder")} readOnly />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <FormField
+                  {/* <FormField
                     name="phone_number"
                     control={form.control}
                     render={({ field }) => (
@@ -120,7 +120,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                 </form>
               </Form>
             </div>
