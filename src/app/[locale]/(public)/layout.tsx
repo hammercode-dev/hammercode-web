@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 import { useParams, usePathname } from "next/navigation";
-const authPaths = ["sign-in", "sign-up", "forgot-password", "reset-password"];
+const authPaths = ["sign-in", "sign-up", "forgot-password", "reset-password", "payment/success"];
 
 const WrapperLayout = ({ children }: { children: React.ReactNode }) => {
   const params = useParams();

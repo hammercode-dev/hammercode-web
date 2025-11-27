@@ -16,7 +16,7 @@ const sora = Sora({ subsets: ["latin"] });
 
 type Props = {
   params: Promise<{
-    locale: "en" | "id";
+    locale: string;
   }>;
   children: React.ReactNode;
 };
@@ -60,17 +60,17 @@ export default async function LocaleRootLayout(props: Readonly<Props>) {
     <html lang={locale} suppressHydrationWarning>
       <body className={`${sora.className}`}>
         <NextIntlClientProvider messages={messages}>
-          <DialogProvider>
-            <TanstackProvider>
+          <TanstackProvider>
+            <DialogProvider>
               <AuthProvider payload={payload}>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                   {children}
                 </ThemeProvider>
               </AuthProvider>
-            </TanstackProvider>
-            <Toaster />
-            <DialogGlobal />
-          </DialogProvider>
+              <Toaster />
+              <DialogGlobal />
+            </DialogProvider>
+          </TanstackProvider>
         </NextIntlClientProvider>
       </body>
     </html>

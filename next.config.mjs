@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin("./src/lib/i18n.ts");
 const nextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
+    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -19,6 +20,11 @@ const nextConfig = {
         protocol: "http",
         port: "8000",
         hostname: "localhost",
+      },
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "8000",
       },
     ],
   },

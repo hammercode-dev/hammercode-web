@@ -28,37 +28,42 @@ export const useMDX = (content: string | undefined, options: UseMDXOptions = {})
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!content) {
-      setMdxSource(null);
+    const processMDX = async () => {
+      if (!content) {
+        return;
+      }
+
+      setIsLoading(true);
       setError(null);
-      return;
-    }
+      setMdxSource(null);
 
-    setIsLoading(true);
-    setError(null);
-
-    serialize(content, {
-      parseFrontmatter: options.parseFrontmatter || true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          [
-            rehypePrettyCode,
-            {
-              theme: options.theme || "github-dark",
-              keepBackground: false,
-            },
-          ],
-        ],
-      },
-    })
-      .then(setMdxSource)
-      .catch((err) => {
+      try {
+        const result = await serialize(content, {
+          parseFrontmatter: options.parseFrontmatter || true,
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [
+              [
+                rehypePrettyCode,
+                {
+                  theme: options.theme || "github-dark",
+                  keepBackground: false,
+                },
+              ],
+            ],
+          },
+        });
+        setMdxSource(result);
+      } catch (err) {
         console.error("Error serializing MDX:", err);
-        setError(err.message || "Failed to serialize MDX content");
+        setError(err instanceof Error ? err.message : "Failed to serialize MDX content");
         setMdxSource(null);
-      })
-      .finally(() => setIsLoading(false));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    processMDX();
   }, [content, options.parseFrontmatter, options.theme]);
 
   return {

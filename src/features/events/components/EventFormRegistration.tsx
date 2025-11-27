@@ -12,30 +12,32 @@ import { Button } from "@/components/ui/Button";
 import { useEffect, useState } from "react";
 import { useAuthUser } from "@/components/hooks/UseAuthUser";
 import { useRouter } from "@/lib/navigation";
+import { useParams } from "next/navigation";
 
 const EventFormRegistration = ({ data }: { data: EventType }) => {
   const t = useTranslations("EventsPage");
   const router = useRouter();
+  const params = useParams();
   const { isAuthenticated, user } = useAuthUser();
 
   const [formActive, setFormActive] = useState(false);
-  const { registEvent, isLoading } = useRegistEvent(data);
+  const { registerEvent, isPendingRegister } = useRegistEvent();
 
   const form = useForm<RegistrationForm>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       name: "",
       email: "",
-      phone_number: "",
+      // phone_number: "",
     },
   });
 
-  const onSubmit: SubmitHandler<RegistrationForm> = (formData) => {
+  const onSubmit: SubmitHandler<RegistrationForm> = () => {
     if (!data) {
       return;
     }
 
-    registEvent(formData);
+    registerEvent({ event_id: Number(params?.id) });
   };
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
       form.reset({
         name: user.username || "",
         email: user.email || "",
-        phone_number: "",
+        // phone_number: "",
       });
     }
   }, [user, form]);
@@ -69,7 +71,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       <FormItem>
                         <FormLabel>{t("EventRegistration.name.label")}</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder={t("EventRegistration.name.placeholder")} />
+                          <Input {...field} placeholder={t("EventRegistration.name.placeholder")} readOnly />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -82,13 +84,13 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                       <FormItem>
                         <FormLabel>{t("EventRegistration.email.label")}</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder={t("EventRegistration.email.placeholder")} />
+                          <Input {...field} placeholder={t("EventRegistration.email.placeholder")} readOnly />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <FormField
+                  {/* <FormField
                     name="phone_number"
                     control={form.control}
                     render={({ field }) => (
@@ -118,7 +120,7 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                 </form>
               </Form>
             </div>
@@ -128,8 +130,8 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
                   size="sm"
                   className="w-full"
                   type="submit"
-                  loading={isLoading}
-                  disabled={isLoading}
+                  loading={isPendingRegister}
+                  disabled={isPendingRegister}
                   onClick={form.handleSubmit(onSubmit)}
                 >
                   Submit

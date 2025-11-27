@@ -214,3 +214,11 @@ export const useUpdateEvent = (t: (key: string) => string, id: string) => {
     isLoading: loadingCreateEvent || loadingCreateImage,
   };
 };
+
+export const useGetPaymentDetail = (order_no: string) => {
+  return useQuery({
+    queryKey: ["getPaymentDetail", order_no],
+    queryFn: async () => eventsService.getPaymentDetail(order_no),
+    enabled: !!order_no,
+  });
+};

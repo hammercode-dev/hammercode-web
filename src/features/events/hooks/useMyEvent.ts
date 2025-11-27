@@ -10,6 +10,8 @@ export const useMyEvents = (page: number, limit: number, type: string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["getListMyEvents", page, limit, type],
     queryFn: async () => eventsService.getMyEvents(page, limit, typeMemo),
+    staleTime: 0,
+    refetchOnMount: "always",
   });
 
   return {
