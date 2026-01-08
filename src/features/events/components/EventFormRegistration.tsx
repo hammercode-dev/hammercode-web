@@ -28,7 +28,6 @@ const EventFormRegistration = ({ data }: { data: EventType }) => {
     defaultValues: {
       name: "",
       email: "",
-      // phone_number: "",
     },
   });
 
