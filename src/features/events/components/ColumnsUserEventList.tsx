@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/Button";
 import { formatDateEvent } from "@/lib/format";
 import { ColumnDef } from "@tanstack/react-table";
 import { Eye } from "lucide-react";
-import { useDialog } from "@/contexts/dialogContext";
-import { EventDetailModal } from "./EventDetailModal";
 import { UserEventResponse } from "../types/userEvent";
+import { useRouter } from "@/lib/navigation";
 
 export const columnsUserEventList: ColumnDef<UserEventResponse>[] = [
   {
@@ -50,15 +49,10 @@ export const columnsUserEventList: ColumnDef<UserEventResponse>[] = [
 ];
 
 function ViewEventButton({ event }: { event: UserEventResponse }) {
-  const { openDialog } = useDialog();
+  const router = useRouter();
 
   const handleViewDetails = () => {
-    openDialog({
-      title: "Event Details",
-      content: <EventDetailModal event={event} />,
-      size: "xl",
-      className: "h-[80%]",
-    });
+    router.push(`/my-events/${event.order_no}`);
   };
 
   return (
