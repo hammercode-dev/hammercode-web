@@ -60,10 +60,10 @@ export interface EventDetailForUser {
 }
 
 export interface UserEventResponse {
-  id?: number;
-  order_no?: string;
-  event_id?: number;
-  user_id?: string;
+  id: number;
+  order_no: string;
+  event_id: number;
+  user_id: string;
   payment_url: string;
   transaction_no: string;
   payment_date: string | null;

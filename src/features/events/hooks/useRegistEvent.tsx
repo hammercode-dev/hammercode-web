@@ -4,8 +4,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDialog } from "@/contexts";
 import EventCheckStatusModal from "../components/EventCheckStatusModal";
 import { useRouter } from "@/lib/navigation";
+import { useTranslations } from "next-intl";
 
 export const useRegistEvent = () => {
+  const t = useTranslations("EventsPage.Hook");
   const router = useRouter();
   const { openDialog, closeDialog } = useDialog();
   const queryClient = useQueryClient();
@@ -15,10 +17,16 @@ export const useRegistEvent = () => {
     mutationFn: ({ event_id }: { event_id: number }) => eventsService.registerEvent(event_id),
     onSuccess: (data) => {
       toast.success(data?.message);
-      router.push(`/my-events/${data.data.order_no}`);
+      const orderNo = data?.data?.order_no;
+      if (orderNo) {
+        router.push(`/my-events/${orderNo}`);
+      } else {
+        router.push("/my-events");
+      }
     },
     onError: (error) => {
-      toast.error(error?.message);
+      const message = error?.message || t("register-error");
+      toast.error(message);
     },
   });
 
