@@ -147,6 +147,9 @@
   "EventsPage": {
     "title": "Acara",
     "description": "Ayo ikuti berbagai acara seru dan dapatkan pengalaman tak terlupakan!",
+    "Hook": {
+      "register-error": "Gagal mendaftar event"
+    },
     "EventDetail": {
       "organized-by": "Diselenggarakan Oleh:",
       "desc-title": "Deskripsi",
@@ -228,6 +231,13 @@
   "MyEventPage": {
     "title": "Event Saya",
     "description": "Daftar event yang sudah diregistrasi"
+  },
+  "MyEventDetailPage": {
+    "not-found-title": "Transaksi Tidak Ditemukan",
+    "not-found-description": "Transaksi yang Anda cari tidak ada atau telah dihapus.",
+    "back-to-my-events": "Kembali ke Event Saya",
+    "event-details": "Detail Event",
+    "load-error": "Gagal memuat detail transaksi"
   },
   "MyBlogPage": {
     "title": "Blog Saya",

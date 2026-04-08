@@ -1,3 +1,5 @@
+import { EventDetailForUser, UserDetail } from "./types/userEvent";
+
 type EventTypes = "Workshop" | "TechTalk" | "dll";
 type EventStatus = "open" | "soon" | "closed";
 
@@ -27,22 +29,15 @@ export type EventInfoType = {
 };
 
 export type PaymentDetailResponse = {
+  id?: number;
+  event_id?: number;
+  user_id?: string;
   order_no: string;
   transaction_no: string;
   payment_date: string;
   status: string;
-  event_detail: {
-    title: string;
-    date: Date;
-    type: string;
-    location: string;
-    duration: string;
-    price: number;
-    session_type: string;
-  };
-  user_detail: {
-    fullname: string;
-    email: string;
-    phone_number: string;
-  };
+  payment_url: string;
+  created_at: string;
+  event_detail: EventDetailForUser;
+  user_detail: UserDetail;
 };

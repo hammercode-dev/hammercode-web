@@ -64,11 +64,10 @@ export interface UserEventResponse {
   order_no: string;
   event_id: number;
   user_id: string;
-  image_proof_payment: string;
   payment_url: string;
   transaction_no: string;
   payment_date: string | null;
-  status: "PENDING" | "SUCCESS" | "FAILED" | "EXPIRED";
+  status: string;
   created_at: string;
   event_detail: EventDetailForUser;
   user_detail: UserDetail;

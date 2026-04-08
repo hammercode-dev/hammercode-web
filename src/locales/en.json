@@ -147,6 +147,9 @@
   "EventsPage": {
     "title": "Events",
     "description": "Join the fun events and have an unforgettable experience!",
+    "Hook": {
+      "register-error": "Failed to register event"
+    },
     "EventDetail": {
       "organized-by": "Organized By:",
       "desc-title": "Description",
@@ -228,6 +231,13 @@
   "MyEventPage": {
     "title": "My Events",
     "description": "List of registered events"
+  },
+  "MyEventDetailPage": {
+    "not-found-title": "Transaction Not Found",
+    "not-found-description": "The transaction you are looking for does not exist or has been removed.",
+    "back-to-my-events": "Back to My Events",
+    "event-details": "Event Details",
+    "load-error": "Failed to load transaction details"
   },
   "MyBlogPage": {
     "title": "My Blogs",

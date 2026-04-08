@@ -4,3 +4,4 @@ export { default as AdminEventUpdatePage } from "./AdminEventUpdatePage";
 export { default as PublicEventListPage } from "./PublicEventListPage";
 export { default as PublicEventDetailPage } from "./PublicEventDetailPage";
 export { default as UserEventPage } from "./UserEventPage";
+export { default as UserEventDetailPage } from "./UserEventDetailPage";
