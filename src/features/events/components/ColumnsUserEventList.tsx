@@ -52,9 +52,7 @@ function ViewEventButton({ event }: { event: UserEventResponse }) {
   const router = useRouter();
 
   const handleViewDetails = () => {
-    if (event.order_no) {
-      router.push(`/my-events/${event.order_no}`);
-    }
+    router.push(`/my-events/${event.order_no}`);
   };
 
   return (
